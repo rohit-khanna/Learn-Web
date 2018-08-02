@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Counters from "./components/counters";
+import Navbar from "./components/navbar";
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +15,8 @@ class App extends Component {
       { id: 2, count: 0, desc: "Jeans" },
       { id: 3, count: 0, desc: "Coffee Mug" },
       { id: 4, count: 0, desc: "XBox" }
-    ]
+    ],
+    currId: 4
   };
 
   handleDelete = counterId => {
@@ -45,16 +47,23 @@ class App extends Component {
     this.setState({ listOfCounters });
   };
 
+  handleAddItem = val => {
+    const listOfCounters = this.state.listOfCounters;
+    listOfCounters.push({ id: this.getNewId(), count: 0, desc: val });
+    this.setState({ listOfCounters });
+  };
+
+  getNewId = () => {
+    this.setState({ currId: this.state.currId + 1 });
+    return this.state.currId + 1;
+  };
+
   handleDecrement = counterObj => {
     if (counterObj.count > 0) {
       const listOfCounters = this.state.listOfCounters;
       const indx = listOfCounters.indexOf(counterObj);
 
       listOfCounters[indx].count--;
-      // const listOfCounters = this.state.listOfCounters.map(x => {
-      //   if (x.id === counterObj.id) x.count -= 1;
-      //   return x;
-      // });
       this.setState({ listOfCounters });
     }
   };
@@ -63,14 +72,13 @@ class App extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark ">
-          <span className="navbar-brand">
-            <b>React Demo </b>: Kind of Shopping Cart
-          </span>
-          <span className="badge badge-pill badge-secondary">
-            {this.state.listOfCounters.filter(x => x.count > 0).length}
-          </span>
-        </nav>
+        <Navbar
+          onAddItem={this.handleAddItem}
+          distinctCounter={
+            this.state.listOfCounters.filter(x => x.count > 0).length
+          }
+        />
+
         <main role="main" className="container">
           <Counters
             onReset={this.handleReset}
@@ -103,12 +111,6 @@ class App extends Component {
     //console.log(prevState);
     return null;
   }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log("App-shouldComponentUpdate");
-  //   //console.log(nextState);
-  //   return true;
-  // }
 }
 
 export default App;
