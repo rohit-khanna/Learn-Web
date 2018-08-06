@@ -6,3 +6,6 @@ It could be helpful for someone or help me to refer back in sometime in future.
 
 ### 1. Counter-app
 Its a REACTJS demo with a "kind-of" shopping cart where in we can increment and decrement some Items Counter. a Very Simple Demo of Various Components and their interaction
+
+### 2. react-router-sample
+Its a Sample App showing the use of React-router for routing capabilities in SPAs.
