@@ -27,5 +27,11 @@ export const fakeAuthentication = {
 
     this.isAuthenticated = true;
     setTimeout(cb, 100);
+  },
+  signout(cb) {
+    console.log("fakeAUth");
+
+    this.isAuthenticated = false;
+    setTimeout(cb, 100);
   }
 };
