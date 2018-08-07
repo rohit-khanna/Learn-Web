@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Link, Switch, Route, Redirect } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import About from "./components/aboutComponent";
 import Books from "./components/bookComponent";
+import Login from "./components/LoginComponent";
+import Secured from "./components/securedComponent";
+import { fakeAuthentication } from "./components/dataprovider";
 
 class App extends Component {
   getClassNamesForLinks(path) {
     let classNames = "navLink ";
     //  console.log(path, window.location.pathname);
-    //if (window.location.pathname == path) classNames += " current";
+    //if (path === "/admin") classNames += " current";
     return classNames;
   }
 
@@ -19,7 +22,7 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React-routing Sample</h1>
+            <h1 className="App-title"> react-routing-sample</h1>
 
             <nav>
               <Link to="/">
@@ -37,6 +40,16 @@ class App extends Component {
                   About Us
                 </span>
               </Link>
+              <span style={{ marginLeft: 5 }}>|</span>
+              <Link to="/admin">
+                <span className={this.getClassNamesForLinks("/admin")}>
+                  Protected-ADMIN
+                </span>
+              </Link>
+
+              <Link to="/login" style={{ right: 25, position: "absolute" }}>
+                <h5>Login</h5>
+              </Link>
             </nav>
           </header>
           <main>
@@ -46,14 +59,16 @@ class App extends Component {
                 exact={true}
                 render={() => {
                   return (
-                    <h3 style={{ color: "black", marginTop: 50 }}>
+                    <h1 style={{ color: "#C47B6B", marginTop: 50 }}>
                       Welcome to the Home page
-                    </h3>
+                    </h1>
                   );
                 }}
               />
               <Route path="/about" component={About} />
               <Route path="/books" component={Books} />
+              <Route path="/login" component={Login} />
+              <PrivateRoute securedPath="/admin" component={Secured} />
             </Switch>
           </main>
         </div>
@@ -61,5 +76,18 @@ class App extends Component {
     );
   }
 }
+
+const PrivateRoute = ({ component: C, securedPath }) => (
+  <Route
+    securedPath={securedPath}
+    render={props =>
+      fakeAuthentication.isAuthenticated === true ? (
+        <C {...props} redirectPath={securedPath} />
+      ) : (
+        <Redirect to={`/login?redirectUrl=${securedPath}`} />
+      )
+    }
+  />
+);
 
 export default App;

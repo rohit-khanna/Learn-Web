@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import booksCollection from "./dataprovider";
+import { booksCollection } from "./dataprovider";
 
 class BookDetails extends Component {
   constructor(props) {

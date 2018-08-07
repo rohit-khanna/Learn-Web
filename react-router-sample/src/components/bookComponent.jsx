@@ -1,7 +1,11 @@
+/** ***********************************************************
+ *********  BOOK COMPONENT:  Shows the collection of Books  **
+ ***************************************************************/
+
 import React, { Component } from "react";
 import { Link, Route } from "react-router-dom";
 import BookDetails from "./bookDetailsComponent";
-import booksCollection from "./dataprovider";
+import { booksCollection } from "./dataprovider";
 
 class Books extends Component {
   constructor(props) {
@@ -45,7 +49,7 @@ class Books extends Component {
           <div className="col-md-5">
             <Route
               path={`${this.props.match.url}/:id`}
-              //component={BookDetails}
+              //component={BookDetails}   // using this was not rendering the Component on subsequent changes by user Click
               component={props => (
                 <BookDetails {...props} url={`${this.props.match.url}/:id`} />
               )}

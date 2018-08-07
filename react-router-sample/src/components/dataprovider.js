@@ -1,4 +1,4 @@
-const booksCollection = [
+export const booksCollection = [
   {
     id: 1,
     title: "Learn React With Me",
@@ -20,4 +20,12 @@ const booksCollection = [
   { id: 4, title: "C# Concepts", Author: "Mr Turner", price: "$ 15.50" }
 ];
 
-export default booksCollection;
+export const fakeAuthentication = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    console.log("fakeAUth");
+
+    this.isAuthenticated = true;
+    setTimeout(cb, 100);
+  }
+};

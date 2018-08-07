@@ -47,6 +47,9 @@ class CountersComponent extends Component {
     return null;
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log("getDerivedStateFromProps");
+  }
   // shouldComponentUpdate(nextProps, nextState) {
   //   console.log("counterS-shouldComponentUpdate");
   //   //console.log(nextState);
