@@ -13,7 +13,9 @@ import About from "./components/aboutComponent";
 import Books from "./components/bookComponent";
 import Login from "./components/LoginComponent";
 import Secured from "./components/securedComponent";
+import Register from "./components/registerComponent";
 import { fakeAuthentication } from "./components/dataprovider";
+import NavLink from "./components/navLinkComponent";
 
 class App extends Component {
   getClassNamesForLinks(path) {
@@ -33,27 +35,11 @@ class App extends Component {
             <h1 className="App-title"> react-routing-sample</h1>
 
             <nav>
-              <Link to="/">
-                <span className={this.getClassNamesForLinks("/")}>Home</span>
-              </Link>
-              <span style={{ marginLeft: 5 }}>|</span>
-              <Link to="/books">
-                <span className={this.getClassNamesForLinks("/books")}>
-                  Books
-                </span>
-              </Link>
-              <span style={{ marginLeft: 5 }}>|</span>
-              <Link to="/about">
-                <span className={this.getClassNamesForLinks("/about")}>
-                  About Us
-                </span>
-              </Link>
-              <span style={{ marginLeft: 5 }}>|</span>
-              <Link to="/admin">
-                <span className={this.getClassNamesForLinks("/admin")}>
-                  Protected-ADMIN
-                </span>
-              </Link>
+              <NavLink to="/" showPipe={false} text="Home" />
+              <NavLink to="/books" showPipe={true} text="Books" />
+              <NavLink to="/register" showPipe={true} text="Register" />
+              <NavLink to="/about" showPipe={true} text="About" />
+              <NavLink to="/admin" showPipe={true} text="Protected-Admin" />
               <span style={{ marginLeft: 25 }}>&nbsp;</span>
               <AuthButton />
             </nav>
@@ -73,6 +59,7 @@ class App extends Component {
               />
               <Route path="/about" component={About} />
               <Route path="/books" component={Books} />
+              <Route path="/register" component={Register} />
               <Route path="/login" component={Login} />
               <PrivateRoute securedPath="/admin" component={Secured} />
             </Switch>

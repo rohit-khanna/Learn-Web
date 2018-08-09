@@ -6,6 +6,7 @@ import React, { Component } from "react";
 import { Link, Route } from "react-router-dom";
 import BookDetails from "./bookDetailsComponent";
 import { booksCollection } from "./dataprovider";
+import NavLink from "./navLinkComponent";
 
 class Books extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class Books extends Component {
                 return (
                   <li key={book.id} title="Click to open">
                     <Link to={`${this.props.match.url}/${book.id}`}>
-                      <b>{book.title}</b> by <i>{book.Author}</i>
+                      <b>{book.title}</b> by <i>{book.author}</i>
                     </Link>
                   </li>
                 );

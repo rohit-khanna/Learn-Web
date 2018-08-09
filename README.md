@@ -9,3 +9,4 @@ Its a REACTJS demo with a "kind-of" shopping cart where in we can increment and 
 
 ### 2. react-router-sample
 Its a Sample App showing the use of React-router for routing capabilities in SPAs.
+It also showcase use of Forms under '/register' with resuable controls for text and multi Select. This register form adds a new book to our Book Collection which can be viewed over '/books' navigation

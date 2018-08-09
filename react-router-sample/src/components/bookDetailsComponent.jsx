@@ -12,23 +12,14 @@ class BookDetails extends Component {
   }
 
   componentDidMount() {
-    //console.log("bookDet-CDM");
-
     const bookDetails = booksCollection.find(val => {
-      //  console.log(val.id, this.state.__id);
       return val.id.toString() === this.state.__id;
     });
-    //console.log("cdm-", bookDetails);
 
     if (bookDetails) this.setState({ bookDetails: bookDetails });
   }
 
-  componentWillUnmount() {
-    //console.log("unmount");
-  }
   render() {
-    // //console.log(this.state.bookDetails);
-    //  //console.log(this.state.__id);
     let exprsn =
       this.state.bookDetails == null ? (
         <div />
@@ -40,10 +31,24 @@ class BookDetails extends Component {
             {this.state.bookDetails.title}
           </p>
           <p>
-            <b className="m-1">Author:</b> {this.state.bookDetails.Author}
+            <b className="m-1">Author:</b> {this.state.bookDetails.author}
           </p>
           <p>
             <b className="m-2">Price:</b> {this.state.bookDetails.price}
+          </p>
+          <p>
+            <b className="m-2">Tags:</b>
+            {this.state.bookDetails.tags &&
+              this.state.bookDetails.tags.map((tag, index) => {
+                return (
+                  <span
+                    className="badge badge-pill badge-warning m-1"
+                    key={index}
+                  >
+                    {tag}
+                  </span>
+                );
+              })}
           </p>
         </div>
       );

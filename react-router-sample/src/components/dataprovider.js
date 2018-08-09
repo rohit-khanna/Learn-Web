@@ -2,22 +2,47 @@ export const booksCollection = [
   {
     id: 1,
     title: "Learn React With Me",
-    Author: "Rohit K",
-    price: "$ 23.23"
+    author: "Rohit K",
+    price: "$ 23.23",
+    tags: ["REACT", "JS"]
   },
   {
     id: 2,
     title: "Lets Learn CSS ",
-    Author: "Andrw Someone",
-    price: "$ 23.00"
+    author: "Andrw Someone",
+    price: "$ 23.00",
+    tags: ["CSS", "HTML"]
   },
   {
     id: 3,
     title: "HTML and Concepts",
-    Author: "John That",
-    price: "$ 111.00"
+    author: "John That",
+    price: "$ 111.00",
+    tags: ["CSS", "HTML"]
   },
-  { id: 4, title: "C# Concepts", Author: "Mr Turner", price: "$ 15.50" }
+  {
+    id: 4,
+    title: "C# Concepts",
+    author: "Mr Turner",
+    price: "$ 15.50",
+    tags: ["C#", ".NET"]
+  }
+];
+
+export const tagsCollection = [
+  "HTML",
+  "CSS",
+  "JS",
+  "C#",
+  ".NET",
+  "JAVA",
+  "BEGINNER",
+  "EXPERT",
+  "INTERMEDIARY",
+  "CONTENT",
+  "ADVANCED",
+  "CLOSURES",
+  "SCRIPTING"
 ];
 
 export const fakeAuthentication = {

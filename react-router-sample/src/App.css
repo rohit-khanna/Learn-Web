@@ -31,16 +31,23 @@
   }
 }
 .navLink:hover {
-  color: rgb(103, 85, 207);
+  color: rgb(229, 228, 236);
 }
 
 .navLink {
-  color: rgb(201, 198, 67);
+  color: rgb(133, 233, 113);
   margin-left: 10px;
 }
 
 .current {
-  color: lightgreen;
+  color: rgb(245, 217, 96);
+  text-decoration: underline;
 }
 
-@import url("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css");
+.form-title-label {
+  font-weight: bold;
+  padding-top: 5px;
+  text-align: right;
+}
+
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css");
