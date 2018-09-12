@@ -1,0 +1,34 @@
+@media only screen and (min-width: 1025px) and (max-width: 1125px) {
+  .hero-text-box {
+    width: 100%;
+    text-align: center;
+  }
+
+  body {
+    font-size: 19px;
+  }
+
+  .main-nav {
+    margin-right: 5%;
+  }
+  .main-nav li {
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 50px;
+  }
+  .main-nav li a:link,
+  .main-nav li a:visited {
+    font-size: 80%;
+  }
+
+  .social-links,
+  .footer-nav {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .footer-nav li,
+  .social-links li {
+    display: inline-block;
+    margin-right: 25px;
+  }
+}

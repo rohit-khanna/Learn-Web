@@ -1,0 +1,220 @@
+@media only screen and (min-width: 651px) and (max-width: 875px) {
+  .row {
+    max-width: 100%;
+    margin: 0 5%; /*top-bottom left-right */
+  }
+
+  body {
+    font-size: 17px;
+  }
+
+  .logo {
+    margin-top: 10px;
+    width: auto;
+    height: 80px;
+    float: left;
+  }
+
+  .main-nav {
+    float: right;
+    list-style: none;
+  }
+  .main-nav li {
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 40px;
+  }
+  .main-nav li a:link,
+  .main-nav li a:visited {
+    font-size: 80%;
+  }
+
+  section {
+    padding: 40px 0px;
+  }
+
+  .hero-text-box {
+    width: 100%;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 180%;
+    word-spacing: 5px;
+  }
+  h2 {
+    font-size: 150%;
+    word-spacing: 1px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  h2:after {
+    width: 70px;
+    margin-top: 10px;
+  }
+  h3 {
+    font-size: 110%;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .long-copy {
+    line-height: 130%;
+    width: 98%;
+    margin-left: 1%;
+    font-size: 90%;
+  }
+  .icon-big {
+    font-size: 32px !important;
+    margin-bottom: 5px;
+  }
+
+  .app-image {
+    width: 60%;
+  }
+  .steps-box {
+    vertical-align: top;
+  }
+  .steps-box:nth-child(1) {
+    text-align: center;
+    padding-right: 0%;
+  }
+  .steps-box:last-child {
+    padding-left: 3%;
+    margin-top: 70px;
+  }
+
+  .step-details {
+    margin-bottom: 20px;
+  }
+
+  .step-details p {
+    font-size: 100%;
+  }
+
+  .step-details:last-of-type {
+    margin-bottom: 50px;
+  }
+
+  .step-details div {
+    font-size: 100%;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    padding: 2px;
+    float: left;
+    margin-right: 10px;
+  }
+
+  .box p {
+    font-size: 90%;
+    line-height: 120%;
+  }
+
+  .btn-app img {
+    height: 30px;
+    margin-left: 10px;
+  }
+
+  .cities li {
+    display: block;
+    float: left;
+    width: 46%;
+    margin: 2%;
+  }
+
+  .cities li figure figcaption p {
+    font-size: 80%;
+    line-height: 150%;
+  }
+  .cities li figure figcaption p:first-of-type,
+  .cities li figure figcaption h3 {
+    margin-top: 10px;
+  }
+  .cities li figure figcaption {
+    margin-bottom: 10px;
+  }
+  .cities li figure figcaption i {
+    font-size: 18px;
+  }
+
+  cite img {
+    width: 35px;
+    border-radius: 50%;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  blockquote {
+    width: 90%;
+    margin: 9% 5%;
+    line-height: 170%;
+  }
+
+  blockquote p {
+    font-size: 110%;
+  }
+
+  .plan-box {
+    margin-left: 5%;
+    width: 85%;
+    margin-bottom: 20px;
+  }
+
+  .plan-box ul li {
+    padding: 2px 0;
+    font-size: 80%;
+    font-weight: 400;
+  }
+
+  .plan-price {
+    font-size: 250%;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+
+  .icon-small {
+    font-size: 15px;
+    color: #e67e22;
+    margin-top: -2%;
+  }
+
+  .contact-form {
+    margin-top: 20px;
+    width: 80%;
+    margin-left: 10%;
+  }
+
+  .contact-form .row {
+    margin-bottom: 20px;
+  }
+
+  .social-links {
+    margin-top: 30px;
+    float: left;
+  }
+
+  .footer-nav li,
+  .social-links li {
+    display: inline-block;
+    margin-right: 15px;
+  }
+  .social-links li a:link,
+  .social-links li a:visited {
+    font-size: 150%;
+  }
+
+  .copyright {
+    font-size: 100%;
+    text-align: left;
+    margin: 20px 0px;
+  }
+  .span-1-of-3 {
+    width: 49.5%;
+    margin: 0%;
+  }
+
+  .span-1-of-4 {
+    width: 49.2%;
+    margin: 0%;
+  }
+}
