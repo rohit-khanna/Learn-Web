@@ -9,12 +9,12 @@ create dynamic Shopping Bag module for an Ecommerce web application.	On first lo
 
 ### User Interface
 
-![UI for Shopping Cart](https://github.com/rohit-khanna/Learn-Web/tree/master/Shopping-Cart/screen_prints/UI-1.png)
-![UI for Shopping Cart](https://github.com/rohit-khanna/Learn-Web/tree/master/Shopping-Cart/screen_prints/UI-2.png)
-![UI for Shopping Cart](https://github.com/rohit-khanna/Learn-Web/tree/master/Shopping-Cart/screen_prints/UI-3.png)
-![UI for Shopping Cart](https://github.com/rohit-khanna/Learn-Web/tree/master/Shopping-Cart/screen_prints/UI-4.png)
-![UI for Shopping Cart](https://github.com/rohit-khanna/Learn-Web/tree/master/Shopping-Cart/screen_prints/UI-5.png)
-![UI for Shopping Cart](https://github.com/rohit-khanna/Learn-Web/tree/master/Shopping-Cart/screen_prints/UI-6.png)
+![UI for Shopping Cart](https://github.com/rohit-khanna/Learn-Web/blob/master/Shopping-Cart/screen_prints/UI-1.png)
+![UI for Shopping Cart](https://github.com/rohit-khanna/Learn-Web/blob/master/Shopping-Cart/screen_prints/UI-2.png)
+![UI for Shopping Cart](https://github.com/rohit-khanna/Learn-Web/blob/master/Shopping-Cart/screen_prints/UI-3.png)
+![UI for Shopping Cart](https://github.com/rohit-khanna/Learn-Web/blob/master/Shopping-Cart/screen_prints/UI-4.png)
+![UI for Shopping Cart](https://github.com/rohit-khanna/Learn-Web/blob/master/Shopping-Cart/screen_prints/UI-5.png)
+![UI for Shopping Cart](https://github.com/rohit-khanna/Learn-Web/blob/master/Shopping-Cart/screen_prints/UI-6.png)
 
 
 #### Contents
