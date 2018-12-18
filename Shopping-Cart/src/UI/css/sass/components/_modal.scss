@@ -1,0 +1,190 @@
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content__container {
+  display: block;
+  width: 100%;
+  margin-top: 2rem;
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  
+    text-align: center;
+    margin-top: 1rem;
+
+    border-top: 5px $border-color solid;
+    &__description {
+      margin-top: 1rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: $tertiary-font-color;
+    }
+    &__price {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+    }
+    &__colors {
+      margin-top: 1rem;
+    }
+    &__size-qty {
+      margin-top: 1rem;
+    }
+    &__EDIT {
+      margin-top: 1rem;
+    }
+  }
+
+  &__image {
+    display: none;
+    // flex-basis: 50%;
+    // text-align: right;
+    // justify-self: center;
+    // img {
+    //   width: 100%;
+    // }
+  }
+}
+
+.box-color {
+  width: 30px;
+  height: 30px;
+  padding: 0.2em 0.4em;
+  display: inline-block;
+  margin: 0 0.2em;
+  border: 5px solid black;
+  cursor: pointer;
+  &--selected {
+    border: 5px solid rgb(14, 204, 62) !important;
+  }
+
+  &--red {
+    background-color: red;
+    border-color: red;
+  }
+  &--black {
+    background-color: black;
+    border-color: black;
+  }
+  &--blue {
+    background-color: blue;
+    border-color: blue;
+  }
+  &--navy {
+    background-color: navy;
+    border-color: navy;
+  }
+  &--beige {
+    background-color: beige;
+    border-color: beige;
+  }
+  &--maroon {
+    background-color: maroon;
+    border-color: maroon;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+
+
+.modal-content__container {
+  display: flex;
+  width: 80%;
+  margin-top: 2rem;
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-basis: 50%;
+    text-align: center;
+    margin-top: 1rem;
+    margin-left: 4rem;
+    border-top: 5px $border-color solid;
+    &__description {
+      margin-top: 1rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: $tertiary-font-color;
+    }
+    &__price {
+      margin-top: 1rem;
+      font-size: 3rem;
+    }
+    &__colors {
+      margin-top: 1rem;
+    }
+    &__size-qty {
+      margin-top: 1rem;
+    }
+    &__EDIT {
+      margin-top: 1rem;
+    }
+  }
+
+  &__image {
+    display: block;
+    flex-basis: 50%;
+    text-align: right;
+    justify-self: center;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+
+
+}

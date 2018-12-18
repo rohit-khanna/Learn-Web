@@ -1,0 +1,77 @@
+{
+  "products": [
+    {
+      "id": 9999,
+      "description": "Men's Leather Party Jacket",
+      "availableColors": [
+        "BLACK",
+        "NAVY"
+      ],
+      "availableSizes": [
+        "M",
+        "S",
+        "L",
+        "XL"
+      ],
+      "style": "Style#12356",
+      "price": 148.99,
+      "imgUrl": "images/jacket.jpg"
+    },
+    {
+      "id": 99999,
+      "description": "Ladies Denim Skirt",
+      "availableColors": [
+        "BLACK",
+        "BLUE"
+      ],
+      "availableSizes": [
+        "M",
+        "S",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "style": "Style#44356",
+      "price": 48.99,
+      "imgUrl": "images/skirt.jpg"
+    },
+    {
+      "id": 999999,
+      "description": "Men Slim Fit Trouser",
+      "availableColors": [
+        "BLACK",
+        "BLUE",
+        "BEIGE",
+        "MAROON"
+      ],
+      "availableSizes": [
+        "M",
+        "S",
+        "L",
+        "XL",
+        "XXL",
+        "XS"
+      ],
+      "style": "Style#9856",
+      "price": 8.99,
+      "imgUrl": "images/trouser.png"
+    },
+    {
+      "id": 99,
+      "description": "Kids Cricket Kit",
+      "availableColors": [
+        "WHITE",
+        "BLUE",
+        "BEIGE"
+      ],
+      "availableSizes": [
+        "M",
+        "S",
+        "XS"
+      ],
+      "style": "Style#9006",
+      "price": 48,
+      "imgUrl": "images/jersey.png"
+    }
+  ]
+}

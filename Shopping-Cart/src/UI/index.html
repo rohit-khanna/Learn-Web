@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Shopping Cart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="css/index.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../dist/bundle.js"></script>
+  </head>
+  <body>
+    <header class="cart-header">
+      <h1 tabindex="1">Your Shopping Bag</h1>
+      <div class="container">
+        <div
+          tabindex="2"
+          aria-label="total items in cart"
+          class="cart-header__item-count"
+        >
+          <span tabindex="3" class="cart-header__item-count--value"></span>
+          <span class="cart-header__item-count--text">items</span>
+        </div>
+        <div class="attribute-headers">
+          <span>Size</span> <span>Qty</span> <span title="Per Item Price">Price</span>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="section-items">
+        <ul
+          tabindex="4"
+          aria-label="List of Cart Items"
+          class="section-items__list"
+        ></ul>
+      </section>
+      <section class="section-billing">
+        <article class="section-billing__promo">
+          <article class="section-billing__promo__details">
+            <h2>enter Promotion code or Gift Card</h2>
+            <input
+              type="text"
+              id="txtPromo" placeholder="Enter Promo Code"
+              class="section-billing__promo__details__code"
+            />
+            <button id="btnApplyCode" disabled class="button button--ghost disabled">
+              Apply
+            </button>
+          </article>
+        </article>
+
+        <article class="section-billing__totals">
+          <aside class="section-billing__totals--help lg">
+            <h3>Need help or have questions?</h3>
+            <div>
+              Call customer services at<br />
+              1800-00-987-87
+            </div>
+            <button class="button button--link button--help">
+              Chat with one of our stylists
+            </button>
+
+            <button class="button button--link button--help">
+              See return & exchange policy
+            </button>
+          </aside>
+
+          <section class="section-billing__totals__calc">
+            <div>
+              <label for="subtotal">subtotal</label>
+              <span id="subtotal">
+                <div class="price">
+                  <div class="price__curr">$</div>
+                  <div class="price__value">79.00</div>
+                </div>
+              </span>
+            </div>
+            <div>
+              <label for="shipping"
+                >Estimated Shipping*<br />
+                <span class="info">
+                  your cart amount is over $50.00, <br />
+                  so you get free shipping
+                </span>
+              </label>
+              <span id="shipping">
+                <div class="price">
+                  <div class="price__curr"></div>
+                  <div class="price__value">free</div>
+                </div>
+              </span>
+            </div>
+            <div>
+              <label for="discount"
+                >PromoCode <br />
+                <span class="info"> </span>
+              </label>
+              <br />
+              <span id="discount">
+                <div class="price">
+                  <div class="price__curr">$</div>
+                  <div class="price__value">-9.00</div>
+                </div></span
+              >
+            </div>
+            <div>
+              <label for="estimatedTotal"
+                >Estimated Total<br />
+                <span class="info">
+                  Tax will be applied at the<br />
+                  time of checkout
+                </span>
+              </label>
+              <span id="estimatedTotal">
+                <div class="price">
+                  <div class="price__curr">$</div>
+                  <div class="price__value">55.98</div>
+                </div>
+              </span>
+            </div>
+            <div class="checkout-button">
+              <div>
+                <button class="button button--primary">checkout</button>
+              </div>
+              <div>
+                <button class="button button--link">continue shopping</button>
+              </div>
+            </div>
+
+            <div>
+              <span class="info">
+                <img src="images/lock.png" class="lock" alt="secure and safe" />
+
+                Secure Checkout. Shopping is always safe & secure
+              </span>
+            </div>
+          </section>
+        </article>
+      </section>
+
+      <!-- The Modal -->
+      <dialog id="myModal" class="modal" data-id="0">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+
+          <div class="modal-content__container">
+            <div class="modal-content__container__details">
+              <div class="modal-content__container__details__description">
+                --description--
+              </div>
+              <div class="modal-content__container__details__price">
+                <div class="price">
+                  <div class="price__curr">$</div>
+                  <div class="price__value">XX.00</div>
+                </div>
+              </div>
+              <div class="modal-content__container__details__colors">
+               
+              </div>
+              <div class="modal-content__container__details__size-qty">
+                <select id="availableSizes">
+                 
+                </select>
+                <select id="quantity">
+                  <option>QTY:18</option>  
+                </select>
+              </div>
+              <div class="modal-content__container__details__EDIT">
+                <button class="button button--primary" title="Click to Edit in Cart">EDIT</button>
+              </div>
+            </div>
+            <div class="modal-content__container__image">
+              <img alt="item image" src="images/skirt.jpg" />
+            </div>
+          </div>
+        </div>
+      </dialog>
+    </main>
+  </body>
+</html>

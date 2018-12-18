@@ -1,0 +1,19 @@
+label {
+  color: $secondary-font-color;
+  font-weight: 700;
+  font-size: 0.9em;
+  text-align: left;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+
+
+  & > .info {
+    font-size: 0.8em;
+    text-transform: none;
+    color: $tertiary-font-color;
+    font-weight: 100;
+   position: relative;
+   top:5px;
+   line-height: 1rem;
+  }
+}

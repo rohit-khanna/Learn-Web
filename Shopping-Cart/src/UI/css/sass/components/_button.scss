@@ -1,0 +1,96 @@
+.button {
+  padding: 0.4em 1.2em;
+  font-size: inherit;
+  cursor: pointer;
+  border: 1px white solid;
+  color: $secondary-font-color;
+  background-color: red;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+
+  &--action {
+    background-color: $action-button-background;
+    color: $tertiary-font-color;
+    font-weight: 400;
+    letter-spacing: 2px;
+    &:hover {
+      border-bottom: 1px $tertiary-font-color solid;
+    }
+  }
+
+  &--ghost {
+    background-color: $primary-color;
+    border: 1px $secondary-font-color solid;
+    border-radius: 1px;
+    font-size: 0.9em;
+    &:hover {
+      background-color: $primary-button-color;
+      color: $primary-color;
+    }
+   
+  }
+  &:disabled {
+    background-color:$border-color;
+    cursor: not-allowed;
+  }
+
+  &--link {
+    background-color: transparent;
+    text-decoration: underline;
+    width: 80%;
+    margin: 0 10%;
+    color: $tertiary-font-color;
+    font-weight: 700;
+  }
+
+  &--primary {
+    background-color: $primary-button-color;
+    color: $primary-color;
+    padding: 1em 1.2em;
+    border-radius: 1px;
+    width: 100%;
+    font-size: 1.2em;
+    margin-bottom: 1rem;
+
+    &:hover {
+      background-color: $primary-button-background-hover;
+    }
+  }
+}
+.rb {
+  border-right: 1px solid $border-color;
+}
+
+@media only screen and (min-width: 600px) {
+  .button {
+    padding: 0.5em 1em;
+    font-size: inherit;
+
+    &--link {
+      padding-left: 0;
+      padding-right: 0;
+      width: 100%;
+      margin: 0;
+      font-weight: 100;
+      color: $tertiary-font-color;
+    }
+
+    &--help {
+      text-decoration: underline;
+      font-size: 0.8rem;
+      width: 100%;
+      margin: 0.5rem 0rem;
+      text-align: left;
+      padding: 0;
+      text-transform: none;
+      letter-spacing: 1px;
+    }
+
+    &--primary {
+      padding: 1rem 0;
+    }
+  }
+}

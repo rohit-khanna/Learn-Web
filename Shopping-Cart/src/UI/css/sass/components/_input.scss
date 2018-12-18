@@ -1,0 +1,22 @@
+input[type="number"],
+input[type="text"] {
+  border-radius: 2px;
+  border: $tertiary-font-color 1px solid;
+  color: $secondary-font-color;
+  outline: none;
+  padding: 0.5rem 0.1rem;
+  font-size: 1rem;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+input[type="number"]:focus {
+  outline-offset: 0;
+}
+
+
