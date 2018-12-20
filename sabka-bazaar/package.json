@@ -1,0 +1,17 @@
+{
+  "name": "sabka-bazaar",
+  "version": "1.0.0",
+  "description": "This is the Sample Shopping Site with Mocked Server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-server": "canned -p 5000 ./server",
+    "build-css": "sass ./src/UI/css/sass/main.scss  ./src/UI/css/index.css"
+  },
+  "author": "Rohit Khanna",
+  "license": "ISC",
+  "dependencies": {
+    "canned": "^0.3.12",
+    "node-fetch": "^2.3.0"
+  }
+}
