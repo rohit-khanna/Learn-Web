@@ -8,18 +8,16 @@ RESET
 }
 
 body,input {
-  max-width: 980px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0 0;
   background-color: $primary-background-color;
   font-size: 12px;
   font-family: "Dosis", "sans-serif";
 }
 
-h2 {
-  text-transform: uppercase;
+h2{
+  font-size: 1rem;
 }
-
-
 
 @media only screen and (min-width: 400px) {
   body {

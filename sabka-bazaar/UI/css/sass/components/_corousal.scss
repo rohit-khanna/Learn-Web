@@ -11,22 +11,22 @@
   .next {
     display: none;
     z-index: 200;
-    width: 20px;
-    height: 20px;
+    cursor: pointer;
+   
+    padding: 0.5rem 1rem 1rem 1rem;
     position: absolute;
-    top: 25%;
+    top: 15%;
     font-weight: bold;
-    border-radius: 10px;
   }
   .prev a,
   .next a {
-    color: rgba(116, 115, 115, 0.289);
+    color: white;
     font-weight: bold;
     text-decoration: none;
     padding: 0 0;
-    margin: 0.2rem 0;
-    vertical-align: top;
-    font-size: 2rem;
+    border: none;
+    margin: 0 0;
+    font-size: 4rem;
   }
   .prev {
     left: 2rem;
@@ -46,6 +46,7 @@
     -moz-transition: transform 0.5s;
     -o-transition: transform 0.5s;
     transition: transform 0.5s;
+
     li {
       width: 20%;
       position: relative;
@@ -61,6 +62,13 @@
       }
     }
   }
+
+  &:hover .next,
+  &:hover .prev {
+    background-color: #00000062;
+    color: white;
+  }
+
   .slidesNavigation {
     display: flex;
     justify-content: center;

@@ -1,24 +1,17 @@
 @import "./css/fonts/Dosis.css";
 @import "abstracts/variables";
-
+@import "abstracts/utilities";
 
 @import "base/base";
 
-  @import "components/corousal";
-  @import "components/anchor";
+@import "components/corousal";
+@import "components/anchor";
 
-//  @import "components/button";
+@import "components/button";
 //  @import "components/modal";
 //  @import "components/select";
 //  @import "components/label";
 
-//  @import "components/input";
-
- @import "pages/home";
-
-
-
+@import "pages/home";
 
 @import "layout/header";
-
-

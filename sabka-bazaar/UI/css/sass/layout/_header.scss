@@ -1,8 +1,13 @@
 .header {
+  &__container {
+    box-shadow: 0px 3px 11px $shadow-color;
+    position: sticky;
+    top: 0;
+    z-index: 300;
+  }
   display: flex;
   font-size: inherit;
-  position: sticky;
-  box-shadow: 0px 3px 11px $shadow-color;
+  //
   justify-content: space-between;
 
   &__logo {
@@ -77,7 +82,7 @@
   .header {
     display: flex;
     font-size: inherit;
-    box-shadow: 0px 3px 11px $shadow-color;
+    // box-shadow: 0px 3px 11px $shadow-color;
     justify-content: space-between;
 
     &__logo {
@@ -160,14 +165,12 @@
     }
 
     &__nav {
-      flex-basis: 68%;     
+      flex-basis: 68%;
 
-      & > ul {       
-        & > li {        
-
-          & > a {           
+      & > ul {
+        & > li {
+          & > a {
             font-size: 1.2rem;
-         
           }
         }
       }

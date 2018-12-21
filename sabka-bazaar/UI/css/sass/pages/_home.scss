@@ -1,3 +1,16 @@
-.main-container{
-    margin-top: 2rem;
+.main-container {
+  margin-top: 2rem;
+}
+
+.section__prod-cat__quicklinks {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  &__row {
+    @extend %product_cat_row;
+  }
+  &__row--reverse {
+    @extend %product_cat_row;
+    flex-direction: row-reverse;
+  }
 }
