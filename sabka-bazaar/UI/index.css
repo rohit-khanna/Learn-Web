@@ -1,4 +1,184 @@
+@import "./css/fonts/Dosis.css";
 /*
-AUTO Generated
-
+COLOR SCHEME
 */
+/**
+RESET
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, input {
+  max-width: 980px;
+  margin: 0 auto;
+  background-color: #fff;
+  font-size: 12px;
+  font-family: "Dosis", "sans-serif";
+}
+
+h2 {
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width: 450px) {
+  body {
+    font-size: 14px;
+  }
+}
+@media only screen and (min-width: 550px) {
+  body {
+    font-size: 16px;
+  }
+}
+.carrousel {
+  background: #ffffff;
+  text-align: center;
+  margin: auto;
+  padding: 0.5rem 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 25px 23px -22px #b8b8b8;
+}
+.carrousel .prev,
+.carrousel .next {
+  display: none;
+  z-index: 200;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 25%;
+  font-weight: bold;
+  border-radius: 10px;
+}
+.carrousel .prev a,
+.carrousel .next a {
+  color: rgba(116, 115, 115, 0.289);
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0 0;
+  margin: 0.2rem 0;
+  vertical-align: top;
+  font-size: 2rem;
+}
+.carrousel .prev {
+  left: 0;
+}
+.carrousel .next {
+  right: 10px;
+}
+.carrousel .images {
+  width: 500%;
+  left: 0;
+  padding-left: 0;
+  padding-top: 1em;
+  overflow: hidden;
+  list-style: none;
+  position: relative;
+  -webkit-transition: transform 0.5s;
+  -moz-transition: transform 0.5s;
+  -o-transition: transform 0.5s;
+  transition: transform 0.5s;
+}
+.carrousel .images li {
+  width: 20%;
+  position: relative;
+  float: left;
+}
+.carrousel .images li img {
+  width: 90vw;
+  margin-left: 0;
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
+.carrousel .slidesNavigation {
+  display: flex;
+  justify-content: center;
+}
+.carrousel .slidesNavigation label {
+  margin: 6px;
+  display: block;
+  height: 10px;
+  width: 10px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  border: solid 1px #6160605f;
+  font-size: 0;
+}
+.carrousel input[type=radio] {
+  display: none;
+}
+
+#radio-1:checked ~ .images {
+  transform: translateX(0%);
+}
+
+#radio-2:checked ~ .images {
+  transform: translateX(-20%);
+}
+
+#radio-3:checked ~ .images {
+  transform: translateX(-40%);
+}
+
+#radio-4:checked ~ .images {
+  transform: translateX(-60%);
+}
+
+#radio-5:checked ~ .images {
+  transform: translateX(-80%);
+}
+
+.carrousel #radio-1:checked ~ .slidesNavigation label#dotForRadio-1,
+.carrousel #radio-2:checked ~ .slidesNavigation label#dotForRadio-2,
+.carrousel #radio-3:checked ~ .slidesNavigation label#dotForRadio-3,
+.carrousel #radio-4:checked ~ .slidesNavigation label#dotForRadio-4,
+.carrousel #radio-5:checked ~ .slidesNavigation label#dotForRadio-5 {
+  background: #252424bf;
+}
+
+.main-container {
+  margin-top: 2rem;
+}
+
+.header {
+  display: flex;
+  box-shadow: 3px 3px 11px #b8b8b8;
+  justify-content: space-between;
+}
+.header__logo {
+  flex-basis: 65%;
+  text-align: left;
+  align-self: center;
+}
+.header__logo img {
+  width: 50%;
+  margin: 0.1rem 0;
+}
+.header__nav {
+  display: none;
+}
+.header__cart__item-count {
+  flex-basis: 35%;
+  text-align: center;
+  align-items: center;
+  display: grid;
+  padding: 0.5rem 0;
+  justify-content: center;
+  background-color: #e9e3e3;
+  grid-template-columns: 40% 60%;
+}
+.header__cart__item-count--logo {
+  width: 1.9rem;
+  text-align: right;
+  margin: 0 0.5rem;
+}
+.header__cart__item-count--value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 0.1rem 0.3rem 0 0;
+}
+
+/*# sourceMappingURL=index.css.map */

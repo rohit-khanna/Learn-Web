@@ -1,0 +1,44 @@
+.header {
+  display: flex;
+
+  box-shadow: 3px 3px 11px $shadow-color;
+  justify-content: space-between;
+
+  &__logo {
+    flex-basis: 65%;
+    text-align: left;
+    align-self: center;
+    img {
+      width: 50%;
+     margin: 0.1rem 0;
+    }
+  }
+
+  &__nav {
+    display: none;
+  }
+
+  &__cart__item-count {
+    flex-basis: 35%;
+    text-align: center;
+    align-items: center;
+    display: grid;
+    padding: 0.5rem 0;
+    justify-content: center;
+    background-color: $secondary-background-color;
+    grid-template-columns: 40% 60%;
+
+    &--logo {
+      width: 1.9rem;
+      text-align: right;
+
+      margin: 0 0.5rem;
+    }
+    &--value {
+      font-size: 1.1rem;
+      font-weight: 700;
+
+      padding: 0.1rem 0.3rem 0 0;
+    }
+  }
+}

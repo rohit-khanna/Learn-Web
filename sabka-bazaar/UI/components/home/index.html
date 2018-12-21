@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Sabka Bazar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="../../index.css"
+    />
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__logo">
+        <img src="../../images/logo.png" alt="logo" />
+      </div>
+      <div class="header__nav">NAV BAR</div>
+      <div class="header__cart__item-count">
+        <img
+          src="../../images/cart.svg"
+          alt="cart item count"
+          class="header__cart__item-count--logo"
+        />
+        <div class="header__cart__item-count--value">
+          <span class="value">0</span> <span class="label">items</span>
+        </div>
+      </div>
+    </header>
+    <main class="main-container">
+      <div class="carrousel">
+        <input type="radio" name="images" id="radio-1" checked />
+        <input type="radio" name="images" id="radio-2" />
+        <input type="radio" name="images" id="radio-3" />
+        <input type="radio" name="images" id="radio-4" />
+        <input type="radio" name="images" id="radio-5" />
+        <div class="prev"><a href="">&lt;</a></div>
+        <ul class="images">
+          <li id="1">
+            <img src="../../images/offers/offer1.jpg" />
+          </li>
+          <li id="2"><img src="../../images/offers/offer2.jpg" /></li>
+          <li id="3"><img src="../../images/offers/offer3.jpg" /></li>
+          <li id="4"><img src="../../images/offers/offer4.jpg" /></li>
+          <li id="5"><img src="../../images/offers/offer5.jpg" /></li>
+        </ul>
+        <div class="next"><a href="">&gt;</a></div>
+        <div class="slidesNavigation">
+          <label for="radio-1" id="dotForRadio-1"></label>
+          <label for="radio-2" id="dotForRadio-2"></label>
+          <label for="radio-3" id="dotForRadio-3"></label>
+          <label for="radio-4" id="dotForRadio-4"></label>
+          <label for="radio-5" id="dotForRadio-5"></label>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
