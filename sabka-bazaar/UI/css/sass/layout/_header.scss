@@ -29,6 +29,7 @@
     text-align: center;
     align-items: center;
     display: grid;
+    display: -ms-grid;
     padding: 0.5rem 0;
     justify-content: center;
     background-color: $secondary-background-color;
@@ -124,6 +125,7 @@
       text-align: center;
       align-items: initial;
       display: grid;
+      display: -ms-grid;
       padding: 0rem 0;
       justify-content: center;
       background-color: $secondary-background-color;
