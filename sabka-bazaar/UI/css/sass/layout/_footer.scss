@@ -1,0 +1,33 @@
+.footer {
+  &__container {
+    background-color: $secondary-background-color;
+  }
+  margin-top: 1rem;
+  background-color: transparent;
+  padding: 0.5rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  & small {
+      width:100%;
+      display: inline-block;
+    text-align: center;
+  }
+}
+
+
+@media only screen and (min-width:700px){
+  .footer {
+    
+    margin-top: 1.5rem;
+   
+    padding: 1rem 0.5rem;
+    font-size: 1rem;
+  
+    & small {
+      letter-spacing: 1px;
+      word-spacing: 4px;
+    }
+  }
+
+}

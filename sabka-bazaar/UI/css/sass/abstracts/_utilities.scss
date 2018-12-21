@@ -22,8 +22,48 @@
     align-self: flex-start;
     font-size: 0.8rem;
     p {
-      margin-top: 0.3rem;
+      margin: 0.3rem 0;
       font-size: 0.8rem;
+    }
+  }
+}
+
+@media only screen and (min-width:700px){
+  %product_cat_row {
+   
+    img {
+      flex-basis: 40%;
+      align-self: center;
+      width: 35%;
+    }
+    .content {
+      flex-basis: 60%;
+      font-size: 1.2rem;
+      p {
+        margin: 0.3rem 0;
+        padding: 0 0.5rem;
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width:1000px){
+  %product_cat_row {
+   
+    img {
+      flex-basis: 40%;
+      align-self: center;
+      width: 35%;
+    }
+    .content {
+      flex-basis: 60%;
+      font-size: 1.2rem;
+      p {
+        margin: 1rem 0;
+        padding: 0 1rem;
+        font-size: 1.1rem;
+      }
     }
   }
 }

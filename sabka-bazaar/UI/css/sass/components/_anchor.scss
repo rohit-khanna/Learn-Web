@@ -2,11 +2,10 @@ a:link,
 a:visited {
   text-decoration: none;
   color:$primary-font-color;
-  transition: border-bottom 0.3s;
 }
 
 a:hover,
 a:active {
     text-decoration: none;
-  border-bottom: 1px solid $border-color;
+  border-bottom: 2px solid $border-color;
 }

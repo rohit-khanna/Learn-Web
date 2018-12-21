@@ -20,32 +20,32 @@
   </head>
   <body>
     <header class="header__container">
-      <div class="header util_main_content_align--centre">
+      <div class="header util_main_content_align--centre" role="heading">
         <div class="header__logo">
-          <img src="../../images/logo.png" alt="logo" />
+          <img src="../../images/logo.png" alt="logo" aria-label="Logo" tabindex="1" />
         </div>
-        <nav class="header__nav">
+        <nav class="header__nav" role="navigation">
           <ul>
-            <li><a href="#" title="Home">Home</a></li>
-            <li><a href="#" title="Products">Products</a></li>
+            <li aria-label="Home"><a href="#" title="Home" tabindex="2" >Home</a></li>
+            <li aria-label="Products"><a href="#" title="Products" tabindex="3" >Products</a></li>
           </ul>
         </nav>
         <div class="header__cart__item-count">
-          <div class="signin"><a href="#" title="SignIn">SignIn</a></div>
-          <div class="signin"><a href="#" title="Register">Register</a></div>
+          <div class="signin"><a href="#" title="SignIn" tabindex="4">SignIn</a></div>
+          <div class="signin"><a href="#" title="Register" tabindex="5">Register</a></div>
           <img
             src="../../images/cart.svg"
-            alt="cart item count"
+            alt="cart item count" tabindex="6"
             class="header__cart__item-count--logo"
           />
-          <div class="header__cart__item-count--value">
+          <div class="header__cart__item-count--value" tabindex="7">
             <span class="value">0</span> <span class="label">items</span>
           </div>
         </div>
       </div>
     </header>
     <main class="main-container util_main_content_align--centre">
-      <section class="section__corousal">
+      <section class="section__corousal" aria-label="offers section" tabindex="8">
         <div class="corousal">
           <input type="radio" name="images" id="radio-1" checked />
           <input type="radio" name="images" id="radio-2" />
@@ -53,15 +53,16 @@
           <input type="radio" name="images" id="radio-4" />
           <input type="radio" name="images" id="radio-5" />
 
-          <ul class="images">
+          <ul class="images"  aria-label="offers list">
             <li id="1"><img src="../../images/offers/offer1.jpg" /></li>
             <li id="2"><img src="../../images/offers/offer2.jpg" /></li>
             <li id="3"><img src="../../images/offers/offer3.jpg" /></li>
             <li id="4"><img src="../../images/offers/offer4.jpg" /></li>
             <li id="5"><img src="../../images/offers/offer5.jpg" /></li>
           </ul>
-          <div class="prev"><a href="">&lt;</a></div>
-          <div class="next"><a href="">&gt;</a></div>
+          <div class="prev"><a href=""  tabindex="0">&lt;</a></div>
+          <div class="next"><a href="" tabindex="0"
+            >&gt;</a></div>
           <div class="slidesNavigation">
             <label for="radio-1" id="dotForRadio-1"></label>
             <label for="radio-2" id="dotForRadio-2"></label>
@@ -72,13 +73,13 @@
         </div>
       </section>
 
-      <section class="section__prod-cat__quicklinks">
+      <section class="section__prod-cat__quicklinks" tabindex="9" aria-label="Product category quick links">
         <div class="section__prod-cat__quicklinks__row">
           <img src="../../images/category/fruits.png" alt="Fruits" />
           <div class="content">
             <h2>Fruits & Vegetables</h2>
             <p>A variety of fresh fruits and vegetables</p>
-            <button>Explore fruit-and-veg</button>
+            <button aria-label="Explore fruits and vegetables">Explore fruit-and-veg</button>
           </div>
         </div>
         <div class="section__prod-cat__quicklinks__row--reverse">
@@ -89,7 +90,7 @@
               The best cup-cakes, cookies, pies,cheese cakes, fresh bread,
               biscotti, muffins, bagels, fresh coffe, milk and more
             </p>
-            <button>Explore baked-cakes-dairy</button>
+            <button aria-label="Explore bakery,cakes and dairy products">Explore bakery-cakes-dairy</button>
           </div>
         </div>
         <div class="section__prod-cat__quicklinks__row">
@@ -114,7 +115,7 @@
               Buy beauty and personal care products online in india at best
               prices
             </p>
-            <button>Explore beauty-hygiene</button>
+            <button aria-label="Explore Beauty Hygiene products">Explore beauty-hygiene</button>
           </div>
         </div>
         <div class="section__prod-cat__quicklinks__row">
@@ -124,10 +125,17 @@
             <p>
               Shop online for Baby Products, Diapers, Skin care products, etc
             </p>
-            <button>Explore baby</button>
+            <button aria-label="Explore Baby Care Products">Explore baby</button>
           </div>
         </div>
       </section>
     </main>
+    <footer class="footer__container">
+      <div class="footer util_main_content_align--centre" >
+        <small>
+          Copyright &copy; 2011-2018 Sabka Bazaar Grocery Supplied Pvt Ltd
+        </small>
+      </div>
+    </footer>
   </body>
 </html>
