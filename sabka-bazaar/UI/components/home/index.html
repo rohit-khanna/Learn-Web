@@ -23,8 +23,20 @@
       <div class="header__logo">
         <img src="../../images/logo.png" alt="logo" />
       </div>
-      <div class="header__nav">NAV BAR</div>
+      <nav class="header__nav">
+          <ul>
+              <li>
+                 <a href="#" title="Home">Home</a> 
+              </li>
+              <li>
+                    <a href="#" title="Products">Products</a> 
+              </li>
+
+          </ul>
+      </nav>
       <div class="header__cart__item-count">
+        <div class="signin"><a href="#" title="SignIn">SignIn</a></div>
+        <div class="signin"><a href="#" title="Register">Register</a></div>
         <img
           src="../../images/cart.svg"
           alt="cart item count"
@@ -36,7 +48,7 @@
       </div>
     </header>
     <main class="main-container">
-      <div class="carrousel">
+      <div class="corousal">
         <input type="radio" name="images" id="radio-1" checked />
         <input type="radio" name="images" id="radio-2" />
         <input type="radio" name="images" id="radio-3" />
@@ -44,9 +56,7 @@
         <input type="radio" name="images" id="radio-5" />
         <div class="prev"><a href="">&lt;</a></div>
         <ul class="images">
-          <li id="1">
-            <img src="../../images/offers/offer1.jpg" />
-          </li>
+          <li id="1"><img src="../../images/offers/offer1.jpg" /></li>
           <li id="2"><img src="../../images/offers/offer2.jpg" /></li>
           <li id="3"><img src="../../images/offers/offer3.jpg" /></li>
           <li id="4"><img src="../../images/offers/offer4.jpg" /></li>
@@ -54,6 +64,7 @@
         </ul>
         <div class="next"><a href="">&gt;</a></div>
         <div class="slidesNavigation">
+            
           <label for="radio-1" id="dotForRadio-1"></label>
           <label for="radio-2" id="dotForRadio-2"></label>
           <label for="radio-3" id="dotForRadio-3"></label>
