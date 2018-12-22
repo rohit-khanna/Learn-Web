@@ -7,7 +7,14 @@ RESET
   box-sizing: border-box;
 }
 
-body,input {
+body {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+
+body,
+input {
   max-width: 100%;
   margin: 0 0;
   background-color: $primary-background-color;
@@ -15,7 +22,7 @@ body,input {
   font-family: "Dosis", "sans-serif";
 }
 
-h2{
+h2 {
   font-size: 1rem;
 }
 
@@ -31,11 +38,11 @@ h2{
   }
 }
 
-@media only screen and (min-width:700px){
+@media only screen and (min-width: 700px) {
   body {
     font-size: 18px;
   }
-  h2{
+  h2 {
     font-size: 1.5rem;
   }
 }

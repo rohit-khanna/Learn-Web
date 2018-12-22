@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Product List Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="../../index.css"
+    />
+  </head>
+  <body>
+    <header class="header__container">
+      <div class="header util_main_content_align--centre" role="heading">
+        <div class="header__logo">
+          <img
+            src="../../images/logo.png"
+            alt="logo"
+            aria-label="Logo"
+            tabindex="1"
+          />
+        </div>
+        <nav class="header__nav" role="navigation">
+          <ul>
+            <li aria-label="Home">
+              <a href="#" title="Home" tabindex="2">Home</a>
+            </li>
+            <li aria-label="Products">
+              <a href="#" title="Products" tabindex="3">Products</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="header__cart__item-count">
+          <div class="signin">
+            <a href="#" title="SignIn" tabindex="4">SignIn</a>
+          </div>
+          <div class="signin">
+            <a href="#" title="Register" tabindex="5">Register</a>
+          </div>
+          <img
+            src="../../images/cart.svg"
+            alt="cart item count"
+            tabindex="6"
+            class="header__cart__item-count--logo"
+          />
+          <div class="header__cart__item-count--value" tabindex="7">
+            <span class="value">0</span> <span class="label">items</span>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="main-container util_main_content_align--centre">
+      <section
+        class="plp__section__category__filter"
+        aria-label=""
+        tabindex="8"
+      >
+        <div class="plp__section__category__filter__container">
+          <div class="filter-header">
+            <span class="filter-name">Filter Name</span>
+            <span class="icon">
+              <i class="material-icons"> keyboard_arrow_down </i>
+            </span>
+          </div>
+          <ul class="filter_list" style="display: none">
+            <li id="1">
+              <span class="icon"> <i class="material-icons"> done </i> </span>
+              <span class="filter-name"> First </span>
+            </li>
+            <li id="2">
+              <span class="icon"> <i class="material-icons"> done </i> </span>
+              <span class="filter-name"> Second </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        class="plp__section__products"
+        tabindex="9"
+        aria-label="Products List"
+      >
+        <div class="home__section__prod-cat__quicklinks__row">
+          <img src="../../images/category/fruits.png" alt="Fruits" />
+          <div class="content">
+            <h2>Fruits & Vegetables</h2>
+            <p>A variety of fresh fruits and vegetables</p>
+            <button aria-label="Explore fruits and vegetables">
+              Explore fruit-and-veg
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer__container">
+      <div class="footer util_main_content_align--centre">
+        <small>
+          Copyright &copy; 2011-2018 Sabka Bazaar Grocery Supplied Pvt Ltd
+        </small>
+      </div>
+    </footer>
+  </body>
+</html>

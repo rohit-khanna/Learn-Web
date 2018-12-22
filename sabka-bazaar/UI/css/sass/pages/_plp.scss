@@ -1,0 +1,67 @@
+.plp__section {
+  display: flex;
+  flex-direction: column;
+
+  &__category__filter {
+    &__container {
+      width: 100%;
+      font-weight: 400;
+      background-color: $primary-button-color;
+      position: relative;
+      font-size: 1rem;
+      .filter-header {
+        color: white;
+        padding: 1rem 1rem;
+        text-align: center;
+        height: 3rem;
+        width: 100%;
+        & > .filter-name {
+          position: absolute;
+          left: 2rem;
+          border: 1px solid $primary-button-color;
+        }
+        & > .icon {
+          position: absolute;
+          right: 1rem;
+        }
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      & .filter_list {
+        z-index: 2;
+        border-radius: 2px;
+        width: 100%;
+        position: absolute;
+        top: 3rem;
+
+        & > li {
+          border-radius: 2px;
+          color: white;
+          font-weight: 700;
+          height: 3rem;
+          background-color: $primary-button-color-opacity;
+          display: block;
+          border-bottom: 2px solid $primary-button-color;
+          padding: 1rem 1rem;
+          font-size: 0.8rem;
+          & > .filter-name {
+            position: absolute;
+            left: 4rem;
+          }
+          & > .icon {
+            color: rgba(146, 142, 142, 0.624);
+            position: absolute;
+            left: 1rem;
+            i {
+              font-size: 1.5em;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
