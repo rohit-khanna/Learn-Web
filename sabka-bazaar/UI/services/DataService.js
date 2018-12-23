@@ -81,4 +81,5 @@ class DataService {
   }
 }
 
-module.exports = DataService;
+// module.exports = DataService;
+export default DataService;

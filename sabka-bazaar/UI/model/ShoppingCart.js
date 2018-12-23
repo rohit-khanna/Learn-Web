@@ -8,8 +8,8 @@
  */
 "use strict";
 
-const CartProduct = require("./CartProduct");
-const ShoppingCartService = require("./../services/ShoppingCartService");
+import CartProduct from "./CartProduct";
+import ShoppingCartService from "./../services/ShoppingCartService";
 
 class ShoppingCart {
   constructor() {
@@ -102,7 +102,8 @@ class ShoppingCart {
   }
 }
 
-module.exports = {
+
+export default {
   GetCartInstanceAsync: async function() {
     let ins = new ShoppingCart();
     await ins.serviceInstance.loadMockDataAsync();

@@ -9,7 +9,7 @@
 
 "use strict";
 //const fetch = require("node-fetch"); // to run fetch over NodeJS
-const fetch = require("node-fetch"); // to run fetch over NodeJS
+//const fetch = require("node-fetch"); // to run fetch over NodeJS
 
 class FetchDAL {
   constructor() {}
@@ -23,4 +23,5 @@ class FetchDAL {
   }
 }
 
-module.exports = FetchDAL;
+// module.exports = FetchDAL;
+export default FetchDAL;
