@@ -1,67 +1,77 @@
-// async function getf() {
-//   let obj = require("./model/ShoppingCart");
-//   let inst = await obj.GetCartInstanceAsync();
-
-//  inst.api.fetchProductDetails.call(inst);
-// }
-
-// getf();
-
+/**
+ * PURPOSE      :  This is the UI controller for Home Page
+ *
+ * AUTHOR       :   Rohit Khanna
+ *
+ * LICENSE      :   PUBLIC
+ *
+ */
 "use strict";
 const ShoppingCart = require("../../model/ShoppingCart").default;
 import instance from "../../services/TemplateService";
-let shoppingCartInstance;
+import EventHandlerService from "../../services/UIEventHandlerService";
 
-//console.log(ShoppingCart);
+class UIController {
+  constructor(
+    ShoppingCartInstance,
+    templateServiceInstance,
+    eventHandlerService
+  ) {
+    this.shoppingCartInstance = ShoppingCartInstance;
+    this.instance = templateServiceInstance;
+    this.eventHandlerService = eventHandlerService;
+  }
 
-$().ready(() => {
-  // 1. Create Cart INstance
-  ShoppingCart.GetCartInstanceAsync()
-    .then(instance => {
-      shoppingCartInstance = instance;
-      //console.log(shoppingCartInstance);
+  /**
+   * This is the Entry method to Render this Page
+   */
+  render() {
+    //1. Fetch Offers List BANNERS - POpulate The UI offers list-corousal
+    this.populateOfferBannerList();
 
-      //2. Fetch Offers List BANNERS - POpulate The UI offers list-corousal
-      populateOfferBannerList();
+    //2. Fetch Home page -Quick Links Data-- POpulate UI for Categories
+    this.populateUIProductCategoryQuickLinks();
 
-      //3. Register Corousal Events
-      registerCorousalEvents();
+    //3. RefreshTotalItemsCount
+    this.refreshTotalItemsCount();
+  }
 
-      //4. Fetch Home page -Quick Links Data-- POpulate UI for Categories
-      populateUIProductCategoryQuickLinks();
+  /**
+   * TODO
+   */
+  registerCorousalEvents() {}
 
-      //5. RefreshTotalItemsCount
-      refreshTotalItemsCount();
-    })
-    .catch(err => {
-      console.error("Error While Creating Instance", err);
-    });
-});
+  /**
+   * This method is used to register the ProductCategoryQuickLinks
+   * Events
+   */
+  registerProductCategoryQuickLinkEvents() {
+    $(".home__section__prod-cat__quicklinks button").on("click", event =>
+      this.eventHandlerService.productCategoryQuickLinkBUttonClick(event)
+    );
+  }
 
-function registerCorousalEvents() {}
+  /**
+   * Refresh Total Items in Header
+   */
+  refreshTotalItemsCount() {
+    let totalItemCount = this.shoppingCartInstance.itemCount;
+    $(".header__cart__item-count--value .value").text(totalItemCount);
+  }
 
-function refreshTotalItemsCount() {}
-
-function populateUIProductCategoryQuickLinks() {}
-
-/**
- * This function is used to Fetch Offers-Banners, fetch Template from Service and
- * then populate the data using templates
- */
-function populateOfferBannerList() {
   /**
    * function to Create Corousal Nav
    * @param {*} labelTemplateFn tenplateFn for Label
    * @param {*} RadioTemplateFn tenplateFn for Radio
    * @param {*} offersCount totals Offers
    */
-  function createNavigations(labelTemplateFn, RadioTemplateFn, offersCount) {
+  createNavigations(labelTemplateFn, RadioTemplateFn, offersCount) {
     let labelHolder = $(".section__corousal .corousal .slidesNavigation");
     let radioHolder = $(".section__corousal .corousal");
 
     for (let i = 0; i < offersCount; i++) {
-      let tempStringLabel = labelTemplateFn(i+1);
-      let tempStringRadio = RadioTemplateFn(i+1, i === 0);
+      let tempStringLabel = labelTemplateFn(i + 1);
+      let tempStringRadio = RadioTemplateFn(i + 1, i === 0);
       labelHolder.append(tempStringLabel);
       radioHolder.prepend(tempStringRadio);
     }
@@ -72,7 +82,7 @@ function populateOfferBannerList() {
    * @param {*} templateFn tenplate function for listitem
    * @param {*} arrayOfOffers array of Offers
    */
-  function populateOffers(templateFn, arrayOfOffers) {
+  populateOffers(templateFn, arrayOfOffers) {
     let sortedArray = arrayOfOffers.sort((a, b) => a.order - b.order);
     let offerList = $(".section__corousal .corousal .images");
     // console.log(sortedArray);
@@ -84,24 +94,87 @@ function populateOfferBannerList() {
       }
     });
   }
+  /**
+   * This function is used to Fetch Offers-Banners, fetch Template from Service and
+   * then populate the data using templates
+   */
+  populateOfferBannerList() {
+    // 1. Fetch and Check Banners- Offers
+    if (
+      this.shoppingCartInstance.serviceInstance.banners &&
+      this.shoppingCartInstance.serviceInstance.banners.length > 0
+    ) {
+      //2. Fetch Template String
+      let listItemTemplate = this.instance.fetchBannerOfferTemplate();
 
-  // 1. Fetch and Check Banners- Offers
-  if (
-    shoppingCartInstance.serviceInstance.banners &&
-    shoppingCartInstance.serviceInstance.banners.length > 0
-  ) {
-    //2. Fetch Template String
-    let listItemTemplate = instance.fetchBannerOfferTemplate();
+      //3. PopulateThe Offers List
+      this.populateOffers(
+        listItemTemplate.offers,
+        this.shoppingCartInstance.serviceInstance.banners
+      );
+      this.createNavigations(
+        listItemTemplate.navLabel,
+        listItemTemplate.navButton,
+        this.shoppingCartInstance.serviceInstance.banners.length
+      );
 
-    //3. PopulateThe Offers List
-    populateOffers(
-      listItemTemplate.offers,
-      shoppingCartInstance.serviceInstance.banners
-    );
-    createNavigations(
-      listItemTemplate.navLabel,
-      listItemTemplate.navButton,
-      shoppingCartInstance.serviceInstance.banners.length
-    );
+      // Register Corousal Events
+      this.registerCorousalEvents();
+    }
+  }
+
+  /**
+   * This method is used to Populate Products Category Quick Links
+   */
+  populateUIProductCategoryQuickLinks() {
+    // 1. Check Data from service
+    if (
+      this.shoppingCartInstance.serviceInstance.categories &&
+      this.shoppingCartInstance.serviceInstance.categories.length > 0
+    ) {
+      let enabledArray = this.shoppingCartInstance.serviceInstance.categories.filter(
+        x => x.enabled
+      );
+
+      let sortedArray = enabledArray.sort((a, b) => a.order - b.order);
+      //2. Create Quick Links
+      sortedArray.forEach((element, index) => {
+        this.createQuickLinksForProductCategories(element, index);
+      });
+
+      this.registerProductCategoryQuickLinkEvents();
+    }
+  }
+
+  /**
+   * Create Quick Links for Product Categories
+   * @param {*} categoryObject
+   * @param {*} index
+   */
+  createQuickLinksForProductCategories(categoryObject, index) {
+    // fetch template string
+    let itemTemplate = instance
+      .fetchProductCategoryQuickLinksTemplate()
+      .quickLink(categoryObject, index % 2 == 1);
+
+    let quickLinksContainer = $(".home__section__prod-cat__quicklinks");
+    quickLinksContainer.append(itemTemplate);
   }
 }
+
+// 1. Create Cart INstance
+ShoppingCart.GetCartInstanceAsync()
+  .then(shoppingCartInstance => {
+    let eventHandlerService = new EventHandlerService();
+    let controller = new UIController(
+      shoppingCartInstance,
+      instance,
+      eventHandlerService
+    );
+    $().ready(function() {
+      controller.render();
+    });
+  })
+  .catch(err => {
+    console.error("Error While Creating Instance", err);
+  });

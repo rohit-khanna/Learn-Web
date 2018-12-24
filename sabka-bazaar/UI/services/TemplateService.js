@@ -26,6 +26,28 @@ class TemplateService {
         `  <label for="radio-${id}" id="dotForRadio-${id}"></label>`
     };
   }
+
+  /**
+   * This method is used to Fetch Template string
+   * for Product Category Quick Links
+   */
+  fetchProductCategoryQuickLinksTemplate() {
+    return {
+      quickLink: (
+        { name, key, description, imageUrl, id },
+        isReverse
+      ) => ` <div class="home__section__prod-cat__quicklinks__row${
+        isReverse ? "--reverse" : ""
+      }" id=${id}>
+      <img src='../..${imageUrl}' />
+      <div class="content">
+        <h2>${name}</h2>
+        <p>${description}</p>
+        <button aria-label='Explore ${name} '>Explore ${key}</button>
+      </div>
+    </div>`
+    };
+  }
 }
 
 let instance = new TemplateService();

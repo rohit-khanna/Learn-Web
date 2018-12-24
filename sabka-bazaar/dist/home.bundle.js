@@ -90,114 +90,250 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _services_TemplateService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(13);
-// async function getf() {
-//   let obj = require("./model/ShoppingCart");
-//   let inst = await obj.GetCartInstanceAsync();
-//  inst.api.fetchProductDetails.call(inst);
-// }
-// getf();
-
-
-var ShoppingCart = __webpack_require__(1).default;
-
-
-var shoppingCartInstance; //console.log(ShoppingCart);
-
-$().ready(function () {
-  // 1. Create Cart INstance
-  ShoppingCart.GetCartInstanceAsync().then(function (instance) {
-    shoppingCartInstance = instance; //console.log(shoppingCartInstance);
-    //2. Fetch Offers List BANNERS - POpulate The UI offers list-corousal
-
-    populateOfferBannerList(); //3. Register Corousal Events
-
-    registerCorousalEvents(); //4. Fetch Home page -Quick Links Data-- POpulate UI for Categories
-
-    populateUIProductCategoryQuickLinks(); //5. RefreshTotalItemsCount
-
-    refreshTotalItemsCount();
-  }).catch(function (err) {
-    console.error("Error While Creating Instance", err);
-  });
-});
-
-function registerCorousalEvents() {}
-
-function refreshTotalItemsCount() {}
-
-function populateUIProductCategoryQuickLinks() {}
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12);
+/* harmony import */ var _services_UIEventHandlerService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(13);
 /**
- * This function is used to Fetch Offers-Banners, fetch Template from Service and
- * then populate the data using templates
+ * PURPOSE      :  This is the UI controller for Home Page
+ *
+ * AUTHOR       :   Rohit Khanna
+ *
+ * LICENSE      :   PUBLIC
+ *
  */
 
 
-function populateOfferBannerList() {
-  /**
-   * function to Create Corousal Nav
-   * @param {*} labelTemplateFn tenplateFn for Label
-   * @param {*} RadioTemplateFn tenplateFn for Radio
-   * @param {*} offersCount totals Offers
-   */
-  function createNavigations(labelTemplateFn, RadioTemplateFn, offersCount) {
-    var labelHolder = $(".section__corousal .corousal .slidesNavigation");
-    var radioHolder = $(".section__corousal .corousal");
 
-    for (var i = 0; i < offersCount; i++) {
-      var tempStringLabel = labelTemplateFn(i + 1);
-      var tempStringRadio = RadioTemplateFn(i + 1, i === 0);
-      labelHolder.append(tempStringLabel);
-      radioHolder.prepend(tempStringRadio);
+
+
+var ShoppingCart = __webpack_require__(3).default;
+
+
+
+
+var UIController =
+/*#__PURE__*/
+function () {
+  function UIController(ShoppingCartInstance, templateServiceInstance, eventHandlerService) {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, UIController);
+
+    this.shoppingCartInstance = ShoppingCartInstance;
+    this.instance = templateServiceInstance;
+    this.eventHandlerService = eventHandlerService;
+  }
+  /**
+   * This is the Entry method to Render this Page
+   */
+
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(UIController, [{
+    key: "render",
+    value: function render() {
+      //1. Fetch Offers List BANNERS - POpulate The UI offers list-corousal
+      this.populateOfferBannerList(); //2. Fetch Home page -Quick Links Data-- POpulate UI for Categories
+
+      this.populateUIProductCategoryQuickLinks(); //3. RefreshTotalItemsCount
+
+      this.refreshTotalItemsCount();
     }
-  }
-  /**
-   * function to Create Offers inside offer list container
-   * @param {*} templateFn tenplate function for listitem
-   * @param {*} arrayOfOffers array of Offers
-   */
+    /**
+     * TODO
+     */
 
+  }, {
+    key: "registerCorousalEvents",
+    value: function registerCorousalEvents() {}
+    /**
+     * This method is used to register the ProductCategoryQuickLinks
+     * Events
+     */
 
-  function populateOffers(templateFn, arrayOfOffers) {
-    var sortedArray = arrayOfOffers.sort(function (a, b) {
-      return a.order - b.order;
-    });
-    var offerList = $(".section__corousal .corousal .images"); // console.log(sortedArray);
+  }, {
+    key: "registerProductCategoryQuickLinkEvents",
+    value: function registerProductCategoryQuickLinkEvents() {
+      var _this = this;
 
-    sortedArray.forEach(function (offer) {
-      if (offer.isActive) {
-        var tempString = templateFn(offer);
-        offerList.append(tempString);
+      $(".home__section__prod-cat__quicklinks button").on("click", function (event) {
+        return _this.eventHandlerService.productCategoryQuickLinkBUttonClick(event);
+      });
+    }
+    /**
+     * Refresh Total Items in Header
+     */
+
+  }, {
+    key: "refreshTotalItemsCount",
+    value: function refreshTotalItemsCount() {
+      var totalItemCount = this.shoppingCartInstance.itemCount;
+      $(".header__cart__item-count--value .value").text(totalItemCount);
+    }
+    /**
+     * function to Create Corousal Nav
+     * @param {*} labelTemplateFn tenplateFn for Label
+     * @param {*} RadioTemplateFn tenplateFn for Radio
+     * @param {*} offersCount totals Offers
+     */
+
+  }, {
+    key: "createNavigations",
+    value: function createNavigations(labelTemplateFn, RadioTemplateFn, offersCount) {
+      var labelHolder = $(".section__corousal .corousal .slidesNavigation");
+      var radioHolder = $(".section__corousal .corousal");
+
+      for (var i = 0; i < offersCount; i++) {
+        var tempStringLabel = labelTemplateFn(i + 1);
+        var tempStringRadio = RadioTemplateFn(i + 1, i === 0);
+        labelHolder.append(tempStringLabel);
+        radioHolder.prepend(tempStringRadio);
       }
-    });
-  } // 1. Fetch and Check Banners- Offers
+    }
+    /**
+     * function to Create Offers inside offer list container
+     * @param {*} templateFn tenplate function for listitem
+     * @param {*} arrayOfOffers array of Offers
+     */
+
+  }, {
+    key: "populateOffers",
+    value: function populateOffers(templateFn, arrayOfOffers) {
+      var sortedArray = arrayOfOffers.sort(function (a, b) {
+        return a.order - b.order;
+      });
+      var offerList = $(".section__corousal .corousal .images"); // console.log(sortedArray);
+
+      sortedArray.forEach(function (offer) {
+        if (offer.isActive) {
+          var tempString = templateFn(offer);
+          offerList.append(tempString);
+        }
+      });
+    }
+    /**
+     * This function is used to Fetch Offers-Banners, fetch Template from Service and
+     * then populate the data using templates
+     */
+
+  }, {
+    key: "populateOfferBannerList",
+    value: function populateOfferBannerList() {
+      // 1. Fetch and Check Banners- Offers
+      if (this.shoppingCartInstance.serviceInstance.banners && this.shoppingCartInstance.serviceInstance.banners.length > 0) {
+        //2. Fetch Template String
+        var listItemTemplate = this.instance.fetchBannerOfferTemplate(); //3. PopulateThe Offers List
+
+        this.populateOffers(listItemTemplate.offers, this.shoppingCartInstance.serviceInstance.banners);
+        this.createNavigations(listItemTemplate.navLabel, listItemTemplate.navButton, this.shoppingCartInstance.serviceInstance.banners.length); // Register Corousal Events
+
+        this.registerCorousalEvents();
+      }
+    }
+    /**
+     * This method is used to Populate Products Category Quick Links
+     */
+
+  }, {
+    key: "populateUIProductCategoryQuickLinks",
+    value: function populateUIProductCategoryQuickLinks() {
+      var _this2 = this;
+
+      // 1. Check Data from service
+      if (this.shoppingCartInstance.serviceInstance.categories && this.shoppingCartInstance.serviceInstance.categories.length > 0) {
+        var enabledArray = this.shoppingCartInstance.serviceInstance.categories.filter(function (x) {
+          return x.enabled;
+        });
+        var sortedArray = enabledArray.sort(function (a, b) {
+          return a.order - b.order;
+        }); //2. Create Quick Links
+
+        sortedArray.forEach(function (element, index) {
+          _this2.createQuickLinksForProductCategories(element, index);
+        });
+        this.registerProductCategoryQuickLinkEvents();
+      }
+    }
+    /**
+     * Create Quick Links for Product Categories
+     * @param {*} categoryObject
+     * @param {*} index
+     */
+
+  }, {
+    key: "createQuickLinksForProductCategories",
+    value: function createQuickLinksForProductCategories(categoryObject, index) {
+      // fetch template string
+      var itemTemplate = _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__["default"].fetchProductCategoryQuickLinksTemplate().quickLink(categoryObject, index % 2 == 1);
+      var quickLinksContainer = $(".home__section__prod-cat__quicklinks");
+      quickLinksContainer.append(itemTemplate);
+    }
+  }]);
+
+  return UIController;
+}(); // 1. Create Cart INstance
 
 
-  if (shoppingCartInstance.serviceInstance.banners && shoppingCartInstance.serviceInstance.banners.length > 0) {
-    //2. Fetch Template String
-    var listItemTemplate = _services_TemplateService__WEBPACK_IMPORTED_MODULE_0__["default"].fetchBannerOfferTemplate(); //3. PopulateThe Offers List
-
-    populateOffers(listItemTemplate.offers, shoppingCartInstance.serviceInstance.banners);
-    createNavigations(listItemTemplate.navLabel, listItemTemplate.navButton, shoppingCartInstance.serviceInstance.banners.length);
-  }
-}
+ShoppingCart.GetCartInstanceAsync().then(function (shoppingCartInstance) {
+  var eventHandlerService = new _services_UIEventHandlerService__WEBPACK_IMPORTED_MODULE_3__["default"]();
+  var controller = new UIController(shoppingCartInstance, _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__["default"], eventHandlerService);
+  $().ready(function () {
+    controller.render();
+  });
+}).catch(function (err) {
+  console.error("Error While Creating Instance", err);
+});
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+module.exports = _createClass;
+
+/***/ }),
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _CartProduct__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9);
-/* harmony import */ var _services_ShoppingCartService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(10);
+/* harmony import */ var _CartProduct__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8);
+/* harmony import */ var _services_ShoppingCartService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9);
 /**
  * PURPOSE      :  This is the Model for Shopping Cart Object
  *
@@ -361,15 +497,14 @@ function () {
 });
 
 /***/ }),
-/* 2 */,
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(4);
+module.exports = __webpack_require__(5);
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -396,7 +531,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(5);
+module.exports = __webpack_require__(6);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -412,7 +547,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 /**
@@ -1139,7 +1274,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
@@ -1181,46 +1316,12 @@ function _asyncToGenerator(fn) {
 module.exports = _asyncToGenerator;
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
-
-/***/ }),
 /* 8 */
-/***/ (function(module, exports) {
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-module.exports = _createClass;
-
-/***/ }),
-/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * PURPOSE      :  This is the Model for CartProduct Object
@@ -1246,21 +1347,21 @@ var CartProduct = function CartProduct(productId) {
 /* harmony default export */ __webpack_exports__["default"] = (CartProduct);
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _FetchDAL__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(11);
-/* harmony import */ var _DataService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(12);
+/* harmony import */ var _FetchDAL__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
+/* harmony import */ var _DataService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(11);
 /**
  * PURPOSE      :  This is the Shopping Cart Service.
  *
@@ -1372,7 +1473,7 @@ function () {
                   description: "Our beverage department will ensure your fridge is always fully stocked. Shop for soda, juice, beer and more. ",
                   enabled: true,
                   order: 3,
-                  imageUrl: "/static/images/category/beverages.png",
+                  imageUrl: "/images/category/beverages.png",
                   id: "5b675e5e5936635728f9fc30"
                 }, {
                   name: "Bakery Cakes and Dairy",
@@ -1380,7 +1481,7 @@ function () {
                   description: "The best cupcakes, cookies, cakes, pies, cheesecakes, fresh bread, biscotti, muffins, bagels, fresh coffee, milk and more.",
                   enabled: true,
                   order: 2,
-                  imageUrl: "/static/images/category/bakery.png",
+                  imageUrl: "/images/category/bakery.png",
                   id: "5b6899123d1a866534f516de"
                 }, {
                   name: "Beauty and Hygiene",
@@ -1388,7 +1489,7 @@ function () {
                   description: "Buy beauty and personal care products online in India at best prices.",
                   enabled: true,
                   order: 4,
-                  imageUrl: "/static/images/category/beauty.png",
+                  imageUrl: "/images/category/beauty.png",
                   id: "5b68994e3d1a866534f516df"
                 }, {
                   name: "Baby Care",
@@ -1396,7 +1497,7 @@ function () {
                   description: "Shop online for Baby Products, Diapers, Skin Care Products,etc.",
                   enabled: true,
                   order: 5,
-                  imageUrl: "/static/images/category/baby.png",
+                  imageUrl: "/images/category/baby.png",
                   id: "5b6899683d1a866534f516e0"
                 }, {
                   name: "Seafood",
@@ -1411,7 +1512,7 @@ function () {
                   description: "A variety of fresh fruits and vegetables.",
                   enabled: true,
                   order: 1,
-                  imageUrl: "/static/images/category/fruits.png",
+                  imageUrl: "/images/category/fruits.png",
                   id: "5b6899953d1a866534f516e2"
                 }];
                 return _context2.abrupt("return", Promise.resolve());
@@ -1443,7 +1544,7 @@ function () {
                 // this.products = await this.dataService.fetchProductsAsync();
                 this.products = [{
                   name: "Fresho Kiwi - Green, 3 pcs",
-                  imageURL: "/static/images/products/fruit-n-veg/kiwi-green.jpg",
+                  imageURL: "/images/products/fruit-n-veg/kiwi-green.jpg",
                   description: "Kiwis are oval shaped with a brownish outer skin. The flesh is bright green and juicy with tiny, edible black seeds.",
                   price: 87,
                   stock: 50,
@@ -1452,7 +1553,7 @@ function () {
                   id: "5b6c6a7f01a7c38429530883"
                 }, {
                   name: "Apple - Washington, Regular, 4 pcs",
-                  imageURL: "/static/images/products/fruit-n-veg/apple.jpg",
+                  imageURL: "/images/products/fruit-n-veg/apple.jpg",
                   description: "The bright red coloured and heart shaped Washington apples are crunchy, juicy and slightly sweet. Washington Apples are a natural source of fibre and are fat free.",
                   price: 187,
                   stock: 50,
@@ -1461,7 +1562,7 @@ function () {
                   id: "5b6c6aeb01a7c38429530884"
                 }, {
                   name: "Fresho Pomegrante Peeled, 500 gm ",
-                  imageURL: "/static/images/products/fruit-n-veg/pomegrante.jpg",
+                  imageURL: "/images/products/fruit-n-veg/pomegrante.jpg",
                   description: "Pomegranate variety has a glossy, vibrant and soft ruby-red skin. The inside of the fruit is divided into compartments by thin white membranes.",
                   price: 88,
                   stock: 50,
@@ -1470,7 +1571,7 @@ function () {
                   id: "5b6c6b7001a7c38429530885"
                 }, {
                   name: "Capsicum - Green, 1 kg",
-                  imageURL: "/static/images/products/fruit-n-veg/capsicum-green.jpg",
+                  imageURL: "/images/products/fruit-n-veg/capsicum-green.jpg",
                   description: "Leaving a moderately pungent taste on the tongue, Green capsicums, also known as green peppers are bell shaped, medium-sized fruit pods.",
                   price: 137,
                   stock: 50,
@@ -1479,7 +1580,7 @@ function () {
                   id: "5b6c6bdc01a7c38429530886"
                 }, {
                   name: "Tomato - Local, Organically Grown, 500 gm",
-                  imageURL: "/static/images/products/fruit-n-veg/capsicum-green.jpg",
+                  imageURL: "/images/products/fruit-n-veg/capsicum-green.jpg",
                   description: "Fresho brings to you an exquisite range of locally grown organic tomatoes, which are now available at bigbasket. These organic tomatoes are free from harmful pesticides and insecticides.",
                   price: 12,
                   stock: 50,
@@ -1512,18 +1613,18 @@ function () {
 /* harmony default export */ __webpack_exports__["default"] = (ShoppingCartService);
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
 /**
  * PURPOSE      :   This is the DAL layer with Generic 'Fetch API' Implementation
@@ -1593,18 +1694,18 @@ function () {
 /* harmony default export */ __webpack_exports__["default"] = (FetchDAL);
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
 /**
  * PURPOSE      :  This is the Data Service which is used to fetch all data from SERVER
@@ -1796,14 +1897,14 @@ function () {
 /* harmony default export */ __webpack_exports__["default"] = (DataService);
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
 /**
  * PURPOSE      :  This is the Template service to provide the Template for UI
@@ -1848,6 +1949,25 @@ function () {
         }
       };
     }
+    /**
+     * This method is used to Fetch Template string
+     * for Product Category Quick Links
+     */
+
+  }, {
+    key: "fetchProductCategoryQuickLinksTemplate",
+    value: function fetchProductCategoryQuickLinksTemplate() {
+      return {
+        quickLink: function quickLink(_ref2, isReverse) {
+          var name = _ref2.name,
+              key = _ref2.key,
+              description = _ref2.description,
+              imageUrl = _ref2.imageUrl,
+              id = _ref2.id;
+          return " <div class=\"home__section__prod-cat__quicklinks__row".concat(isReverse ? "--reverse" : "", "\" id=").concat(id, ">\n      <img src='../..").concat(imageUrl, "' />\n      <div class=\"content\">\n        <h2>").concat(name, "</h2>\n        <p>").concat(description, "</p>\n        <button aria-label='Explore ").concat(name, " '>Explore ").concat(key, "</button>\n      </div>\n    </div>");
+        }
+      };
+    }
   }]);
 
   return TemplateService;
@@ -1856,6 +1976,56 @@ function () {
 var instance = new TemplateService(); // module.exports = instance;
 
 /* harmony default export */ __webpack_exports__["default"] = (instance);
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+/**
+ * PURPOSE      :  This is the Ui Event Handler Service
+ *
+ * NOTES/COLOR SCHEME    :
+ *
+ * AUTHOR       :   Rohit Khanna
+ *
+ * LICENSE      :   PUBLIC
+ *
+ */
+var EventHandlerService =
+/*#__PURE__*/
+function () {
+  function EventHandlerService() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, EventHandlerService);
+  }
+  /**
+   * Button Click Handler for Product Category Quick Link.
+   * This will picks up the CLicked Product category ID, and launch the
+   * PLP page with the cat_id as Query String 
+   * @param {*} event Event Object
+   */
+
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(EventHandlerService, [{
+    key: "productCategoryQuickLinkBUttonClick",
+    value: function productCategoryQuickLinkBUttonClick(event) {
+      // console.log(event.target.parentNode.parentNode.id);
+      window.location.href = "../plp/index.html?cat_id=" + event.target.parentNode.parentNode.id;
+    }
+  }]);
+
+  return EventHandlerService;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (EventHandlerService);
 
 /***/ })
 /******/ ]);

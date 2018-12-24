@@ -81,7 +81,7 @@ class ShoppingCartService {
           "Our beverage department will ensure your fridge is always fully stocked. Shop for soda, juice, beer and more. ",
         enabled: true,
         order: 3,
-        imageUrl: "/static/images/category/beverages.png",
+        imageUrl: "/images/category/beverages.png",
         id: "5b675e5e5936635728f9fc30"
       },
       {
@@ -91,7 +91,7 @@ class ShoppingCartService {
           "The best cupcakes, cookies, cakes, pies, cheesecakes, fresh bread, biscotti, muffins, bagels, fresh coffee, milk and more.",
         enabled: true,
         order: 2,
-        imageUrl: "/static/images/category/bakery.png",
+        imageUrl: "/images/category/bakery.png",
         id: "5b6899123d1a866534f516de"
       },
       {
@@ -101,7 +101,7 @@ class ShoppingCartService {
           "Buy beauty and personal care products online in India at best prices.",
         enabled: true,
         order: 4,
-        imageUrl: "/static/images/category/beauty.png",
+        imageUrl: "/images/category/beauty.png",
         id: "5b68994e3d1a866534f516df"
       },
       {
@@ -111,7 +111,7 @@ class ShoppingCartService {
           "Shop online for Baby Products, Diapers, Skin Care Products,etc.",
         enabled: true,
         order: 5,
-        imageUrl: "/static/images/category/baby.png",
+        imageUrl: "/images/category/baby.png",
         id: "5b6899683d1a866534f516e0"
       },
       {
@@ -128,7 +128,7 @@ class ShoppingCartService {
         description: "A variety of fresh fruits and vegetables.",
         enabled: true,
         order: 1,
-        imageUrl: "/static/images/category/fruits.png",
+        imageUrl: "/images/category/fruits.png",
         id: "5b6899953d1a866534f516e2"
       }
     ];
@@ -139,7 +139,7 @@ class ShoppingCartService {
     this.products = [
       {
         name: "Fresho Kiwi - Green, 3 pcs",
-        imageURL: "/static/images/products/fruit-n-veg/kiwi-green.jpg",
+        imageURL: "/images/products/fruit-n-veg/kiwi-green.jpg",
         description:
           "Kiwis are oval shaped with a brownish outer skin. The flesh is bright green and juicy with tiny, edible black seeds.",
         price: 87,
@@ -150,7 +150,7 @@ class ShoppingCartService {
       },
       {
         name: "Apple - Washington, Regular, 4 pcs",
-        imageURL: "/static/images/products/fruit-n-veg/apple.jpg",
+        imageURL: "/images/products/fruit-n-veg/apple.jpg",
         description:
           "The bright red coloured and heart shaped Washington apples are crunchy, juicy and slightly sweet. Washington Apples are a natural source of fibre and are fat free.",
         price: 187,
@@ -161,7 +161,7 @@ class ShoppingCartService {
       },
       {
         name: "Fresho Pomegrante Peeled, 500 gm ",
-        imageURL: "/static/images/products/fruit-n-veg/pomegrante.jpg",
+        imageURL: "/images/products/fruit-n-veg/pomegrante.jpg",
         description:
           "Pomegranate variety has a glossy, vibrant and soft ruby-red skin. The inside of the fruit is divided into compartments by thin white membranes.",
         price: 88,
@@ -172,7 +172,7 @@ class ShoppingCartService {
       },
       {
         name: "Capsicum - Green, 1 kg",
-        imageURL: "/static/images/products/fruit-n-veg/capsicum-green.jpg",
+        imageURL: "/images/products/fruit-n-veg/capsicum-green.jpg",
         description:
           "Leaving a moderately pungent taste on the tongue, Green capsicums, also known as green peppers are bell shaped, medium-sized fruit pods.",
         price: 137,
@@ -183,7 +183,7 @@ class ShoppingCartService {
       },
       {
         name: "Tomato - Local, Organically Grown, 500 gm",
-        imageURL: "/static/images/products/fruit-n-veg/capsicum-green.jpg",
+        imageURL: "/images/products/fruit-n-veg/capsicum-green.jpg",
         description:
           "Fresho brings to you an exquisite range of locally grown organic tomatoes, which are now available at bigbasket. These organic tomatoes are free from harmful pesticides and insecticides.",
         price: 12,
