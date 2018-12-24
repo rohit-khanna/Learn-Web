@@ -81,206 +81,11 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12);
-/* harmony import */ var _services_UIEventHandlerService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(13);
-/**
- * PURPOSE      :  This is the UI controller for Home Page
- *
- * AUTHOR       :   Rohit Khanna
- *
- * LICENSE      :   PUBLIC
- *
- */
-
-
-
-
-
-var ShoppingCart = __webpack_require__(3).default;
-
-
-
-
-var UIController =
-/*#__PURE__*/
-function () {
-  function UIController(ShoppingCartInstance, templateServiceInstance, eventHandlerService) {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, UIController);
-
-    this.shoppingCartInstance = ShoppingCartInstance;
-    this.instance = templateServiceInstance;
-    this.eventHandlerService = eventHandlerService;
-  }
-  /**
-   * This is the Entry method to Render this Page
-   */
-
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(UIController, [{
-    key: "render",
-    value: function render() {
-      //1. Fetch Offers List BANNERS - POpulate The UI offers list-corousal
-      this.populateOfferBannerList(); //2. Fetch Home page -Quick Links Data-- POpulate UI for Categories
-
-      this.populateUIProductCategoryQuickLinks(); //3. RefreshTotalItemsCount
-
-      this.refreshTotalItemsCount();
-    }
-    /**
-     * TODO
-     */
-
-  }, {
-    key: "registerCorousalEvents",
-    value: function registerCorousalEvents() {}
-    /**
-     * This method is used to register the ProductCategoryQuickLinks
-     * Events
-     */
-
-  }, {
-    key: "registerProductCategoryQuickLinkEvents",
-    value: function registerProductCategoryQuickLinkEvents() {
-      var _this = this;
-
-      $(".home__section__prod-cat__quicklinks button").on("click", function (event) {
-        return _this.eventHandlerService.productCategoryQuickLinkBUttonClick(event);
-      });
-    }
-    /**
-     * Refresh Total Items in Header
-     */
-
-  }, {
-    key: "refreshTotalItemsCount",
-    value: function refreshTotalItemsCount() {
-      var totalItemCount = this.shoppingCartInstance.itemCount;
-      $(".header__cart__item-count--value .value").text(totalItemCount);
-    }
-    /**
-     * function to Create Corousal Nav
-     * @param {*} labelTemplateFn tenplateFn for Label
-     * @param {*} RadioTemplateFn tenplateFn for Radio
-     * @param {*} offersCount totals Offers
-     */
-
-  }, {
-    key: "createNavigations",
-    value: function createNavigations(labelTemplateFn, RadioTemplateFn, offersCount) {
-      var labelHolder = $(".section__corousal .corousal .slidesNavigation");
-      var radioHolder = $(".section__corousal .corousal");
-
-      for (var i = 0; i < offersCount; i++) {
-        var tempStringLabel = labelTemplateFn(i + 1);
-        var tempStringRadio = RadioTemplateFn(i + 1, i === 0);
-        labelHolder.append(tempStringLabel);
-        radioHolder.prepend(tempStringRadio);
-      }
-    }
-    /**
-     * function to Create Offers inside offer list container
-     * @param {*} templateFn tenplate function for listitem
-     * @param {*} arrayOfOffers array of Offers
-     */
-
-  }, {
-    key: "populateOffers",
-    value: function populateOffers(templateFn, arrayOfOffers) {
-      arrayOfOffers.SortByOrder();
-      var offerList = $(".section__corousal .corousal .images");
-      arrayOfOffers.forEach(function (offer) {
-        if (offer.isActive) {
-          var tempString = templateFn(offer);
-          offerList.append(tempString);
-        }
-      });
-    }
-    /**
-     * This function is used to Fetch Offers-Banners, fetch Template from Service and
-     * then populate the data using templates
-     */
-
-  }, {
-    key: "populateOfferBannerList",
-    value: function populateOfferBannerList() {
-      // 1. Fetch and Check Banners- Offers
-      if (this.shoppingCartInstance.serviceInstance.banners && this.shoppingCartInstance.serviceInstance.banners.length > 0) {
-        //2. Fetch Template String
-        var listItemTemplate = this.instance.fetchBannerOfferTemplate(); //3. PopulateThe Offers List
-
-        this.populateOffers(listItemTemplate.offers, this.shoppingCartInstance.serviceInstance.banners);
-        this.createNavigations(listItemTemplate.navLabel, listItemTemplate.navButton, this.shoppingCartInstance.serviceInstance.banners.length); // Register Corousal Events
-
-        this.registerCorousalEvents();
-      }
-    }
-    /**
-     * This method is used to Populate Products Category Quick Links
-     */
-
-  }, {
-    key: "populateUIProductCategoryQuickLinks",
-    value: function populateUIProductCategoryQuickLinks() {
-      var _this2 = this;
-
-      // 1. Check Data from service
-      if (this.shoppingCartInstance.serviceInstance.categories && this.shoppingCartInstance.serviceInstance.categories.length > 0) {
-        var enabledArray = this.shoppingCartInstance.serviceInstance.categories.filter(function (x) {
-          return x.enabled;
-        });
-        enabledArray.SortByOrder(); //2. Create Quick Links
-
-        enabledArray.forEach(function (element, index) {
-          _this2.createQuickLinksForProductCategories(element, index);
-        });
-        this.registerProductCategoryQuickLinkEvents();
-      }
-    }
-    /**
-     * Create Quick Links for Product Categories
-     * @param {*} categoryObject
-     * @param {*} index
-     */
-
-  }, {
-    key: "createQuickLinksForProductCategories",
-    value: function createQuickLinksForProductCategories(categoryObject, index) {
-      // fetch template string
-      var itemTemplate = _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__["default"].fetchProductCategoryQuickLinksTemplate().quickLink(categoryObject, index % 2 == 1);
-      var quickLinksContainer = $(".home__section__prod-cat__quicklinks");
-      quickLinksContainer.append(itemTemplate);
-    }
-  }]);
-
-  return UIController;
-}(); // 1. Create Cart INstance
-
-
-ShoppingCart.GetCartInstanceAsync().then(function (shoppingCartInstance) {
-  var eventHandlerService = new _services_UIEventHandlerService__WEBPACK_IMPORTED_MODULE_3__["default"]();
-  var controller = new UIController(shoppingCartInstance, _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__["default"], eventHandlerService);
-  $().ready(function () {
-    sessionStorage.setItem("cartInstance", JSON.stringify(shoppingCartInstance));
-    controller.render();
-  });
-}).catch(function (err) {
-  console.error("Error While Creating Instance", err);
-});
-
-/***/ }),
+/* 0 */,
 /* 1 */
 /***/ (function(module, exports) {
 
@@ -2295,6 +2100,252 @@ function () {
 
 /* harmony default export */ __webpack_exports__["default"] = (EventHandlerService);
 
+/***/ }),
+/* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12);
+/* harmony import */ var _services_UIEventHandlerService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(13);
+
+
+
+
+
+var ShoppingCart = __webpack_require__(3).default;
+
+
+
+
+var UIController =
+/*#__PURE__*/
+function () {
+  function UIController(ShoppingCartInstance, templateServiceInstance, eventHandlerService) {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, UIController);
+
+    this.shoppingCartInstance = ShoppingCartInstance;
+    this.instance = templateServiceInstance;
+    this.eventHandlerService = eventHandlerService;
+
+    if (!Array.prototype.SortByOrder) {
+      Array.prototype.SortByOrder = function () {
+        this.sort(function (a, b) {
+          return a.order - b.order;
+        });
+      };
+    }
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(UIController, [{
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      var categoryID = this.getUrlParameter("cat_id");
+      $().ready(function () {
+        // 1. refreshTotalItemsCount
+        _this.refreshTotalItemsCount(); //2. Fetch Categories and Populate Category FIlter
+
+
+        _this.populateCategoryFilters(); //3. Apply Filters
+
+
+        _this.applyCategoryFilter(categoryID);
+      });
+    }
+    /**
+     * method to fetch teh Queyr Params from URL
+     * @param {*} name key to search
+     */
+
+  }, {
+    key: "getUrlParameter",
+    value: function getUrlParameter(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+      var results = regex.exec(location.search);
+      return results === null ? -1 : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    /**
+     * This method will filter the Products based on Ctaegory ID.
+     * If Cat_ID:-1, fetch ALL
+     * @param {*} categoryId
+     */
+
+  }, {
+    key: "applyCategoryFilter",
+    value: function applyCategoryFilter(categoryId) {
+      var _this2 = this;
+
+      //1. Select the Ui ELement with input Cat ID;
+      $(".plp__section__category__filter__container .filter_list").children().toArray().forEach(function (element) {
+        if (element.id == categoryId) {
+          var _this2$eventHandlerSe = _this2.eventHandlerService.categoryFilterListItemClick(element),
+              filtername = _this2$eventHandlerSe.filtername;
+
+          _this2.eventHandlerService.categoryFilterHeaderClick(filtername, true);
+        }
+      }); //2. Filter Products
+
+      this.rePopulateProductsList(categoryId);
+    }
+  }, {
+    key: "rePopulateProductsList",
+    value: function rePopulateProductsList(categoryId) {
+      //1. clear Current Items
+      $(".plp__section__products").empty(); //2. populate New Filtered Items
+
+      this.populateProductsFromService(categoryId);
+    }
+    /**
+     * Populate products from Service and Update in Ui
+     * @param {*} categoryId
+     */
+
+  }, {
+    key: "populateProductsFromService",
+    value: function populateProductsFromService(categoryId) {
+      //1. fetch Items from service
+      if (this.shoppingCartInstance.serviceInstance.products && this.shoppingCartInstance.serviceInstance.products.length > 0) {
+        var filteredProducts = this.shoppingCartInstance.serviceInstance.products; //  console.log(filteredProducts, categoryId);
+
+        if (categoryId != -1) {
+          filteredProducts = this.shoppingCartInstance.serviceInstance.products.filter(function (x) {
+            return x.category === categoryId;
+          });
+        }
+
+        this.populateProductsOnUI(filteredProducts);
+        this.registerProductClickEvent(); // this.registerFilterClickEvents();
+      } else {
+        console.log("nothing");
+      }
+    }
+  }, {
+    key: "registerProductClickEvent",
+    value: function registerProductClickEvent() {
+      var _this3 = this;
+
+      $(".plp__section__products__product-row").on("click", function (e) {
+        // console.log(e.target.id);
+        if (event.target.nodeName == "BUTTON") _this3.eventHandlerService.productClick(event);
+      });
+    }
+    /**
+     * populateProductsOnUI
+     * @param {*} arrayOfProducts
+     */
+
+  }, {
+    key: "populateProductsOnUI",
+    value: function populateProductsOnUI(arrayOfProducts) {
+      var _this4 = this;
+
+      arrayOfProducts.forEach(function (element) {
+        var template = _this4.instance.fetchProductsTemplate(element);
+
+        $(".plp__section__products").append(template);
+      });
+    }
+    /**
+     * This method is used to Populate Category Filters
+     */
+
+  }, {
+    key: "populateCategoryFilters",
+    value: function populateCategoryFilters() {
+      if (this.shoppingCartInstance.serviceInstance.categories && this.shoppingCartInstance.serviceInstance.categories.length > 0) {
+        this.populateCategoryList(this.instance.fetchCategoryFilterTemplate, this.shoppingCartInstance.serviceInstance.categories.filter(function (x) {
+          return x.enabled;
+        }));
+        this.registerFilterClickEvents();
+      }
+    }
+    /**
+     * register Click Events of Filter Items
+     */
+
+  }, {
+    key: "registerFilterClickEvents",
+    value: function registerFilterClickEvents() {
+      var _this5 = this;
+
+      $(".plp__section__category__filter__container .filter-header").on("click", function () {
+        _this5.eventHandlerService.categoryFilterHeaderClick();
+      });
+      var self = this;
+      $(".plp__section__category__filter__container .filter_list li").on("click", function () {
+        var _self$eventHandlerSer = self.eventHandlerService.categoryFilterListItemClick(this),
+            filtername = _self$eventHandlerSer.filtername,
+            categoryId = _self$eventHandlerSer.categoryId;
+
+        self.rePopulateProductsList(categoryId); // close the filter list
+
+        self.eventHandlerService.categoryFilterHeaderClick(filtername);
+      });
+    }
+    /**
+     * Methos to Populate the Catgeory List on UI
+     * @param {*} templateFn
+     * @param {*} arrayOfCategories
+     */
+
+  }, {
+    key: "populateCategoryList",
+    value: function populateCategoryList(templateFn, arrayOfCategories) {
+      // console.log(arrayOfCategories);
+      arrayOfCategories.SortByOrder();
+      var topBarFilter = $(".plp__section__category__filter__container");
+      var sideBarFilter = $(".plp__section__category__filter__bar");
+
+      if (topBarFilter) {
+        arrayOfCategories.forEach(function (ele) {
+          var template = templateFn.topBar(ele);
+          $(topBarFilter).children(".filter_list").append(template);
+        });
+      }
+
+      if (sideBarFilter) {
+        console.log("lkjlkj");
+      }
+    }
+    /**
+     * Refresh Total Items in Header
+     */
+
+  }, {
+    key: "refreshTotalItemsCount",
+    value: function refreshTotalItemsCount() {
+      var totalItemCount = this.shoppingCartInstance.itemCount;
+      $(".header__cart__item-count--value .value").text(totalItemCount);
+    }
+  }]);
+
+  return UIController;
+}();
+
+var cartInstance = JSON.parse(sessionStorage.getItem("cartInstance"));
+
+if (!cartInstance) {
+  ShoppingCart.GetCartInstanceAsync().then(function (shoppingCartInstance) {
+    var eventHandlerService = new _services_UIEventHandlerService__WEBPACK_IMPORTED_MODULE_3__["default"]();
+    var controller = new UIController(shoppingCartInstance, _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__["default"], eventHandlerService);
+    sessionStorage.setItem("cartInstance", JSON.stringify(shoppingCartInstance));
+    controller.render();
+  }).catch(function (err) {
+    console.error("Error While Creating Instance", err);
+  });
+} else {
+  var eventHandlerService = new _services_UIEventHandlerService__WEBPACK_IMPORTED_MODULE_3__["default"]();
+  var controller = new UIController(cartInstance, _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__["default"], eventHandlerService);
+  controller.render();
+}
+
 /***/ })
 /******/ ]);
-//# sourceMappingURL=home.bundle.js.map
+//# sourceMappingURL=plp.bundle.js.map

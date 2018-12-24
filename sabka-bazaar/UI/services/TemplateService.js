@@ -48,6 +48,44 @@ class TemplateService {
     </div>`
     };
   }
+
+  /**
+   * This method is used to Fetch the Template String
+   * for Category Filter Links
+   */
+  get fetchCategoryFilterTemplate() {
+    return {
+      topBar: ({ id, name }) => ` <li id='${id}'>
+      <span class="icon"> <i class="material-icons"> done </i> </span>
+      <span class="filter-name"> ${name} </span>
+    </li>`,
+      sideBar: () => {}
+    };
+  }
+
+  fetchProductsTemplate({ name, imageURL,price,description,id }) {
+    return ` <div class="plp__section__products__product-row" id=${id}>
+    <h2>${name}</h2>
+
+    <div class="plp__section__products__product-row__content">
+      <img
+        src="../..${imageURL}"
+        alt=${name}
+      />
+      <div class="details">
+        <p>
+        ${description}
+        </p>
+        <div class="button-area">
+          <span> MRP Rs. ${price} </span>
+          <button id=${id}>
+            Buy Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  }
 }
 
 let instance = new TemplateService();

@@ -1,81 +1,240 @@
-$().ready(function() {
-  $(".plp__section__category__filter__container .filter-header").on(
-    "click",
-    function() {
-      onFilterListClick();
-    }
-  );
-  $(".plp__section__category__filter__container .filter_list li").on(
-    "click",
-    function() {
-      let filtername = "";
-      let categoryId = -1;
-      if (
-        $(this)
-          .children(".icon")
-          .children("i")
-          .hasClass("icon-selected")
-      ) {
-        // case of Unset the Filter
-        filtername = "Select a filter";
-        categoryId = -1;
-      } else {
-        // new filter Selected By User
-        filtername = $(this)
-          .children(".filter-name")
-          .text();
-        // clear All Selected Classes
-        $(".plp__section__category__filter__container .filter_list li")
-          .children(".icon")
-          .children("i")
-          .removeClass("icon-selected");
+"use strict";
+const ShoppingCart = require("../../model/ShoppingCart").default;
+import instance from "../../services/TemplateService";
+import EventHandlerService from "../../services/UIEventHandlerService";
 
-        categoryId = $(this)[0].id;
+class UIController {
+  constructor(
+    ShoppingCartInstance,
+    templateServiceInstance,
+    eventHandlerService
+  ) {
+    this.shoppingCartInstance = ShoppingCartInstance;
+    this.instance = templateServiceInstance;
+    this.eventHandlerService = eventHandlerService;
+    if (!Array.prototype.SortByOrder) {
+      Array.prototype.SortByOrder = function() {
+        this.sort((a, b) => a.order - b.order);
+      };
+    }
+  }
+
+  render() {
+    let categoryID = this.getUrlParameter("cat_id");
+
+    $().ready(() => {
+      // 1. refreshTotalItemsCount
+      this.refreshTotalItemsCount();
+
+      //2. Fetch Categories and Populate Category FIlter
+      this.populateCategoryFilters();
+
+      //3. Apply Filters
+      this.applyCategoryFilter(categoryID);
+    });
+  }
+  /**
+   * method to fetch teh Queyr Params from URL
+   * @param {*} name key to search
+   */
+  getUrlParameter(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    var results = regex.exec(location.search);
+    return results === null
+      ? -1
+      : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  /**
+   * This method will filter the Products based on Ctaegory ID.
+   * If Cat_ID:-1, fetch ALL
+   * @param {*} categoryId
+   */
+  applyCategoryFilter(categoryId) {
+    //1. Select the Ui ELement with input Cat ID;
+    $(".plp__section__category__filter__container .filter_list")
+      .children()
+      .toArray()
+      .forEach(element => {
+        if (element.id == categoryId) {
+          let {
+            filtername
+          } = this.eventHandlerService.categoryFilterListItemClick(element);
+          this.eventHandlerService.categoryFilterHeaderClick(filtername, true);
+        }
+      });
+
+    //2. Filter Products
+
+    this.rePopulateProductsList(categoryId);
+  }
+
+  rePopulateProductsList(categoryId) {
+    //1. clear Current Items
+    $(".plp__section__products").empty();
+    //2. populate New Filtered Items
+    this.populateProductsFromService(categoryId);
+  }
+
+  /**
+   * Populate products from Service and Update in Ui
+   * @param {*} categoryId
+   */
+  populateProductsFromService(categoryId) {
+    //1. fetch Items from service
+    if (
+      this.shoppingCartInstance.serviceInstance.products &&
+      this.shoppingCartInstance.serviceInstance.products.length > 0
+    ) {
+      let filteredProducts = this.shoppingCartInstance.serviceInstance.products;
+
+      //  console.log(filteredProducts, categoryId);
+
+      if (categoryId != -1) {
+        filteredProducts = this.shoppingCartInstance.serviceInstance.products.filter(
+          x => x.category === categoryId
+        );
       }
 
-      // add this as Selected
-      $(this)
-        .children(".icon")
-        .children("i")
-        .toggleClass(" icon-selected");
+      this.populateProductsOnUI(filteredProducts);
+      this.registerProductClickEvent();
 
-      // close the filter list
-      onFilterListClick(filtername);
-
-      applyFilter(categoryId);
+      // this.registerFilterClickEvents();
+    } else {
+      console.log("nothing");
     }
-  );
+  }
+  registerProductClickEvent() {
+    $(".plp__section__products__product-row").on("click", e => {
+      // console.log(e.target.id);
+      if (event.target.nodeName == "BUTTON")
+        this.eventHandlerService.productClick(event);
+    });
+  }
 
-  function onFilterListClick(filterValue) {
-    //filterValue = filterValue || "Select a Filter";
+  /**
+   * populateProductsOnUI
+   * @param {*} arrayOfProducts
+   */
+  populateProductsOnUI(arrayOfProducts) {
+    arrayOfProducts.forEach(element => {
+      let template = this.instance.fetchProductsTemplate(element);
+      $(".plp__section__products").append(template);
+    });
+  }
 
-    var element = $(
-      ".plp__section__category__filter__container .filter-header"
+  /**
+   * This method is used to Populate Category Filters
+   */
+  populateCategoryFilters() {
+    if (
+      this.shoppingCartInstance.serviceInstance.categories &&
+      this.shoppingCartInstance.serviceInstance.categories.length > 0
+    ) {
+      this.populateCategoryList(
+        this.instance.fetchCategoryFilterTemplate,
+        this.shoppingCartInstance.serviceInstance.categories.filter(
+          x => x.enabled
+        )
+      );
+
+      this.registerFilterClickEvents();
+    }
+  }
+
+  /**
+   * register Click Events of Filter Items
+   */
+  registerFilterClickEvents() {
+    $(".plp__section__category__filter__container .filter-header").on(
+      "click",
+      () => {
+        this.eventHandlerService.categoryFilterHeaderClick();
+      }
     );
 
-    
-    //element.next(".filter_list").toggleClass("hidden");
-    element.next(".filter_list").slideToggle(300,function(){
-     
-      if ($(this).css('display')==='block') {
-        element
-          .children(".icon")
-          .children("i")
-          .text("keyboard_arrow_up");
-      } else {
-        element
-          .children(".icon")
-          .children("i")
-          .text("keyboard_arrow_down");
+    var self = this;
+
+    $(".plp__section__category__filter__container .filter_list li").on(
+      "click",
+      function() {
+        let {
+          filtername,
+          categoryId
+        } = self.eventHandlerService.categoryFilterListItemClick(this);
+
+        self.rePopulateProductsList(categoryId);
+
+        // close the filter list
+        self.eventHandlerService.categoryFilterHeaderClick(filtername);
       }
-      
+    );
+  }
+
+  /**
+   * Methos to Populate the Catgeory List on UI
+   * @param {*} templateFn
+   * @param {*} arrayOfCategories
+   */
+  populateCategoryList(templateFn, arrayOfCategories) {
+    // console.log(arrayOfCategories);
+
+    arrayOfCategories.SortByOrder();
+
+    let topBarFilter = $(".plp__section__category__filter__container");
+    let sideBarFilter = $(".plp__section__category__filter__bar");
+
+    if (topBarFilter) {
+      arrayOfCategories.forEach(ele => {
+        let template = templateFn.topBar(ele);
+        $(topBarFilter)
+          .children(".filter_list")
+          .append(template);
+      });
+    }
+    if (sideBarFilter) {
+      console.log("lkjlkj");
+    }
+  }
+
+  /**
+   * Refresh Total Items in Header
+   */
+  refreshTotalItemsCount() {
+    let totalItemCount = this.shoppingCartInstance.itemCount;
+    $(".header__cart__item-count--value .value").text(totalItemCount);
+  }
+}
+
+let cartInstance = JSON.parse(sessionStorage.getItem("cartInstance"));
+
+if (!cartInstance) {
+  ShoppingCart.GetCartInstanceAsync()
+    .then(shoppingCartInstance => {
+      let eventHandlerService = new EventHandlerService();
+      let controller = new UIController(
+        shoppingCartInstance,
+        instance,
+        eventHandlerService
+      );
+
+      sessionStorage.setItem(
+        "cartInstance",
+        JSON.stringify(shoppingCartInstance)
+      );
+      controller.render();
+    })
+    .catch(err => {
+      console.error("Error While Creating Instance", err);
     });
+} else {
+  let eventHandlerService = new EventHandlerService();
+  let controller = new UIController(
+    cartInstance,
+    instance,
+    eventHandlerService
+  );
 
-    
-    if (filterValue) element.children(".filter-name").text(filterValue);
-  }
-
-  function applyFilter(categoryId) {
-    console.log("Category ID Clicked:", categoryId);
-  }
-});
+  controller.render();
+}

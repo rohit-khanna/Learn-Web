@@ -83,11 +83,10 @@ class UIController {
    * @param {*} arrayOfOffers array of Offers
    */
   populateOffers(templateFn, arrayOfOffers) {
-    let sortedArray = arrayOfOffers.sort((a, b) => a.order - b.order);
+    arrayOfOffers.SortByOrder();
     let offerList = $(".section__corousal .corousal .images");
-    // console.log(sortedArray);
 
-    sortedArray.forEach(offer => {
+    arrayOfOffers.forEach(offer => {
       if (offer.isActive) {
         let tempString = templateFn(offer);
         offerList.append(tempString);
@@ -136,9 +135,10 @@ class UIController {
         x => x.enabled
       );
 
-      let sortedArray = enabledArray.sort((a, b) => a.order - b.order);
+      enabledArray.SortByOrder();
+
       //2. Create Quick Links
-      sortedArray.forEach((element, index) => {
+      enabledArray.forEach((element, index) => {
         this.createQuickLinksForProductCategories(element, index);
       });
 
@@ -172,6 +172,10 @@ ShoppingCart.GetCartInstanceAsync()
       eventHandlerService
     );
     $().ready(function() {
+      sessionStorage.setItem(
+        "cartInstance",
+        JSON.stringify(shoppingCartInstance)
+      );
       controller.render();
     });
   })
