@@ -12,27 +12,27 @@
     display: none;
     z-index: 200;
     cursor: pointer;
-
     padding: 0.5rem 1rem 1rem 1rem;
     position: absolute;
-    top: 15%;
+    top: 25%;
     font-weight: bold;
   }
   .prev a,
   .next a {
-    color: white;
+    color: black;
     font-weight: bold;
     text-decoration: none;
+    outline: none;
     padding: 0 0;
     border: none;
     margin: 0 0;
-    font-size: 4rem;
+    font-size: 5rem;
   }
   .prev {
-    left: 2rem;
+    left: 1rem;
   }
   .next {
-    right: 2rem;
+    right: 1rem;
   }
   .images {
     //width: 1000%; // will be modified by Code in case more offers are added
@@ -56,7 +56,7 @@
       img {
         width: 100vw;
         margin-left: 0;
-        margin-right: 0.5em;
+        margin-right: 0;
         vertical-align: middle;
         transform: scale(1.01);
       }
@@ -65,8 +65,8 @@
 
   &:hover .next,
   &:hover .prev {
-    background-color: #00000062;
-    color: white;
+    background-color: rgba(247, 247, 247, 0.57);
+    color: black;
   }
 
   .slidesNavigation {
@@ -122,6 +122,22 @@
           vertical-align: middle;
           transform: scale(1.01);
         }
+      }
+    }
+
+    .slidesNavigation {
+    
+      label {
+       
+        margin: 0.6rem;
+       
+        height: 0.6rem;
+        width: 0.6rem;  
+      
+        font-size: 1rem;
+      }
+      .selected {
+        background: $primary-font-color-opacity;
       }
     }
   }

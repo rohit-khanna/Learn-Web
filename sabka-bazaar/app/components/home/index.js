@@ -119,6 +119,62 @@ class UIController {
         offerList.append(tempString);
       }
     });
+    let isMouseDown = false;
+    let point = { start: 0, end: 0 };
+    $(offerList)
+      .children("li")
+      .on("click", function(event) {
+        // console.log(event.target); //IMG
+        // console.log(event.currentTarget); // LI
+      });
+
+    offerList
+      .children("li")
+      .mousedown(function(e) {
+        e.preventDefault();
+        isMouseDown = true;
+        point.start = e.pageX;
+      })
+      .mousemove(function(e) {
+        e.preventDefault();
+        if (!isMouseDown) return false;
+        else {
+          point.end = e.pageX;
+        }
+      })
+      .mouseup(e => {
+        e.preventDefault();
+        isMouseDown = false;
+        let fromLeftToRight = point.end - point.start > 0 ? true : false;
+        point.end = 0;
+        fromLeftToRight
+          ? this.eventHandlerService.corousalPrevBtnClick()
+          : this.eventHandlerService.corousalNextBtnClick();
+      })
+      .on("touchstart", e => {
+        e.preventDefault();
+        isMouseDown = true;
+        point.start = e.touches[0].pageX;
+      })
+
+      .on("touchmove", e => {
+        e.preventDefault();
+        if (!isMouseDown) return false;
+        point.end = e.touches[0].pageX;
+      })
+      .on("touchend", e => {
+        e.preventDefault();
+        if (!isMouseDown) return false;
+
+        isMouseDown = false;      
+        if (point.end > 0) {
+          let fromLeftToRight = point.end - point.start > 10 ? true : false;
+
+          fromLeftToRight
+            ? this.eventHandlerService.corousalPrevBtnClick()
+            : this.eventHandlerService.corousalNextBtnClick();
+        }
+      });
   }
   /**
    * This function is used to Fetch Offers-Banners, fetch Template from Service and

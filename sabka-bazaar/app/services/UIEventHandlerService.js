@@ -127,7 +127,7 @@ class EventHandlerService {
     );
   }
 
-  corousalPrevBtnClick(event) {
+  corousalPrevBtnClick() {
     let selectedDot = $(
       ".section__corousal .corousal .slidesNavigation"
     ).children("label.selected");
@@ -145,7 +145,7 @@ class EventHandlerService {
     this.corousalDotsClick({ target: ele[0] });
   }
 
-  corousalNextBtnClick(event) {
+  corousalNextBtnClick() {
     let selectedDot = $(
       ".section__corousal .corousal .slidesNavigation"
     ).children("label.selected");

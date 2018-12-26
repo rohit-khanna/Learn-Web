@@ -221,12 +221,55 @@ function () {
   }, {
     key: "populateOffers",
     value: function populateOffers(templateFn, arrayOfOffers) {
+      var _this4 = this;
+
       arrayOfOffers.SortByOrder();
       var offerList = $(".section__corousal .corousal .images");
       arrayOfOffers.forEach(function (offer) {
         if (offer.isActive) {
           var tempString = templateFn(offer, 100 / parseFloat(arrayOfOffers.length));
           offerList.append(tempString);
+        }
+      });
+      var isMouseDown = false;
+      var point = {
+        start: 0,
+        end: 0
+      };
+      $(offerList).children("li").on("click", function (event) {// console.log(event.target); //IMG
+        // console.log(event.currentTarget); // LI
+      });
+      offerList.children("li").mousedown(function (e) {
+        e.preventDefault();
+        isMouseDown = true;
+        point.start = e.pageX;
+      }).mousemove(function (e) {
+        e.preventDefault();
+        if (!isMouseDown) return false;else {
+          point.end = e.pageX;
+        }
+      }).mouseup(function (e) {
+        e.preventDefault();
+        isMouseDown = false;
+        var fromLeftToRight = point.end - point.start > 0 ? true : false;
+        point.end = 0;
+        fromLeftToRight ? _this4.eventHandlerService.corousalPrevBtnClick() : _this4.eventHandlerService.corousalNextBtnClick();
+      }).on("touchstart", function (e) {
+        e.preventDefault();
+        isMouseDown = true;
+        point.start = e.touches[0].pageX;
+      }).on("touchmove", function (e) {
+        e.preventDefault();
+        if (!isMouseDown) return false;
+        point.end = e.touches[0].pageX;
+      }).on("touchend", function (e) {
+        e.preventDefault();
+        if (!isMouseDown) return false;
+        isMouseDown = false;
+
+        if (point.end > 0) {
+          var fromLeftToRight = point.end - point.start > 10 ? true : false;
+          fromLeftToRight ? _this4.eventHandlerService.corousalPrevBtnClick() : _this4.eventHandlerService.corousalNextBtnClick();
         }
       });
     }
@@ -257,7 +300,7 @@ function () {
   }, {
     key: "populateUIProductCategoryQuickLinks",
     value: function populateUIProductCategoryQuickLinks() {
-      var _this4 = this;
+      var _this5 = this;
 
       // 1. Check Data from service
       if (this.shoppingCartInstance.serviceInstance.categories && this.shoppingCartInstance.serviceInstance.categories.length > 0) {
@@ -267,7 +310,7 @@ function () {
         enabledArray.SortByOrder(); //2. Create Quick Links
 
         enabledArray.forEach(function (element, index) {
-          _this4.createQuickLinksForProductCategories(element, index);
+          _this5.createQuickLinksForProductCategories(element, index);
         });
         this.registerProductCategoryQuickLinkEvents();
       }
@@ -2144,7 +2187,7 @@ function () {
           var id = _ref.id,
               bannerImageUrl = _ref.bannerImageUrl,
               bannerImageAlt = _ref.bannerImageAlt;
-          return " <li width=".concat(width, "% id='").concat(id, "'><img src='../..").concat(bannerImageUrl, "' alt=").concat(bannerImageAlt, " /></li>");
+          return " <li  width=".concat(width, "% id='").concat(id, "'><img src='../..").concat(bannerImageUrl, "' alt=").concat(bannerImageAlt, " /></li>");
         },
         navButton: function navButton(id, checked) {
           return "<input type=\"radio\"  name=\"images\" id=\"radio-".concat(id, "\" ").concat(checked ? "checked" : "", " />");
@@ -2329,7 +2372,7 @@ function () {
     }
   }, {
     key: "corousalPrevBtnClick",
-    value: function corousalPrevBtnClick(event) {
+    value: function corousalPrevBtnClick() {
       var selectedDot = $(".section__corousal .corousal .slidesNavigation").children("label.selected");
       var id = selectedDot[0].id.toString().split("dotForRadio-")[1];
       var ele = "";
@@ -2347,7 +2390,7 @@ function () {
     }
   }, {
     key: "corousalNextBtnClick",
-    value: function corousalNextBtnClick(event) {
+    value: function corousalNextBtnClick() {
       var selectedDot = $(".section__corousal .corousal .slidesNavigation").children("label.selected");
       var id = selectedDot[0].id.toString().split("dotForRadio-")[1];
       var ele = "";

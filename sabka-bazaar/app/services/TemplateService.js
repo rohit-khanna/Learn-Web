@@ -16,7 +16,7 @@ class TemplateService {
   fetchBannerOfferTemplate() {
     return {
       offers: ({ id, bannerImageUrl, bannerImageAlt },width) => {
-        return ` <li width=${width}% id='${id}'><img src='../..${bannerImageUrl}' alt=${bannerImageAlt} /></li>`;
+        return ` <li  width=${width}% id='${id}'><img src='../..${bannerImageUrl}' alt=${bannerImageAlt} /></li>`;
       },
       navButton: (id, checked) =>
         `<input type="radio"  name="images" id="radio-${id}" ${

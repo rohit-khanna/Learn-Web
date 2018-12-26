@@ -1926,7 +1926,7 @@ function () {
           var id = _ref.id,
               bannerImageUrl = _ref.bannerImageUrl,
               bannerImageAlt = _ref.bannerImageAlt;
-          return " <li width=".concat(width, "% id='").concat(id, "'><img src='../..").concat(bannerImageUrl, "' alt=").concat(bannerImageAlt, " /></li>");
+          return " <li  width=".concat(width, "% id='").concat(id, "'><img src='../..").concat(bannerImageUrl, "' alt=").concat(bannerImageAlt, " /></li>");
         },
         navButton: function navButton(id, checked) {
           return "<input type=\"radio\"  name=\"images\" id=\"radio-".concat(id, "\" ").concat(checked ? "checked" : "", " />");
@@ -2111,7 +2111,7 @@ function () {
     }
   }, {
     key: "corousalPrevBtnClick",
-    value: function corousalPrevBtnClick(event) {
+    value: function corousalPrevBtnClick() {
       var selectedDot = $(".section__corousal .corousal .slidesNavigation").children("label.selected");
       var id = selectedDot[0].id.toString().split("dotForRadio-")[1];
       var ele = "";
@@ -2129,7 +2129,7 @@ function () {
     }
   }, {
     key: "corousalNextBtnClick",
-    value: function corousalNextBtnClick(event) {
+    value: function corousalNextBtnClick() {
       var selectedDot = $(".section__corousal .corousal .slidesNavigation").children("label.selected");
       var id = selectedDot[0].id.toString().split("dotForRadio-")[1];
       var ele = "";

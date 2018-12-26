@@ -3,6 +3,7 @@
 COLOR SCHEME
 */
 .util_main_content_align--centre {
+  width: 100%;
   max-width: 980px;
   margin: 0 auto;
   background-color: #fff;
@@ -21,6 +22,7 @@ COLOR SCHEME
   flex-basis: 30%;
   align-self: center;
   width: 40%;
+  transform: scale(1.1);
 }
 .home__section__prod-cat__quicklinks__row--reverse .content, .home__section__prod-cat__quicklinks__row .content {
   text-align: center;
@@ -66,7 +68,7 @@ COLOR SCHEME
   .home__section__prod-cat__quicklinks__row--reverse .content p, .home__section__prod-cat__quicklinks__row .content p {
     margin: 1rem 0;
     padding: 0 1rem;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
   }
 }
 /**
@@ -76,6 +78,7 @@ RESET
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none;
 }
 
 body {
@@ -99,7 +102,7 @@ h2 {
 
 @media only screen and (min-width: 400px) {
   body {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 @media only screen and (min-width: 550px) {
@@ -132,24 +135,25 @@ h2 {
   cursor: pointer;
   padding: 0.5rem 1rem 1rem 1rem;
   position: absolute;
-  top: 15%;
+  top: 25%;
   font-weight: bold;
 }
 .corousal .prev a,
 .corousal .next a {
-  color: white;
+  color: black;
   font-weight: bold;
   text-decoration: none;
+  outline: none;
   padding: 0 0;
   border: none;
   margin: 0 0;
-  font-size: 4rem;
+  font-size: 5rem;
 }
 .corousal .prev {
-  left: 2rem;
+  left: 1rem;
 }
 .corousal .next {
-  right: 2rem;
+  right: 1rem;
 }
 .corousal .images {
   left: 0;
@@ -171,13 +175,13 @@ h2 {
 .corousal .images li img {
   width: 100vw;
   margin-left: 0;
-  margin-right: 0.5em;
+  margin-right: 0;
   vertical-align: middle;
   transform: scale(1.01);
 }
 .corousal:hover .next, .corousal:hover .prev {
-  background-color: #00000062;
-  color: white;
+  background-color: rgba(247, 247, 247, 0.57);
+  color: black;
 }
 .corousal .slidesNavigation {
   display: flex;
@@ -218,17 +222,28 @@ h2 {
     vertical-align: middle;
     transform: scale(1.01);
   }
+  .corousal .slidesNavigation label {
+    margin: 0.6rem;
+    height: 0.6rem;
+    width: 0.6rem;
+    font-size: 1rem;
+  }
+  .corousal .slidesNavigation .selected {
+    background: #252424bf;
+  }
 }
 a:link,
 a:visited {
   text-decoration: none;
   color: #252424;
+  outline: none;
 }
 
 a:hover,
 a:active {
   text-decoration: none;
   border-bottom: 2px solid #b5adad;
+  outline: none;
 }
 
 .footer {

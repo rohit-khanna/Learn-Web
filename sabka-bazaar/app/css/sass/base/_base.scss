@@ -5,6 +5,7 @@ RESET
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none;
 }
 
 body {
@@ -28,7 +29,7 @@ h2 {
 
 @media only screen and (min-width: 400px) {
   body {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
