@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server": "canned -p 5000 ./server",
     "build": "webpack --watch",
-    "build-css": "sass ./UI/css/sass/main.scss --watch ./UI/index.css"
+    "build-css": "sass ./app/css/sass/main.scss --watch ./app/index.css"
   },
   "author": "Rohit Khanna",
   "license": "ISC",

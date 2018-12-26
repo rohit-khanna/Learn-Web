@@ -4,8 +4,8 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
   entry: {
-    home: "./UI/components/home/index.js",
-    plp: "./UI/components/plp/index.js"
+    home: "./app/components/home/index.js",
+    plp: "./app/components/plp/index.js"
   },
   mode: "none",
   output: {
