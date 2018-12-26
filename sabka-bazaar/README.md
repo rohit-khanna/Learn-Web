@@ -16,7 +16,7 @@ SASS is used for styling the components/pages
 will build the SASS & transpiles it into 1 css file
 
 #### Javascript
-The JS files for UI are present under *UI/js* folder.
+The JS files for UI are present under *app/js* folder.
 Webpack is used to bundle them.
 `npm run build-js`
 
