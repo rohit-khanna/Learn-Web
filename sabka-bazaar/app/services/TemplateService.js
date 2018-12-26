@@ -15,7 +15,7 @@ class TemplateService {
    */
   fetchBannerOfferTemplate() {
     return {
-      offers: ({ id, bannerImageUrl, bannerImageAlt },width) => {
+      offers: ({ id, bannerImageUrl, bannerImageAlt }, width) => {
         return ` <li  width=${width}% id='${id}'><img src='../..${bannerImageUrl}' alt=${bannerImageAlt} /></li>`;
       },
       navButton: (id, checked) =>
@@ -59,13 +59,15 @@ class TemplateService {
       <span class="icon"> <i class="material-icons"> done </i> </span>
       <span class="filter-name"> ${name} </span>
     </li>`,
-      sideBar: () => {}
+      sideBar: ({ id, name }) => ` <li  title=' ${name}' id='${id}'>
+     ${name}
+    </li>`
     };
   }
 
-  fetchProductsTemplate({ name, imageURL,price,description,id }) {
+  fetchProductsTemplate({ name, imageURL, price, description, id }) {
     return ` <div class="plp__section__products__product-row" id=${id}>
-    <h2>${name}</h2>
+    <h2 title='${name}'>${name}</h2>
 
     <div class="plp__section__products__product-row__content">
       <img
@@ -74,7 +76,7 @@ class TemplateService {
       />
       <div class="details">
         <p title=  '${description}'>
-        ${description.substr(0,120)}...
+        ${description}
         </p>
         <div class="button-area">
           <span> MRP Rs. ${price} </span>

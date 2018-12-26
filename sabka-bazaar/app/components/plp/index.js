@@ -65,6 +65,23 @@ class UIController {
         }
       });
 
+    $(".plp__section__category__filter__bar ul")
+      .children()
+      .toArray()
+      .forEach((e)=>{
+       
+        if(e.id==categoryId)
+        {
+          $(".plp__section__category__filter__bar ul")
+          .children()
+          .css("font-weight", 400);
+            $(e).css("font-weight", 700);
+        }
+
+       
+       // $(e.target).css("font-weight", 700);
+      });
+
     //2. Filter Products
 
     this.rePopulateProductsList(categoryId);
@@ -170,6 +187,19 @@ class UIController {
         self.eventHandlerService.categoryFilterHeaderClick(filtername);
       }
     );
+
+    $(".plp__section__category__filter__bar ul li").on("click", function(e) {
+      let {
+        filtername,
+        categoryId
+      } = self.eventHandlerService.categoryFilterListItemClick(this);
+      self.rePopulateProductsList(categoryId);
+
+      $(".plp__section__category__filter__bar ul")
+        .children()
+        .css("font-weight", 400);
+      $(e.target).css("font-weight", 700);
+    });
   }
 
   /**
@@ -194,7 +224,12 @@ class UIController {
       });
     }
     if (sideBarFilter) {
-      console.log("lkjlkj");
+      arrayOfCategories.forEach(ele => {
+        let template = templateFn.sideBar(ele);
+        $(sideBarFilter)
+          .children("ul")
+          .append(template);
+      });
     }
   }
 

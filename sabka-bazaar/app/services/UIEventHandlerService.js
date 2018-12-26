@@ -36,7 +36,7 @@ class EventHandlerService {
 
     if (!isRequestFromCode) {
       //element.next(".filter_list").toggleClass("hidden");
-      element.next(".filter_list").slideToggle(300, function() {
+      element.next(".filter_list").slideToggle(400, function() {
         if ($(this).css("display") === "block") {
           element
             .children(".icon")

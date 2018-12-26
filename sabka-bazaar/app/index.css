@@ -321,7 +321,6 @@ button:hover {
   width: 100%;
   font-weight: 400;
   background-color: #d12360;
-  position: relative;
   font-size: 1rem;
 }
 .plp__section__category__filter__container .filter-header {
@@ -357,7 +356,7 @@ button:hover {
   height: 3rem;
   background-color: #d12360f5;
   display: block;
-  border-bottom: 2px solid #d12360;
+  border-bottom: 2px solid #c5285f;
   padding: 1rem 1rem;
   font-size: 0.8rem;
 }
@@ -366,7 +365,7 @@ button:hover {
   left: 4rem;
 }
 .plp__section__category__filter__container .filter_list > li > .icon {
-  color: rgba(146, 142, 142, 0.624);
+  color: rgba(191, 13, 13, 0.624);
   position: absolute;
   left: 1rem;
 }
@@ -380,6 +379,9 @@ button:hover {
   flex-direction: column;
   justify-content: flex-start;
   border-bottom: 1px dotted #b5adad;
+}
+.plp__section__products__product-row h2 {
+  overflow: hidden;
 }
 .plp__section__products__product-row__content {
   display: flex;
@@ -409,11 +411,14 @@ button:hover {
   font-size: 0.8rem;
 }
 .plp__section__products__product-row__content .details p {
-  text-align: left;
   background-color: #e9e3e3;
   margin: 0.3rem 0;
-  padding: 0.3rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   font-size: 0.8rem;
+  line-height: 1.2em;
+  height: 9.6em;
+  text-align: justify;
+  overflow: hidden;
 }
 
 @media only screen and (min-width: 700px) {
@@ -450,6 +455,10 @@ button:hover {
   }
   .plp__section__category__filter__bar ul li:hover {
     color: #252424;
+    font-weight: 700;
+  }
+  .plp__section__category__filter__bar ul li .selected {
+    color: red;
     font-weight: 700;
   }
   .plp__section__products {

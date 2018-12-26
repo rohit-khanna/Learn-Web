@@ -10,13 +10,14 @@
       width: 100%;
       font-weight: 400;
       background-color: $primary-button-color;
-      position: relative;
+
       font-size: 1rem;
       .filter-header {
         color: white;
         padding: 1rem 1rem;
         text-align: center;
         height: 3rem;
+
         width: 100%;
         & > .filter-name {
           position: absolute;
@@ -47,7 +48,7 @@
           height: 3rem;
           background-color: $primary-button-color-opacity;
           display: block;
-          border-bottom: 2px solid $primary-button-color;
+          border-bottom: 2px solid #c5285f;
           padding: 1rem 1rem;
           font-size: 0.8rem;
           & > .filter-name {
@@ -55,7 +56,7 @@
             left: 4rem;
           }
           & > .icon {
-            color: rgba(146, 142, 142, 0.624);
+            color: rgba(191, 13, 13, 0.624);
             position: absolute;
             left: 1rem;
             i {
@@ -74,9 +75,11 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-
       border-bottom: 1px dotted $tertiary-font-color;
 
+      h2 {
+        overflow: hidden;
+      }
       &__content {
         display: flex;
         margin-top: 1rem;
@@ -106,11 +109,14 @@
           flex-basis: 50%;
           font-size: 0.8rem;
           p {
-            text-align: left;
             background-color: $secondary-background-color;
             margin: 0.3rem 0;
-            padding: 0.3rem 0.5rem;
+            padding: 0.5rem 0.5rem;
             font-size: 0.8rem;
+            line-height: 1.2em;
+            height: 9.6em;
+            text-align: justify;
+            overflow: hidden;
           }
         }
       }
@@ -152,6 +158,7 @@
               color: $primary-font-color;
               font-weight: 700;
             }
+            
           }
         }
       }
@@ -247,7 +254,7 @@
         position: relative;
         padding-left: 0.5rem;
         flex-basis: 24%;
-        &:last-of-type(){
+        &:last-of-type() {
           flex-basis: 27%;
         }
         h2 {

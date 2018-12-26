@@ -2229,7 +2229,7 @@ function () {
           price = _ref3.price,
           description = _ref3.description,
           id = _ref3.id;
-      return " <div class=\"plp__section__products__product-row\" id=".concat(id, ">\n    <h2>").concat(name, "</h2>\n\n    <div class=\"plp__section__products__product-row__content\">\n      <img\n        src=\"../..").concat(imageURL, "\"\n        alt='").concat(name, "'\n      />\n      <div class=\"details\">\n        <p title=  '").concat(description, "'>\n        ").concat(description.substr(0, 120), "...\n        </p>\n        <div class=\"button-area\">\n          <span> MRP Rs. ").concat(price, " </span>\n          <button id=").concat(id, ">\n            Buy Now\n          </button>\n        </div>\n      </div>\n    </div>\n  </div>");
+      return " <div class=\"plp__section__products__product-row\" id=".concat(id, ">\n    <h2 title='").concat(name, "'>").concat(name, "</h2>\n\n    <div class=\"plp__section__products__product-row__content\">\n      <img\n        src=\"../..").concat(imageURL, "\"\n        alt='").concat(name, "'\n      />\n      <div class=\"details\">\n        <p title=  '").concat(description, "'>\n        ").concat(description, "\n        </p>\n        <div class=\"button-area\">\n          <span> MRP Rs. ").concat(price, " </span>\n          <button id=").concat(id, ">\n            Buy Now\n          </button>\n        </div>\n      </div>\n    </div>\n  </div>");
     }
   }, {
     key: "fetchCategoryFilterTemplate",
@@ -2240,7 +2240,11 @@ function () {
               name = _ref4.name;
           return " <li id='".concat(id, "'>\n      <span class=\"icon\"> <i class=\"material-icons\"> done </i> </span>\n      <span class=\"filter-name\"> ").concat(name, " </span>\n    </li>");
         },
-        sideBar: function sideBar() {}
+        sideBar: function sideBar(_ref5) {
+          var id = _ref5.id,
+              name = _ref5.name;
+          return " <li  title=' ".concat(name, "' id='").concat(id, "'>\n     ").concat(name, "\n    </li>");
+        }
       };
     }
   }]);
@@ -2308,7 +2312,7 @@ function () {
 
       if (!isRequestFromCode) {
         //element.next(".filter_list").toggleClass("hidden");
-        element.next(".filter_list").slideToggle(300, function () {
+        element.next(".filter_list").slideToggle(400, function () {
           if ($(this).css("display") === "block") {
             element.children(".icon").children("i").text("keyboard_arrow_up");
           } else {
