@@ -8,8 +8,7 @@ COLOR SCHEME
   background-color: #fff;
 }
 
-.home__section__prod-cat__quicklinks__row--reverse,
-.home__section__prod-cat__quicklinks__row {
+.home__section__prod-cat__quicklinks__row--reverse, .home__section__prod-cat__quicklinks__row {
   margin: 1rem 0;
   padding: 1rem 0.5rem;
   align-self: center;
@@ -18,39 +17,33 @@ COLOR SCHEME
   flex-direction: row;
   justify-content: space-between;
 }
-.home__section__prod-cat__quicklinks__row--reverse img,
-.home__section__prod-cat__quicklinks__row img {
+.home__section__prod-cat__quicklinks__row--reverse img, .home__section__prod-cat__quicklinks__row img {
   flex-basis: 30%;
   align-self: center;
   width: 40%;
 }
-.home__section__prod-cat__quicklinks__row--reverse .content,
-.home__section__prod-cat__quicklinks__row .content {
+.home__section__prod-cat__quicklinks__row--reverse .content, .home__section__prod-cat__quicklinks__row .content {
   text-align: center;
   flex-basis: 70%;
   align-self: flex-start;
   font-size: 0.8rem;
 }
-.home__section__prod-cat__quicklinks__row--reverse .content p,
-.home__section__prod-cat__quicklinks__row .content p {
+.home__section__prod-cat__quicklinks__row--reverse .content p, .home__section__prod-cat__quicklinks__row .content p {
   margin: 0.3rem 0;
   font-size: 0.8rem;
 }
 
 @media only screen and (min-width: 700px) {
-  .home__section__prod-cat__quicklinks__row--reverse img,
-  .home__section__prod-cat__quicklinks__row img {
+  .home__section__prod-cat__quicklinks__row--reverse img, .home__section__prod-cat__quicklinks__row img {
     flex-basis: 40%;
     align-self: center;
     width: 35%;
   }
-  .home__section__prod-cat__quicklinks__row--reverse .content,
-  .home__section__prod-cat__quicklinks__row .content {
+  .home__section__prod-cat__quicklinks__row--reverse .content, .home__section__prod-cat__quicklinks__row .content {
     flex-basis: 60%;
     font-size: 1.2rem;
   }
-  .home__section__prod-cat__quicklinks__row--reverse .content p,
-  .home__section__prod-cat__quicklinks__row .content p {
+  .home__section__prod-cat__quicklinks__row--reverse .content p, .home__section__prod-cat__quicklinks__row .content p {
     margin: 0.3rem 0;
     padding: 0 0.5rem;
     font-size: 1.1rem;
@@ -61,19 +54,16 @@ COLOR SCHEME
 }
 
 @media only screen and (min-width: 1000px) {
-  .home__section__prod-cat__quicklinks__row--reverse img,
-  .home__section__prod-cat__quicklinks__row img {
+  .home__section__prod-cat__quicklinks__row--reverse img, .home__section__prod-cat__quicklinks__row img {
     flex-basis: 40%;
     align-self: center;
     width: 35%;
   }
-  .home__section__prod-cat__quicklinks__row--reverse .content,
-  .home__section__prod-cat__quicklinks__row .content {
+  .home__section__prod-cat__quicklinks__row--reverse .content, .home__section__prod-cat__quicklinks__row .content {
     flex-basis: 60%;
     font-size: 1.2rem;
   }
-  .home__section__prod-cat__quicklinks__row--reverse .content p,
-  .home__section__prod-cat__quicklinks__row .content p {
+  .home__section__prod-cat__quicklinks__row--reverse .content p, .home__section__prod-cat__quicklinks__row .content p {
     margin: 1rem 0;
     padding: 0 1rem;
     font-size: 1.1rem;
@@ -109,7 +99,7 @@ h2 {
 
 @media only screen and (min-width: 400px) {
   body {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 @media only screen and (min-width: 550px) {
@@ -162,7 +152,6 @@ h2 {
   right: 2rem;
 }
 .corousal .images {
-  width: 500%;
   left: 0;
   padding-left: 0;
   padding-top: 1em;
@@ -175,20 +164,18 @@ h2 {
   transition: transform 0.5s;
 }
 .corousal .images li {
-  width: 20%;
   position: relative;
   float: left;
   margin-bottom: 0.4rem;
 }
 .corousal .images li img {
-  width: 95vw;
+  width: 100vw;
   margin-left: 0;
   margin-right: 0.5em;
   vertical-align: middle;
   transform: scale(1.01);
 }
-.corousal:hover .next,
-.corousal:hover .prev {
+.corousal:hover .next, .corousal:hover .prev {
   background-color: #00000062;
   color: white;
 }
@@ -207,41 +194,15 @@ h2 {
   border: solid 1px #6160605f;
   font-size: 1rem;
 }
-.corousal  input[type="radio"] {
+.corousal .slidesNavigation .selected {
+  background: #252424bf;
+}
+.corousal input[type=radio] {
   display: none;
 }
 
-#radio-1:checked ~ .images {
-  transform: translateX(0%);
-}
-
-#radio-2:checked ~ .images {
-  transform: translateX(-20%);
-}
-
-#radio-3:checked ~ .images {
-  transform: translateX(-40%);
-}
-
-#radio-4:checked ~ .images {
-  transform: translateX(-60%);
-}
-
-#radio-5:checked ~ .images {
-  transform: translateX(-80%);
-}
-
-.corousal #radio-1:checked ~ .slidesNavigation label#dotForRadio-1,
-.corousal #radio-2:checked ~ .slidesNavigation label#dotForRadio-2,
-.corousal #radio-3:checked ~ .slidesNavigation label#dotForRadio-3,
-.corousal #radio-4:checked ~ .slidesNavigation label#dotForRadio-4,
-.corousal #radio-5:checked ~ .slidesNavigation label#dotForRadio-5 {
-  background: #454545bf;
-}
-
 @media only screen and (min-width: 700px) {
-  .corousal .prev,
-  .corousal .next {
+  .corousal:hover .next, .corousal:hover .prev {
     display: inline-block;
   }
 }
@@ -251,7 +212,7 @@ h2 {
     margin-top: 0;
   }
   .corousal .images li img {
-    width: 50vw;
+    width: 70vw;
     margin-left: 0;
     margin-right: 0.5em;
     vertical-align: middle;
@@ -326,6 +287,7 @@ button:hover {
 
 .home__section__prod-cat__quicklinks {
   display: flex;
+  font-size: inherit;
   flex-direction: column;
   justify-content: flex-start;
 }
@@ -413,7 +375,7 @@ button:hover {
 .plp__section__products__product-row__content img {
   flex-basis: 45%;
   align-self: center;
-  max-width: 200px;
+  max-width: 150px;
   width: 45%;
 }
 .plp__section__products__product-row__content .button-area {
@@ -540,11 +502,14 @@ button:hover {
     min-height: 400px;
     position: relative;
     padding-left: 0.5rem;
-    flex-basis: 23%;
+    flex-basis: 24%;
+  }
+  .plp__section__products__product-row:last-of-type() {
+    flex-basis: 27%;
   }
   .plp__section__products__product-row h2 {
     font-size: 1rem;
-    min-height: 2.5rem;
+    min-height: 4rem;
     padding: 0 0;
   }
   .plp__section__products__product-row__content {
@@ -560,7 +525,7 @@ button:hover {
     background-color: #e9e3e3;
     margin-left: 0;
     padding: 1rem 0.5rem;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     min-height: 8rem;
   }
   .plp__section__products__product-row__content .details .button-area > span {

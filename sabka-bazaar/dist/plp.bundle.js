@@ -1922,11 +1922,11 @@ function () {
      */
     value: function fetchBannerOfferTemplate() {
       return {
-        offers: function offers(_ref) {
+        offers: function offers(_ref, width) {
           var id = _ref.id,
               bannerImageUrl = _ref.bannerImageUrl,
               bannerImageAlt = _ref.bannerImageAlt;
-          return " <li id='".concat(id, "'><img src='../..").concat(bannerImageUrl, "' alt=").concat(bannerImageAlt, " /></li>");
+          return " <li width=".concat(width, "% id='").concat(id, "'><img src='../..").concat(bannerImageUrl, "' alt=").concat(bannerImageAlt, " /></li>");
         },
         navButton: function navButton(id, checked) {
           return "<input type=\"radio\"  name=\"images\" id=\"radio-".concat(id, "\" ").concat(checked ? "checked" : "", " />");
@@ -1968,7 +1968,7 @@ function () {
           price = _ref3.price,
           description = _ref3.description,
           id = _ref3.id;
-      return " <div class=\"plp__section__products__product-row\" id=".concat(id, ">\n    <h2>").concat(name, "</h2>\n\n    <div class=\"plp__section__products__product-row__content\">\n      <img\n        src=\"../..").concat(imageURL, "\"\n        alt=").concat(name, "\n      />\n      <div class=\"details\">\n        <p>\n        ").concat(description, "\n        </p>\n        <div class=\"button-area\">\n          <span> MRP Rs. ").concat(price, " </span>\n          <button id=").concat(id, ">\n            Buy Now\n          </button>\n        </div>\n      </div>\n    </div>\n  </div>");
+      return " <div class=\"plp__section__products__product-row\" id=".concat(id, ">\n    <h2>").concat(name, "</h2>\n\n    <div class=\"plp__section__products__product-row__content\">\n      <img\n        src=\"../..").concat(imageURL, "\"\n        alt='").concat(name, "'\n      />\n      <div class=\"details\">\n        <p title=  '").concat(description, "'>\n        ").concat(description.substr(0, 120), "...\n        </p>\n        <div class=\"button-area\">\n          <span> MRP Rs. ").concat(price, " </span>\n          <button id=").concat(id, ">\n            Buy Now\n          </button>\n        </div>\n      </div>\n    </div>\n  </div>");
     }
   }, {
     key: "fetchCategoryFilterTemplate",
@@ -2091,7 +2091,59 @@ function () {
   }, {
     key: "productClick",
     value: function productClick(event) {
-      console.log('Button for Product ID:', event.currentTarget.id);
+      console.log("Button for Product ID:", event.currentTarget.id);
+    }
+    /**
+     * this method handles the corousal dots click.
+     * This will translate the images
+     * @param {*} event
+     */
+
+  }, {
+    key: "corousalDotsClick",
+    value: function corousalDotsClick(event) {
+      var id = event.target.id.toString().split("dotForRadio-")[1];
+      $(event.target.parentNode).children().removeClass();
+      $(event.target).addClass("selected");
+      var ul = $(event.target.parentNode.parentNode).children(".images");
+      var transformPx = (id - 1) * parseFloat($(ul).children().first().css("width"));
+      $(".section__corousal .corousal .images").css("transform", "translate(".concat(-1 * transformPx, "px,0)"));
+    }
+  }, {
+    key: "corousalPrevBtnClick",
+    value: function corousalPrevBtnClick(event) {
+      var selectedDot = $(".section__corousal .corousal .slidesNavigation").children("label.selected");
+      var id = selectedDot[0].id.toString().split("dotForRadio-")[1];
+      var ele = "";
+
+      if (id == 1) {
+        // left endpoint
+        ele = $(".section__corousal .corousal .slidesNavigation").children().last();
+      } else {
+        ele = selectedDot.prev();
+      }
+
+      this.corousalDotsClick({
+        target: ele[0]
+      });
+    }
+  }, {
+    key: "corousalNextBtnClick",
+    value: function corousalNextBtnClick(event) {
+      var selectedDot = $(".section__corousal .corousal .slidesNavigation").children("label.selected");
+      var id = selectedDot[0].id.toString().split("dotForRadio-")[1];
+      var ele = "";
+
+      if (id == $(".section__corousal .corousal .slidesNavigation").children().length) {
+        // right endpoint
+        ele = $(".section__corousal .corousal .slidesNavigation").children().first();
+      } else {
+        ele = selectedDot.next();
+      }
+
+      this.corousalDotsClick({
+        target: ele[0]
+      });
     }
   }]);
 

@@ -6,6 +6,7 @@
 
 .home__section__prod-cat__quicklinks {
   display: flex;
+  font-size: inherit;
   flex-direction: column;
   justify-content: flex-start;
   &__row {

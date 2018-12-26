@@ -39,7 +39,20 @@ class UIController {
   /**
    * TODO
    */
-  registerCorousalEvents() {}
+  registerNextPrevButtonHandlersForCorousal() {
+    let prevButton = $(".section__corousal .corousal .prev");
+    let nextButton = $(".section__corousal .corousal .next");
+
+    prevButton.on("click", e => {
+      e.preventDefault();
+      this.eventHandlerService.corousalPrevBtnClick(e);
+    });
+
+    nextButton.on("click", e => {
+      e.preventDefault();
+      this.eventHandlerService.corousalNextBtnClick(e);
+    });
+  }
 
   /**
    * This method is used to register the ProductCategoryQuickLinks
@@ -60,7 +73,7 @@ class UIController {
   }
 
   /**
-   * function to Create Corousal Nav
+   * function to Create Corousal Nav and register 'dot' click events
    * @param {*} labelTemplateFn tenplateFn for Label
    * @param {*} RadioTemplateFn tenplateFn for Radio
    * @param {*} offersCount totals Offers
@@ -75,6 +88,17 @@ class UIController {
       labelHolder.append(tempStringLabel);
       radioHolder.prepend(tempStringRadio);
     }
+
+    $(labelHolder)
+      .children("label")
+      .on("click", event => {
+        this.eventHandlerService.corousalDotsClick(event);
+      });
+
+    $(labelHolder)
+      .children("label")
+      .first()
+      .addClass("selected");
   }
 
   /**
@@ -88,7 +112,10 @@ class UIController {
 
     arrayOfOffers.forEach(offer => {
       if (offer.isActive) {
-        let tempString = templateFn(offer);
+        let tempString = templateFn(
+          offer,
+          100 / parseFloat(arrayOfOffers.length)
+        );
         offerList.append(tempString);
       }
     });
@@ -106,6 +133,11 @@ class UIController {
       //2. Fetch Template String
       let listItemTemplate = this.instance.fetchBannerOfferTemplate();
 
+      $(".section__corousal .corousal .images").css(
+        "width",
+        `${this.shoppingCartInstance.serviceInstance.banners.length * 100}%`
+      );
+
       //3. PopulateThe Offers List
       this.populateOffers(
         listItemTemplate.offers,
@@ -118,7 +150,7 @@ class UIController {
       );
 
       // Register Corousal Events
-      this.registerCorousalEvents();
+      this.registerNextPrevButtonHandlersForCorousal();
     }
   }
 

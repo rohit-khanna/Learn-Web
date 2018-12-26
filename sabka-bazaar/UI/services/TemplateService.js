@@ -15,8 +15,8 @@ class TemplateService {
    */
   fetchBannerOfferTemplate() {
     return {
-      offers: ({ id, bannerImageUrl, bannerImageAlt }) => {
-        return ` <li id='${id}'><img src='../..${bannerImageUrl}' alt=${bannerImageAlt} /></li>`;
+      offers: ({ id, bannerImageUrl, bannerImageAlt },width) => {
+        return ` <li width=${width}% id='${id}'><img src='../..${bannerImageUrl}' alt=${bannerImageAlt} /></li>`;
       },
       navButton: (id, checked) =>
         `<input type="radio"  name="images" id="radio-${id}" ${
@@ -70,11 +70,11 @@ class TemplateService {
     <div class="plp__section__products__product-row__content">
       <img
         src="../..${imageURL}"
-        alt=${name}
+        alt='${name}'
       />
       <div class="details">
-        <p>
-        ${description}
+        <p title=  '${description}'>
+        ${description.substr(0,120)}...
         </p>
         <div class="button-area">
           <span> MRP Rs. ${price} </span>

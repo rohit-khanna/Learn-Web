@@ -85,7 +85,7 @@
         img {
           flex-basis: 45%;
           align-self: center;
-          max-width: 200px;
+          max-width: 150px;
           width: 45%;
         }
 
@@ -246,10 +246,13 @@
         min-height: 400px;
         position: relative;
         padding-left: 0.5rem;
-        flex-basis: 23%;
+        flex-basis: 24%;
+        &:last-of-type(){
+          flex-basis: 27%;
+        }
         h2 {
           font-size: 1rem;
-          min-height: 2.5rem;
+          min-height: 4rem;
           padding: 0 0;
         }
 
@@ -268,7 +271,7 @@
               background-color: $secondary-background-color;
               margin-left: 0;
               padding: 1rem 0.5rem;
-              font-size: 0.8rem;
+              font-size: 0.9rem;
               min-height: 8rem;
             }
 

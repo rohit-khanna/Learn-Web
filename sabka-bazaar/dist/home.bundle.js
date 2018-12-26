@@ -144,8 +144,23 @@ function () {
      */
 
   }, {
-    key: "registerCorousalEvents",
-    value: function registerCorousalEvents() {}
+    key: "registerNextPrevButtonHandlersForCorousal",
+    value: function registerNextPrevButtonHandlersForCorousal() {
+      var _this = this;
+
+      var prevButton = $(".section__corousal .corousal .prev");
+      var nextButton = $(".section__corousal .corousal .next");
+      prevButton.on("click", function (e) {
+        e.preventDefault();
+
+        _this.eventHandlerService.corousalPrevBtnClick(e);
+      });
+      nextButton.on("click", function (e) {
+        e.preventDefault();
+
+        _this.eventHandlerService.corousalNextBtnClick(e);
+      });
+    }
     /**
      * This method is used to register the ProductCategoryQuickLinks
      * Events
@@ -154,10 +169,10 @@ function () {
   }, {
     key: "registerProductCategoryQuickLinkEvents",
     value: function registerProductCategoryQuickLinkEvents() {
-      var _this = this;
+      var _this2 = this;
 
       $(".home__section__prod-cat__quicklinks button").on("click", function (event) {
-        return _this.eventHandlerService.productCategoryQuickLinkBUttonClick(event);
+        return _this2.eventHandlerService.productCategoryQuickLinkBUttonClick(event);
       });
     }
     /**
@@ -171,7 +186,7 @@ function () {
       $(".header__cart__item-count--value .value").text(totalItemCount);
     }
     /**
-     * function to Create Corousal Nav
+     * function to Create Corousal Nav and register 'dot' click events
      * @param {*} labelTemplateFn tenplateFn for Label
      * @param {*} RadioTemplateFn tenplateFn for Radio
      * @param {*} offersCount totals Offers
@@ -180,6 +195,8 @@ function () {
   }, {
     key: "createNavigations",
     value: function createNavigations(labelTemplateFn, RadioTemplateFn, offersCount) {
+      var _this3 = this;
+
       var labelHolder = $(".section__corousal .corousal .slidesNavigation");
       var radioHolder = $(".section__corousal .corousal");
 
@@ -189,6 +206,11 @@ function () {
         labelHolder.append(tempStringLabel);
         radioHolder.prepend(tempStringRadio);
       }
+
+      $(labelHolder).children("label").on("click", function (event) {
+        _this3.eventHandlerService.corousalDotsClick(event);
+      });
+      $(labelHolder).children("label").first().addClass("selected");
     }
     /**
      * function to Create Offers inside offer list container
@@ -203,7 +225,7 @@ function () {
       var offerList = $(".section__corousal .corousal .images");
       arrayOfOffers.forEach(function (offer) {
         if (offer.isActive) {
-          var tempString = templateFn(offer);
+          var tempString = templateFn(offer, 100 / parseFloat(arrayOfOffers.length));
           offerList.append(tempString);
         }
       });
@@ -219,12 +241,13 @@ function () {
       // 1. Fetch and Check Banners- Offers
       if (this.shoppingCartInstance.serviceInstance.banners && this.shoppingCartInstance.serviceInstance.banners.length > 0) {
         //2. Fetch Template String
-        var listItemTemplate = this.instance.fetchBannerOfferTemplate(); //3. PopulateThe Offers List
+        var listItemTemplate = this.instance.fetchBannerOfferTemplate();
+        $(".section__corousal .corousal .images").css("width", "".concat(this.shoppingCartInstance.serviceInstance.banners.length * 100, "%")); //3. PopulateThe Offers List
 
         this.populateOffers(listItemTemplate.offers, this.shoppingCartInstance.serviceInstance.banners);
         this.createNavigations(listItemTemplate.navLabel, listItemTemplate.navButton, this.shoppingCartInstance.serviceInstance.banners.length); // Register Corousal Events
 
-        this.registerCorousalEvents();
+        this.registerNextPrevButtonHandlersForCorousal();
       }
     }
     /**
@@ -234,7 +257,7 @@ function () {
   }, {
     key: "populateUIProductCategoryQuickLinks",
     value: function populateUIProductCategoryQuickLinks() {
-      var _this2 = this;
+      var _this4 = this;
 
       // 1. Check Data from service
       if (this.shoppingCartInstance.serviceInstance.categories && this.shoppingCartInstance.serviceInstance.categories.length > 0) {
@@ -244,7 +267,7 @@ function () {
         enabledArray.SortByOrder(); //2. Create Quick Links
 
         enabledArray.forEach(function (element, index) {
-          _this2.createQuickLinksForProductCategories(element, index);
+          _this4.createQuickLinksForProductCategories(element, index);
         });
         this.registerProductCategoryQuickLinkEvents();
       }
@@ -2117,11 +2140,11 @@ function () {
      */
     value: function fetchBannerOfferTemplate() {
       return {
-        offers: function offers(_ref) {
+        offers: function offers(_ref, width) {
           var id = _ref.id,
               bannerImageUrl = _ref.bannerImageUrl,
               bannerImageAlt = _ref.bannerImageAlt;
-          return " <li id='".concat(id, "'><img src='../..").concat(bannerImageUrl, "' alt=").concat(bannerImageAlt, " /></li>");
+          return " <li width=".concat(width, "% id='").concat(id, "'><img src='../..").concat(bannerImageUrl, "' alt=").concat(bannerImageAlt, " /></li>");
         },
         navButton: function navButton(id, checked) {
           return "<input type=\"radio\"  name=\"images\" id=\"radio-".concat(id, "\" ").concat(checked ? "checked" : "", " />");
@@ -2163,7 +2186,7 @@ function () {
           price = _ref3.price,
           description = _ref3.description,
           id = _ref3.id;
-      return " <div class=\"plp__section__products__product-row\" id=".concat(id, ">\n    <h2>").concat(name, "</h2>\n\n    <div class=\"plp__section__products__product-row__content\">\n      <img\n        src=\"../..").concat(imageURL, "\"\n        alt=").concat(name, "\n      />\n      <div class=\"details\">\n        <p>\n        ").concat(description, "\n        </p>\n        <div class=\"button-area\">\n          <span> MRP Rs. ").concat(price, " </span>\n          <button id=").concat(id, ">\n            Buy Now\n          </button>\n        </div>\n      </div>\n    </div>\n  </div>");
+      return " <div class=\"plp__section__products__product-row\" id=".concat(id, ">\n    <h2>").concat(name, "</h2>\n\n    <div class=\"plp__section__products__product-row__content\">\n      <img\n        src=\"../..").concat(imageURL, "\"\n        alt='").concat(name, "'\n      />\n      <div class=\"details\">\n        <p title=  '").concat(description, "'>\n        ").concat(description.substr(0, 120), "...\n        </p>\n        <div class=\"button-area\">\n          <span> MRP Rs. ").concat(price, " </span>\n          <button id=").concat(id, ">\n            Buy Now\n          </button>\n        </div>\n      </div>\n    </div>\n  </div>");
     }
   }, {
     key: "fetchCategoryFilterTemplate",
@@ -2286,7 +2309,59 @@ function () {
   }, {
     key: "productClick",
     value: function productClick(event) {
-      console.log('Button for Product ID:', event.currentTarget.id);
+      console.log("Button for Product ID:", event.currentTarget.id);
+    }
+    /**
+     * this method handles the corousal dots click.
+     * This will translate the images
+     * @param {*} event
+     */
+
+  }, {
+    key: "corousalDotsClick",
+    value: function corousalDotsClick(event) {
+      var id = event.target.id.toString().split("dotForRadio-")[1];
+      $(event.target.parentNode).children().removeClass();
+      $(event.target).addClass("selected");
+      var ul = $(event.target.parentNode.parentNode).children(".images");
+      var transformPx = (id - 1) * parseFloat($(ul).children().first().css("width"));
+      $(".section__corousal .corousal .images").css("transform", "translate(".concat(-1 * transformPx, "px,0)"));
+    }
+  }, {
+    key: "corousalPrevBtnClick",
+    value: function corousalPrevBtnClick(event) {
+      var selectedDot = $(".section__corousal .corousal .slidesNavigation").children("label.selected");
+      var id = selectedDot[0].id.toString().split("dotForRadio-")[1];
+      var ele = "";
+
+      if (id == 1) {
+        // left endpoint
+        ele = $(".section__corousal .corousal .slidesNavigation").children().last();
+      } else {
+        ele = selectedDot.prev();
+      }
+
+      this.corousalDotsClick({
+        target: ele[0]
+      });
+    }
+  }, {
+    key: "corousalNextBtnClick",
+    value: function corousalNextBtnClick(event) {
+      var selectedDot = $(".section__corousal .corousal .slidesNavigation").children("label.selected");
+      var id = selectedDot[0].id.toString().split("dotForRadio-")[1];
+      var ele = "";
+
+      if (id == $(".section__corousal .corousal .slidesNavigation").children().length) {
+        // right endpoint
+        ele = $(".section__corousal .corousal .slidesNavigation").children().first();
+      } else {
+        ele = selectedDot.next();
+      }
+
+      this.corousalDotsClick({
+        target: ele[0]
+      });
     }
   }]);
 

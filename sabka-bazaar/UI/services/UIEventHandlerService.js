@@ -95,11 +95,75 @@ class EventHandlerService {
     };
   }
 
-  productClick(event)
-  {
-    console.log('Button for Product ID:',event.currentTarget.id);
-    
-    
+  productClick(event) {
+    console.log("Button for Product ID:", event.currentTarget.id);
+  }
+
+  /**
+   * this method handles the corousal dots click.
+   * This will translate the images
+   * @param {*} event
+   */
+  corousalDotsClick(event) {
+    let id = event.target.id.toString().split("dotForRadio-")[1];
+    $(event.target.parentNode)
+      .children()
+      .removeClass();
+    $(event.target).addClass("selected");
+
+    let ul = $(event.target.parentNode.parentNode).children(".images");
+    let transformPx =
+      (id - 1) *
+      parseFloat(
+        $(ul)
+          .children()
+          .first()
+          .css("width")
+      );
+
+    $(".section__corousal .corousal .images").css(
+      "transform",
+      `translate(${-1 * transformPx}px,0)`
+    );
+  }
+
+  corousalPrevBtnClick(event) {
+    let selectedDot = $(
+      ".section__corousal .corousal .slidesNavigation"
+    ).children("label.selected");
+    let id = selectedDot[0].id.toString().split("dotForRadio-")[1];
+    let ele = "";
+    if (id == 1) {
+      // left endpoint
+      ele = $(".section__corousal .corousal .slidesNavigation")
+        .children()
+        .last();
+    } else {
+      ele = selectedDot.prev();
+    }
+
+    this.corousalDotsClick({ target: ele[0] });
+  }
+
+  corousalNextBtnClick(event) {
+    let selectedDot = $(
+      ".section__corousal .corousal .slidesNavigation"
+    ).children("label.selected");
+    let id = selectedDot[0].id.toString().split("dotForRadio-")[1];
+    let ele = "";
+    if (
+      id ==
+      $(".section__corousal .corousal .slidesNavigation").children().length
+    ) {
+      // right endpoint
+      ele = $(".section__corousal .corousal .slidesNavigation")
+        .children()
+        .first();
+    } else {
+      ele = selectedDot.next();
+    }
+
+    this.corousalDotsClick({ target: ele[0] });
   }
 }
 
