@@ -12,6 +12,8 @@ It contains the following pages:
 
  ##### Screen Prints
  <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/home.png" width="450" height="400">
+ <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/plp-mobile.png"><img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/plp-laptop.png">
+ 
 
 #### Stylesheet
 SASS is used for styling the components/pages
