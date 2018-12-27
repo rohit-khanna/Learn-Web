@@ -76,11 +76,11 @@ class TemplateService {
       />
       <div class="details">
         <p title=  '${description}'>
-        ${description}
+        ${description.substr(0,180)}
         </p>
         <div class="button-area">
           <span> MRP Rs. ${price} </span>
-          <button id=${id}>
+          <button title='Buy Now' id=${id}>
             Buy Now
           </button>
         </div>

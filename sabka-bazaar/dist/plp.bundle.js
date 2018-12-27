@@ -1968,7 +1968,7 @@ function () {
           price = _ref3.price,
           description = _ref3.description,
           id = _ref3.id;
-      return " <div class=\"plp__section__products__product-row\" id=".concat(id, ">\n    <h2 title='").concat(name, "'>").concat(name, "</h2>\n\n    <div class=\"plp__section__products__product-row__content\">\n      <img\n        src=\"../..").concat(imageURL, "\"\n        alt='").concat(name, "'\n      />\n      <div class=\"details\">\n        <p title=  '").concat(description, "'>\n        ").concat(description, "\n        </p>\n        <div class=\"button-area\">\n          <span> MRP Rs. ").concat(price, " </span>\n          <button id=").concat(id, ">\n            Buy Now\n          </button>\n        </div>\n      </div>\n    </div>\n  </div>");
+      return " <div class=\"plp__section__products__product-row\" id=".concat(id, ">\n    <h2 title='").concat(name, "'>").concat(name, "</h2>\n\n    <div class=\"plp__section__products__product-row__content\">\n      <img\n        src=\"../..").concat(imageURL, "\"\n        alt='").concat(name, "'\n      />\n      <div class=\"details\">\n        <p title=  '").concat(description, "'>\n        ").concat(description.substr(0, 180), "\n        </p>\n        <div class=\"button-area\">\n          <span> MRP Rs. ").concat(price, " </span>\n          <button title='Buy Now' id=").concat(id, ">\n            Buy Now\n          </button>\n        </div>\n      </div>\n    </div>\n  </div>");
     }
   }, {
     key: "fetchCategoryFilterTemplate",
@@ -2249,10 +2249,9 @@ function () {
       });
       $(".plp__section__category__filter__bar ul").children().toArray().forEach(function (e) {
         if (e.id == categoryId) {
-          $(".plp__section__category__filter__bar ul").children().css("font-weight", 400);
-          $(e).css("font-weight", 700);
-        } // $(e.target).css("font-weight", 700);
-
+          $(".plp__section__category__filter__bar ul").children().removeClass("util_link_selected--text");
+          $(e).addClass("util_link_selected--text");
+        }
       }); //2. Filter Products
 
       this.rePopulateProductsList(categoryId);
@@ -2357,8 +2356,8 @@ function () {
             categoryId = _self$eventHandlerSer2.categoryId;
 
         self.rePopulateProductsList(categoryId);
-        $(".plp__section__category__filter__bar ul").children().css("font-weight", 400);
-        $(e.target).css("font-weight", 700);
+        $(".plp__section__category__filter__bar ul").children().removeClass("util_link_selected--text");
+        $(e.target).addClass("util_link_selected--text");
       });
     }
     /**

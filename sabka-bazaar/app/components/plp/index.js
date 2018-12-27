@@ -68,18 +68,14 @@ class UIController {
     $(".plp__section__category__filter__bar ul")
       .children()
       .toArray()
-      .forEach((e)=>{
-       
-        if(e.id==categoryId)
-        {
+      .forEach(e => {
+        if (e.id == categoryId) {
           $(".plp__section__category__filter__bar ul")
-          .children()
-          .css("font-weight", 400);
-            $(e).css("font-weight", 700);
-        }
+            .children()
+            .removeClass("util_link_selected--text");
 
-       
-       // $(e.target).css("font-weight", 700);
+          $(e).addClass("util_link_selected--text");
+        }
       });
 
     //2. Filter Products
@@ -197,8 +193,8 @@ class UIController {
 
       $(".plp__section__category__filter__bar ul")
         .children()
-        .css("font-weight", 400);
-      $(e.target).css("font-weight", 700);
+        .removeClass("util_link_selected--text");
+      $(e.target).addClass("util_link_selected--text");
     });
   }
 

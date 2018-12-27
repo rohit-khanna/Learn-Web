@@ -9,6 +9,14 @@ COLOR SCHEME
   background-color: #fff;
 }
 
+.util_link_selected--text {
+  color: #d12360f5 !important;
+  font-weight: 700 !important;
+}
+.util_link_selected--text a:hover {
+  color: #d12360f5 !important;
+}
+
 .home__section__prod-cat__quicklinks__row--reverse, .home__section__prod-cat__quicklinks__row {
   margin: 1rem 0;
   padding: 1rem 0.5rem;
@@ -241,6 +249,7 @@ a:visited {
 
 a:hover,
 a:active {
+  color: #d12360f5;
   text-decoration: none;
   border-bottom: 2px solid #b5adad;
   outline: none;
@@ -285,10 +294,11 @@ button {
   font-size: 1em;
   box-shadow: 2px 3px 5px #b8b8b8;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: all 0.3s;
 }
 button:hover {
-  transform: translateY(1px);
+  transform: translateY(-5px);
+  border-bottom-color: red ease-out;
 }
 
 @media only screen and (min-width: 700px) {
@@ -418,7 +428,6 @@ button:hover {
   line-height: 1.2em;
   height: 9.6em;
   text-align: justify;
-  overflow: hidden;
 }
 
 @media only screen and (min-width: 700px) {
@@ -444,7 +453,7 @@ button:hover {
     margin: 0 0;
   }
   .plp__section__category__filter__bar ul li {
-    color: #616060;
+    color: #252424;
     display: block;
     font-weight: 400;
     font-size: 0.9rem;
@@ -454,12 +463,7 @@ button:hover {
     cursor: pointer;
   }
   .plp__section__category__filter__bar ul li:hover {
-    color: #252424;
-    font-weight: 700;
-  }
-  .plp__section__category__filter__bar ul li .selected {
-    color: red;
-    font-weight: 700;
+    color: #d12360f5;
   }
   .plp__section__products {
     flex-basis: 80%;
@@ -469,13 +473,14 @@ button:hover {
     padding-bottom: 0.5rem;
   }
   .plp__section__products__product-row {
-    flex-basis: 49%;
-    margin: 1.5rem 0.1rem;
+    flex-basis: 47%;
+    margin: 1.5rem 0.5rem 1.5rem 0.3rem;
     justify-content: flex-start;
   }
   .plp__section__products__product-row h2 {
     font-size: 1.1rem;
     text-align: center;
+    height: 3rem;
   }
   .plp__section__products__product-row__content {
     display: flow-root;
@@ -483,6 +488,7 @@ button:hover {
   }
   .plp__section__products__product-row__content img {
     text-align: center;
+    padding-right: 1rem;
     width: 150px;
     float: left;
   }
@@ -493,9 +499,10 @@ button:hover {
     text-align: left;
     background-color: #e9e3e3;
     margin-left: 8.6rem;
-    padding: 0.3rem 0.3rem 0rem 1rem;
+    padding: 0.3rem 0.3rem 0rem 0.3rem;
     font-size: 0.85rem;
-    min-height: 140px;
+    overflow: hidden;
+    height: 10rem;
   }
   .plp__section__products__product-row__content .details p::after {
     clear: both;
@@ -538,24 +545,28 @@ button:hover {
   }
   .plp__section__products__product-row__content {
     display: flex;
+    justify-content: flex-start;
     flex-direction: column;
   }
   .plp__section__products__product-row__content img {
     text-align: center;
-    width: 90%;
+    transform: scale(1.1);
+    width: 100%;
   }
   .plp__section__products__product-row__content .details p {
     text-align: left;
     background-color: #e9e3e3;
     margin-left: 0;
-    padding: 1rem 0.5rem;
-    font-size: 0.9rem;
-    min-height: 8rem;
+    margin-top: 1rem;
+    padding: 1rem 1rem;
+    font-size: 1rem;
+    overflow: hidden;
+    min-height: 13rem;
   }
   .plp__section__products__product-row__content .details .button-area > span {
     display: inline-block;
     flex-basis: 50%;
-    font-size: 0.9rem;
+    font-size: 1rem;
     text-align: center;
     padding-bottom: 0.5rem;
     font-weight: 400;
@@ -563,7 +574,8 @@ button:hover {
   .plp__section__products__product-row__content .details button {
     flex-basis: 50%;
     display: inline-block;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    padding: 0.5em 0.8em;
     width: 50%;
   }
 }

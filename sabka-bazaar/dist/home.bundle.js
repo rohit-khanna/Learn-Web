@@ -2229,7 +2229,7 @@ function () {
           price = _ref3.price,
           description = _ref3.description,
           id = _ref3.id;
-      return " <div class=\"plp__section__products__product-row\" id=".concat(id, ">\n    <h2 title='").concat(name, "'>").concat(name, "</h2>\n\n    <div class=\"plp__section__products__product-row__content\">\n      <img\n        src=\"../..").concat(imageURL, "\"\n        alt='").concat(name, "'\n      />\n      <div class=\"details\">\n        <p title=  '").concat(description, "'>\n        ").concat(description, "\n        </p>\n        <div class=\"button-area\">\n          <span> MRP Rs. ").concat(price, " </span>\n          <button id=").concat(id, ">\n            Buy Now\n          </button>\n        </div>\n      </div>\n    </div>\n  </div>");
+      return " <div class=\"plp__section__products__product-row\" id=".concat(id, ">\n    <h2 title='").concat(name, "'>").concat(name, "</h2>\n\n    <div class=\"plp__section__products__product-row__content\">\n      <img\n        src=\"../..").concat(imageURL, "\"\n        alt='").concat(name, "'\n      />\n      <div class=\"details\">\n        <p title=  '").concat(description, "'>\n        ").concat(description.substr(0, 180), "\n        </p>\n        <div class=\"button-area\">\n          <span> MRP Rs. ").concat(price, " </span>\n          <button title='Buy Now' id=").concat(id, ">\n            Buy Now\n          </button>\n        </div>\n      </div>\n    </div>\n  </div>");
     }
   }, {
     key: "fetchCategoryFilterTemplate",

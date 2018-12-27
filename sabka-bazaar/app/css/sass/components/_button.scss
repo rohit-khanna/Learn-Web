@@ -10,11 +10,14 @@ button {
   font-size: 1em;
   box-shadow: 2px 3px 5px $shadow-color;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: all 0.3s;
   &:hover {
-    transform: translateY(1px);
+    transform: translateY(-5px);
+    border-bottom-color: red ease-out;
   }
 }
+
+
 
 @media only screen and (min-width:700px){
   button {

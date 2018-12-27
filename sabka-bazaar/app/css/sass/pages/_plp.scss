@@ -116,7 +116,6 @@
             line-height: 1.2em;
             height: 9.6em;
             text-align: justify;
-            overflow: hidden;
           }
         }
       }
@@ -146,7 +145,7 @@
           margin: 0 0;
 
           li {
-            color: $secondary-font-color;
+            color: $primary-font-color;
             display: block;
             font-weight: 400;
             font-size: 0.9rem;
@@ -155,10 +154,8 @@
             border-bottom: 1px solid $secondary-font-color-opacity;
             cursor: pointer;
             &:hover {
-              color: $primary-font-color;
-              font-weight: 700;
+              color: $primary-button-color-opacity;
             }
-            
           }
         }
       }
@@ -172,13 +169,14 @@
       padding-bottom: 0.5rem;
 
       &__product-row {
-        flex-basis: 49%;
-        margin: 1.5rem 0.1rem;
+        flex-basis: 47%;
+        margin: 1.5rem 0.5rem 1.5rem 0.3rem;
 
         justify-content: flex-start;
         h2 {
           font-size: 1.1rem;
           text-align: center;
+          height: 3rem;
         }
 
         &__content {
@@ -191,6 +189,8 @@
             text-align: center;
             // flex-basis: 47%;
             ///  align-self: center;
+
+            padding-right: 1rem;
             width: 150px;
             float: left;
           }
@@ -204,10 +204,10 @@
               text-align: left;
               background-color: $secondary-background-color;
               margin-left: 8.6rem;
-              padding: 0.3rem 0.3rem 0rem 1rem;
+              padding: 0.3rem 0.3rem 0rem 0.3rem;
               font-size: 0.85rem;
-
-              min-height: 140px;
+              overflow: hidden;
+              height: 10rem;
             }
             p::after {
               clear: both;
@@ -265,11 +265,12 @@
 
         &__content {
           display: flex;
-
+          justify-content: flex-start;
           flex-direction: column;
           img {
             text-align: center;
-            width: 90%;
+           transform: scale(1.1);
+            width: 100%;
           }
 
           .details {
@@ -277,15 +278,17 @@
               text-align: left;
               background-color: $secondary-background-color;
               margin-left: 0;
-              padding: 1rem 0.5rem;
-              font-size: 0.9rem;
-              min-height: 8rem;
+              margin-top: 1rem;
+              padding: 1rem 1rem;
+              font-size: 1rem;
+              overflow: hidden;
+              min-height: 13rem;
             }
 
             .button-area > span {
               display: inline-block;
               flex-basis: 50%;
-              font-size: 0.9rem;
+              font-size: 1rem;
               text-align: center;
               padding-bottom: 0.5rem;
               font-weight: 400;
@@ -293,7 +296,8 @@
             button {
               flex-basis: 50%;
               display: inline-block;
-              font-size: 0.9rem;
+              font-size: 1rem;
+              padding: 0.5em 0.8em;
               width: 50%;
             }
           }
