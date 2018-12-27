@@ -1,5 +1,5 @@
 # Sabka Bazar
----
+
 ## User Interface
 The following sections define the User Interface
 #### HTML
@@ -9,6 +9,9 @@ It contains the following pages:
 - Mini Cart
 - Login
 - Register
+
+ ##### Screen Prints
+ <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/home.png" width="450" height="400">
 
 #### Stylesheet
 SASS is used for styling the components/pages
