@@ -76,7 +76,7 @@ class TemplateService {
       />
       <div class="details">
         <p title=  '${description}'>
-        ${description.substr(0,180)}
+        ${description.substr(0, 180)}
         </p>
         <div class="button-area">
           <span> MRP Rs. ${price} </span>
@@ -87,6 +87,28 @@ class TemplateService {
       </div>
     </div>
   </div>`;
+  }
+
+  fetchShoppingCartItemsTemplate({
+    id,
+    quantity,
+    prodDetails: { price }, prodDetails: { name }, prodDetails: { imageURL }
+  }) {
+    //console.log(imageURL);
+    
+    return `     <li class="cart-items__list-item" >
+    <img src="../..${imageURL}" />
+    <article class="details">
+      <h3>${name}</h3>
+      <div class="edit__box" id='${id}'>
+        <a href="#"> <i class="material-icons"> remove_circle </i></a>
+        <label>${quantity}</label>
+        <a href="#"><i class="material-icons"> add_circle </i></a>
+        <span>X Rs.${price}</span>
+      </div>
+    </article>
+    <article class="price">Rs.<span class="newClass">${quantity * price}</span></article>
+  </li>`;
   }
 }
 

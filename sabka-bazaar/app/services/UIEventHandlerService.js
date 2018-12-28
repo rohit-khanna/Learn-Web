@@ -9,6 +9,8 @@
  *
  */
 
+const ShoppingCart = require("../model/ShoppingCart").default;
+
 class EventHandlerService {
   constructor() {}
 
@@ -18,10 +20,14 @@ class EventHandlerService {
    * PLP page with the cat_id as Query String
    * @param {*} event Event Object
    */
-  productCategoryQuickLinkBUttonClick(event) {
-    // console.log(event.target.parentNode.parentNode.id);
+  productCategoryQuickLinkBUttonClick(event) {  
     window.location.href =
       "../plp/index.html?cat_id=" + event.target.parentNode.parentNode.id;
+  }
+
+  refreshTotalItemsCount(shoppingCartInstance) {
+    let totalItemCount = shoppingCartInstance.itemCount;
+    $(".header__cart__item-count--value .value").text(totalItemCount);
   }
 
   /**
@@ -96,7 +102,17 @@ class EventHandlerService {
   }
 
   productClick(event) {
-    console.log("Button for Product ID:", event.currentTarget.id);
+    //console.log("Button for Product ID:", event.currentTarget.id);
+    let cartInstance = JSON.parse(sessionStorage.getItem("cartInstance"));
+    //console.log(cartInstance);
+    ShoppingCart.GetCartInstanceAsync(cartInstance).then(
+      shoppingCartInstance => {
+        shoppingCartInstance.addProduct(event.currentTarget.id);
+        console.log(shoppingCartInstance);
+        sessionStorage.setItem("cartInstance",JSON.stringify(shoppingCartInstance));
+        this.refreshTotalItemsCount(shoppingCartInstance);
+      }
+    );
   }
 
   /**

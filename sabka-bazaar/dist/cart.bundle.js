@@ -81,302 +81,11 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12);
-/* harmony import */ var _services_UIEventHandlerService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(13);
-/**
- * PURPOSE      :  This is the UI controller for Home Page
- *
- * AUTHOR       :   Rohit Khanna
- *
- * LICENSE      :   PUBLIC
- *
- */
-
-
-
-
-
-var ShoppingCart = __webpack_require__(3).default;
-
-
-
-
-var UIController =
-/*#__PURE__*/
-function () {
-  function UIController(ShoppingCartInstance, templateServiceInstance, eventHandlerService) {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, UIController);
-
-    this.shoppingCartInstance = ShoppingCartInstance;
-    this.instance = templateServiceInstance;
-    this.eventHandlerService = eventHandlerService;
-
-    if (!Array.prototype.SortByOrder) {
-      Array.prototype.SortByOrder = function () {
-        this.sort(function (a, b) {
-          return a.order - b.order;
-        });
-      };
-    }
-  }
-  /**
-   * This is the Entry method to Render this Page
-   */
-
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(UIController, [{
-    key: "render",
-    value: function render() {
-      //1. Fetch Offers List BANNERS - POpulate The UI offers list-corousal
-      this.populateOfferBannerList(); //2. Fetch Home page -Quick Links Data-- POpulate UI for Categories
-
-      this.populateUIProductCategoryQuickLinks(); //3. RefreshTotalItemsCount
-
-      this.refreshTotalItemsCount();
-      this.registerShoppingCartDisplayEvents();
-    }
-  }, {
-    key: "registerShoppingCartDisplayEvents",
-    value: function registerShoppingCartDisplayEvents() {
-      var _this = this;
-
-      $(".header__cart__item-count--logo").on("click", function () {
-        _this.eventHandlerService.shoppingCartDisplayHandler("cartContainer");
-      });
-      $(".header__cart__item-count--value").on("click", function (e) {
-        _this.eventHandlerService.shoppingCartDisplayHandler("cartContainer");
-      });
-    }
-    /**
-     * TODO
-     */
-
-  }, {
-    key: "registerNextPrevButtonHandlersForCorousal",
-    value: function registerNextPrevButtonHandlersForCorousal() {
-      var _this2 = this;
-
-      var prevButton = $(".section__corousal .corousal .prev");
-      var nextButton = $(".section__corousal .corousal .next");
-      prevButton.on("click", function (e) {
-        e.preventDefault();
-
-        _this2.eventHandlerService.corousalPrevBtnClick(e);
-      });
-      nextButton.on("click", function (e) {
-        e.preventDefault();
-
-        _this2.eventHandlerService.corousalNextBtnClick(e);
-      });
-    }
-    /**
-     * This method is used to register the ProductCategoryQuickLinks
-     * Events
-     */
-
-  }, {
-    key: "registerProductCategoryQuickLinkEvents",
-    value: function registerProductCategoryQuickLinkEvents() {
-      var _this3 = this;
-
-      $(".home__section__prod-cat__quicklinks button").on("click", function (event) {
-        return _this3.eventHandlerService.productCategoryQuickLinkBUttonClick(event);
-      });
-    }
-    /**
-     * Refresh Total Items in Header
-     */
-
-  }, {
-    key: "refreshTotalItemsCount",
-    value: function refreshTotalItemsCount() {
-      this.eventHandlerService.refreshTotalItemsCount(this.shoppingCartInstance);
-    }
-    /**
-     * function to Create Corousal Nav and register 'dot' click events
-     * @param {*} labelTemplateFn tenplateFn for Label
-     * @param {*} RadioTemplateFn tenplateFn for Radio
-     * @param {*} offersCount totals Offers
-     */
-
-  }, {
-    key: "createNavigations",
-    value: function createNavigations(labelTemplateFn, RadioTemplateFn, offersCount) {
-      var _this4 = this;
-
-      var labelHolder = $(".section__corousal .corousal .slidesNavigation");
-      var radioHolder = $(".section__corousal .corousal");
-
-      for (var i = 0; i < offersCount; i++) {
-        var tempStringLabel = labelTemplateFn(i + 1);
-        var tempStringRadio = RadioTemplateFn(i + 1, i === 0);
-        labelHolder.append(tempStringLabel);
-        radioHolder.prepend(tempStringRadio);
-      }
-
-      $(labelHolder).children("label").on("click", function (event) {
-        _this4.eventHandlerService.corousalDotsClick(event);
-      });
-      $(labelHolder).children("label").first().addClass("selected");
-    }
-    /**
-     * function to Create Offers inside offer list container
-     * @param {*} templateFn tenplate function for listitem
-     * @param {*} arrayOfOffers array of Offers
-     */
-
-  }, {
-    key: "populateOffers",
-    value: function populateOffers(templateFn, arrayOfOffers) {
-      var _this5 = this;
-
-      arrayOfOffers.SortByOrder();
-      var offerList = $(".section__corousal .corousal .images");
-      arrayOfOffers.forEach(function (offer) {
-        if (offer.isActive) {
-          var tempString = templateFn(offer, 100 / parseFloat(arrayOfOffers.length));
-          offerList.append(tempString);
-        }
-      });
-      var isMouseDown = false;
-      var point = {
-        start: 0,
-        end: 0
-      };
-      $(offerList).children("li").on("click", function (event) {// console.log(event.target); //IMG
-        // console.log(event.currentTarget); // LI
-      });
-      offerList.children("li").mousedown(function (e) {
-        e.preventDefault();
-        isMouseDown = true;
-        point.start = e.pageX;
-      }).mousemove(function (e) {
-        e.preventDefault();
-        if (!isMouseDown) return false;else {
-          point.end = e.pageX;
-        }
-      }).mouseup(function (e) {
-        e.preventDefault();
-        isMouseDown = false;
-        var fromLeftToRight = point.end - point.start > 0 ? true : false;
-        point.end = 0;
-        fromLeftToRight ? _this5.eventHandlerService.corousalPrevBtnClick() : _this5.eventHandlerService.corousalNextBtnClick();
-      }).on("touchstart", function (e) {
-        e.preventDefault();
-        isMouseDown = true;
-        point.start = e.touches[0].pageX;
-      }).on("touchmove", function (e) {
-        e.preventDefault();
-        if (!isMouseDown) return false;
-        point.end = e.touches[0].pageX;
-      }).on("touchend", function (e) {
-        e.preventDefault();
-        if (!isMouseDown) return false;
-        isMouseDown = false;
-
-        if (point.end > 0) {
-          var fromLeftToRight = point.end - point.start > 10 ? true : false;
-          fromLeftToRight ? _this5.eventHandlerService.corousalPrevBtnClick() : _this5.eventHandlerService.corousalNextBtnClick();
-        }
-      });
-    }
-    /**
-     * This function is used to Fetch Offers-Banners, fetch Template from Service and
-     * then populate the data using templates
-     */
-
-  }, {
-    key: "populateOfferBannerList",
-    value: function populateOfferBannerList() {
-      // 1. Fetch and Check Banners- Offers
-      if (this.shoppingCartInstance.serviceInstance.banners && this.shoppingCartInstance.serviceInstance.banners.length > 0) {
-        //2. Fetch Template String
-        var listItemTemplate = this.instance.fetchBannerOfferTemplate();
-        $(".section__corousal .corousal .images").css("width", "".concat(this.shoppingCartInstance.serviceInstance.banners.length * 100, "%")); //3. PopulateThe Offers List
-
-        this.populateOffers(listItemTemplate.offers, this.shoppingCartInstance.serviceInstance.banners);
-        this.createNavigations(listItemTemplate.navLabel, listItemTemplate.navButton, this.shoppingCartInstance.serviceInstance.banners.length); // Register Corousal Events
-
-        this.registerNextPrevButtonHandlersForCorousal();
-      }
-    }
-    /**
-     * This method is used to Populate Products Category Quick Links
-     */
-
-  }, {
-    key: "populateUIProductCategoryQuickLinks",
-    value: function populateUIProductCategoryQuickLinks() {
-      var _this6 = this;
-
-      // 1. Check Data from service
-      if (this.shoppingCartInstance.serviceInstance.categories && this.shoppingCartInstance.serviceInstance.categories.length > 0) {
-        var enabledArray = this.shoppingCartInstance.serviceInstance.categories.filter(function (x) {
-          return x.enabled;
-        });
-        enabledArray.SortByOrder(); //2. Create Quick Links
-
-        enabledArray.forEach(function (element, index) {
-          _this6.createQuickLinksForProductCategories(element, index);
-        });
-        this.registerProductCategoryQuickLinkEvents();
-      }
-    }
-    /**
-     * Create Quick Links for Product Categories
-     * @param {*} categoryObject
-     * @param {*} index
-     */
-
-  }, {
-    key: "createQuickLinksForProductCategories",
-    value: function createQuickLinksForProductCategories(categoryObject, index) {
-      // fetch template string
-      var itemTemplate = _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__["default"].fetchProductCategoryQuickLinksTemplate().quickLink(categoryObject, index % 2 == 1);
-      var quickLinksContainer = $(".home__section__prod-cat__quicklinks");
-      quickLinksContainer.append(itemTemplate);
-    }
-  }]);
-
-  return UIController;
-}();
-
-var cartInstance = JSON.parse(sessionStorage.getItem("cartInstance"));
-var eventHandlerService = new _services_UIEventHandlerService__WEBPACK_IMPORTED_MODULE_3__["default"]();
-
-if (!cartInstance) {
-  // 1. Create Cart INstance
-  ShoppingCart.GetCartInstanceAsync().then(function (shoppingCartInstance) {
-    var controller = new UIController(shoppingCartInstance, _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__["default"], eventHandlerService);
-    $().ready(function () {
-      sessionStorage.setItem("cartInstance", JSON.stringify(shoppingCartInstance));
-      controller.render();
-    });
-  }).catch(function (err) {
-    console.error("Error While Creating Instance", err);
-  });
-} else {
-  var controller = new UIController(cartInstance, _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__["default"], eventHandlerService);
-  $().ready(function () {
-    console.log(cartInstance);
-    controller.render();
-  });
-}
-
-/***/ }),
+/* 0 */,
 /* 1 */
 /***/ (function(module, exports) {
 
@@ -2516,6 +2225,145 @@ function () {
 
 /* harmony default export */ __webpack_exports__["default"] = (EventHandlerService);
 
+/***/ }),
+/* 14 */,
+/* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12);
+/* harmony import */ var _services_UIEventHandlerService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(13);
+
+
+
+/**
+ * PURPOSE      :  This is the Cart  Data Controller
+ *
+ * AUTHOR       :   Rohit Khanna
+ *
+ * LICENSE      :   PUBLIC
+ *
+ */
+
+
+
+var ShoppingCart = __webpack_require__(3).default;
+
+var CartController =
+/*#__PURE__*/
+function () {
+  function CartController(shoppingCartDataObject, templateSVcInstance, eventHandlerSvcImstance) {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, CartController);
+
+    this.dataObject = shoppingCartDataObject;
+    this.templateSvc = templateSVcInstance;
+    this.eventHandlerSvc = eventHandlerSvcImstance;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(CartController, [{
+    key: "init",
+    value: function init() {
+      if (this.dataObject) {
+        // update Items COunt on Header
+        this.updateItemsCounterOnHead(); // Create New List items as per products
+
+        this.populateCartItems(); // register their events for + and -
+
+        this.registerCartItemEvents();
+        this.updateTotalsInCheckoutButton();
+        $(".checkout .btn").on("click", function () {
+          alert("Checkout Done");
+        });
+      }
+    }
+  }, {
+    key: "updateItemsCounterOnHead",
+    value: function updateItemsCounterOnHead() {
+      $(".header h3 span").text(this.dataObject.itemCount);
+    }
+  }, {
+    key: "updateTotalsInCheckoutButton",
+    value: function updateTotalsInCheckoutButton() {
+      $("#checkout").children("span").last("span").text("Rs" + this.dataObject.total);
+    }
+  }, {
+    key: "populateCartItems",
+    value: function populateCartItems() {
+      var _this = this;
+
+      this.dataObject.cartProducts.forEach(function (prod) {
+        var template = _this.templateSvc.fetchShoppingCartItemsTemplate(prod);
+
+        $(".cart-items .cart-items__list").append(template);
+      });
+    }
+  }, {
+    key: "refreshCartItem",
+    value: function refreshCartItem(liItem, dataObj) {
+      if (dataObj.quantity == 0) {
+        $(liItem).remove();
+      } else {
+        $(liItem).find("label").text(dataObj.quantity);
+        $(liItem).find(".price").find("span").text(dataObj.data.price * dataObj.quantity);
+      }
+
+      this.updateTotalsInCheckoutButton();
+      this.updateItemsCounterOnHead();
+      this.eventHandlerSvc.refreshTotalItemsCount(this.dataObject);
+    }
+  }, {
+    key: "registerCartItemEvents",
+    value: function registerCartItemEvents() {
+      var _this2 = this;
+
+      $(".cart-items .cart-items__list").on("click", function (e) {
+        var parentLi = $(e.target).closest(".cart-items__list-item");
+        var quantity = 0;
+
+        if ($(e.target).hasClass("material-icons")) {
+          ShoppingCart.GetCartInstanceAsync(_this2.dataObject).then(function (shoppingCartInstance) {
+            switch ($(e.target).text().trim()) {
+              case "add_circle":
+                quantity = shoppingCartInstance.incrementProductQuantity(e.target.parentNode.parentNode.id);
+                break;
+
+              case "remove_circle":
+                quantity = shoppingCartInstance.decrementProductQuantity(e.target.parentNode.parentNode.id);
+                break;
+
+              default:
+                break;
+            }
+
+            _this2.dataObject = shoppingCartInstance;
+
+            _this2.refreshCartItem(parentLi, {
+              data: shoppingCartInstance.fetchProductDetails(e.target.parentNode.parentNode.id),
+              quantity: quantity
+            });
+
+            sessionStorage.setItem("cartInstance", JSON.stringify(shoppingCartInstance));
+            console.log(shoppingCartInstance);
+          });
+        }
+      });
+    }
+  }]);
+
+  return CartController;
+}();
+
+var savedCartInstance = sessionStorage.getItem("cartInstance"); //console.log(savedCartInstance);
+
+if (savedCartInstance) {
+  new CartController(JSON.parse(savedCartInstance), _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__["default"], new _services_UIEventHandlerService__WEBPACK_IMPORTED_MODULE_3__["default"]()).init();
+}
+
 /***/ })
 /******/ ]);
-//# sourceMappingURL=home.bundle.js.map
+//# sourceMappingURL=cart.bundle.js.map

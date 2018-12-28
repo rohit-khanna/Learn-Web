@@ -12,6 +12,7 @@ class UIController {
     this.shoppingCartInstance = ShoppingCartInstance;
     this.instance = templateServiceInstance;
     this.eventHandlerService = eventHandlerService;
+   // console.log(JSON.stringify(this.shoppingCartInstance));
     if (!Array.prototype.SortByOrder) {
       Array.prototype.SortByOrder = function() {
         this.sort((a, b) => a.order - b.order);
@@ -38,10 +39,10 @@ class UIController {
 
   registerShoppingCartDisplayEvents() {
     $(".header__cart__item-count--logo").on("click", () => {
-      this.eventHandlerService.shoppingCartDisplayHandler('cartContainer');
+      this.eventHandlerService.shoppingCartDisplayHandler("cartContainer");
     });
     $(".header__cart__item-count--value").on("click", e => {
-      this.eventHandlerService.shoppingCartDisplayHandler('cartContainer');
+      this.eventHandlerService.shoppingCartDisplayHandler("cartContainer");
     });
   }
   /**
@@ -250,6 +251,7 @@ class UIController {
 }
 
 let cartInstance = JSON.parse(sessionStorage.getItem("cartInstance"));
+//let cartInstance = sessionStorage.getItem("cartInstance");
 
 if (!cartInstance) {
   ShoppingCart.GetCartInstanceAsync()
@@ -264,6 +266,7 @@ if (!cartInstance) {
       sessionStorage.setItem(
         "cartInstance",
         JSON.stringify(shoppingCartInstance)
+        // shoppingCartInstance
       );
       controller.render();
     })

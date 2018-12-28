@@ -5,7 +5,9 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 module.exports = {
   entry: {
     home: "./app/components/home/index.js",
-    plp: "./app/components/plp/index.js"
+    plp: "./app/components/plp/index.js",
+    cart: "./app/components/cart/index.js"
+
   },
   mode: "none",
   output: {

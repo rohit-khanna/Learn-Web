@@ -12,101 +12,104 @@ import CartProduct from "./CartProduct";
 import ShoppingCartService from "./../services/ShoppingCartService";
 
 class ShoppingCart {
-  constructor() {
-    this.cartProducts = []; // can be 2 products with 2 instances each: hence count=2
-    this.itemCount = 0; // will be 4
-    this.total = 0;
-    this.serviceInstance = new ShoppingCartService();
+  constructor(shoppingCartObject) {
+    // console.log(shoppingCartObject);
+
+    this.cartProducts = shoppingCartObject.cartProducts || []; // can be 2 products with 2 instances each: hence count=2
+    this.itemCount = shoppingCartObject.itemCount || 0; // will be 4
+    this.total = shoppingCartObject.total || 0;
+    this.serviceInstance =
+      shoppingCartObject.serviceInstance || new ShoppingCartService();
   }
 
-  /**
-   * PUBLIC API
-   */
-   get api() {
-    function addProduct(id) {
+  addProduct(id) {
+    let product = this.cartProducts.find(ele => ele.id == id);
+    if (product) {
+      product.quantity++;
+      this.incrementTotal(product);
+    } else {
       let newProduct = new CartProduct(id);
-      newProduct.prodDetails = fetchProductDetails(id);
-      cartProducts.push(newProduct);
-      this.itemCount++;
-      incrementTotal(newProduct);
+      newProduct.prodDetails = this.fetchProductDetails(id);
+      // console.log(newProduct.prodDetails);
+
+      this.cartProducts.push(newProduct);    
+      this.incrementTotal(newProduct);
     }
+    this.itemCount++;
+  }
 
-    function removeProduct(id) {
-      let product = this.cartProducts.find(x => x.id == id);
+  removeProduct(id) {
+    let product = this.cartProducts.find(x => x.id == id);
 
-      for (let i = 0; i < product.quantity; i++) {
-        this.itemCount--;
-        decrementTotal(product);
-      }
-      let index = this.cartProducts.findIndex(p => p.id == id);
-      this.cartProducts.splice(index, 1);
+    for (let i = 0; i < product.quantity; i++) {
+      this.itemCount--;
+      decrementTotal(product);
     }
+    let index = this.cartProducts.findIndex(p => p.id == id);
+    this.cartProducts.splice(index, 1);
+  }
 
-    function editProduct(id, newQty) {
-      let product = this.cartProducts.find(x => x.id == id);
+  editProduct(id, newQty) {
+    let product = this.cartProducts.find(x => x.id == id);
 
-      if (newQty) {
-        let diff = newQty - product.quantity;
+    if (newQty) {
+      let diff = newQty - product.quantity;
 
-        if (diff == 0) {
-          // do nothing
-        } else {
-          for (let i = 0; i < Math.abs(diff); i++) {
-            diff > 0
-              ? incrementProductQuantity(id)
-              : decrementProductQuantity(id);
-          }
+      if (diff == 0) {
+        // do nothing
+      } else {
+        for (let i = 0; i < Math.abs(diff); i++) {
+          diff > 0
+            ? this.incrementProductQuantity(id)
+            : this.decrementProductQuantity(id);
         }
       }
     }
+  }
 
-    function fetchProductDetails(id) {
-    // ToDo
-     console.log(this.itemCount);
-     console.log(this.total);
-     console.log(this.cartProducts);     
+  fetchProductDetails(id) {
+
+    return this.serviceInstance.products.find(ele => ele.id == id);
+  }
+
+  /**
+   * method to Increment The Product Quantity in cart
+   * @param {*} id cartProductId
+   */
+  incrementProductQuantity(id) {
+    let product = this.cartProducts.find(x => x.id == id);    
+    product.quantity += 1;
+    this.itemCount += 1;
+    this.incrementTotal(product);
+    return product.quantity;
+  }
+
+  decrementProductQuantity(id) {
+    let product = this.cartProducts.find(x => x.id == id);
+    product.quantity -= 1;
+    this.itemCount -= 1;
+    this.decrementTotal(product);
+    if(product.quantity==0)
+    {
+      this.removeProduct(id);
     }
+    return product.quantity;
+  }
 
-    /**
-     * method to Increment The Product Quantity in cart
-     * @param {*} id cartProductId
-     */
-    function incrementProductQuantity(id) {
-      let product = this.cartProducts.find(x => x.id == id);
-      product.quantity += 1;
-      this.itemCount += 1;
-      this.incrementTotal(product);
-    }
+  incrementTotal(product) {
+    this.total += product.prodDetails.price;
+  }
 
-    function decrementProductQuantity(id) {
-      let product = this.cartProducts.find(x => x.id == id);
-      product.quantity -= 1;
-      this.itemCount -= 1;
-      this.decrementTotal(product);
-    }
-
-    function incrementTotal() {
-      this.total += product.prodDetails.price;
-    }
-
-    function decrementTotal() {
-      this.total += product.prodDetails.price;
-    }
-    return {
-      addProduct: addProduct,
-      removeProduct: removeProduct,
-      editProduct: editProduct,
-      fetchProductDetails: fetchProductDetails
-    };
-
+  decrementTotal(product) {
+    this.total -= product.prodDetails.price;
   }
 }
 
-
 export default {
-  GetCartInstanceAsync: async function() {
-    let ins = new ShoppingCart();
-    await ins.serviceInstance.loadMockDataAsync();
+  GetCartInstanceAsync: async function(_obj) {
+    let obj = _obj || {};
+    let ins = new ShoppingCart(obj);
+    if (!_obj) await ins.serviceInstance.loadMockDataAsync();
     return ins;
   }
 };

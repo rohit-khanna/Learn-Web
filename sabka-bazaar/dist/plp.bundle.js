@@ -155,109 +155,121 @@ __webpack_require__.r(__webpack_exports__);
 var ShoppingCart =
 /*#__PURE__*/
 function () {
-  function ShoppingCart() {
+  function ShoppingCart(shoppingCartObject) {
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, ShoppingCart);
 
-    this.cartProducts = []; // can be 2 products with 2 instances each: hence count=2
+    // console.log(shoppingCartObject);
+    this.cartProducts = shoppingCartObject.cartProducts || []; // can be 2 products with 2 instances each: hence count=2
 
-    this.itemCount = 0; // will be 4
+    this.itemCount = shoppingCartObject.itemCount || 0; // will be 4
 
-    this.total = 0;
-    this.serviceInstance = new _services_ShoppingCartService__WEBPACK_IMPORTED_MODULE_5__["default"]();
+    this.total = shoppingCartObject.total || 0;
+    this.serviceInstance = shoppingCartObject.serviceInstance || new _services_ShoppingCartService__WEBPACK_IMPORTED_MODULE_5__["default"]();
   }
-  /**
-   * PUBLIC API
-   */
-
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(ShoppingCart, [{
-    key: "api",
-    get: function get() {
-      function addProduct(id) {
+    key: "addProduct",
+    value: function addProduct(id) {
+      var product = this.cartProducts.find(function (ele) {
+        return ele.id == id;
+      });
+
+      if (product) {
+        product.quantity++;
+        this.incrementTotal(product);
+      } else {
         var newProduct = new _CartProduct__WEBPACK_IMPORTED_MODULE_4__["default"](id);
-        newProduct.prodDetails = fetchProductDetails(id);
-        cartProducts.push(newProduct);
-        this.itemCount++;
-        incrementTotal(newProduct);
+        newProduct.prodDetails = this.fetchProductDetails(id); // console.log(newProduct.prodDetails);
+
+        this.cartProducts.push(newProduct);
+        this.incrementTotal(newProduct);
       }
 
-      function removeProduct(id) {
-        var product = this.cartProducts.find(function (x) {
-          return x.id == id;
-        });
+      this.itemCount++;
+    }
+  }, {
+    key: "removeProduct",
+    value: function removeProduct(id) {
+      var product = this.cartProducts.find(function (x) {
+        return x.id == id;
+      });
 
-        for (var i = 0; i < product.quantity; i++) {
-          this.itemCount--;
-          decrementTotal(product);
-        }
-
-        var index = this.cartProducts.findIndex(function (p) {
-          return p.id == id;
-        });
-        this.cartProducts.splice(index, 1);
+      for (var i = 0; i < product.quantity; i++) {
+        this.itemCount--;
+        decrementTotal(product);
       }
 
-      function editProduct(id, newQty) {
-        var product = this.cartProducts.find(function (x) {
-          return x.id == id;
-        });
+      var index = this.cartProducts.findIndex(function (p) {
+        return p.id == id;
+      });
+      this.cartProducts.splice(index, 1);
+    }
+  }, {
+    key: "editProduct",
+    value: function editProduct(id, newQty) {
+      var product = this.cartProducts.find(function (x) {
+        return x.id == id;
+      });
 
-        if (newQty) {
-          var diff = newQty - product.quantity;
+      if (newQty) {
+        var diff = newQty - product.quantity;
 
-          if (diff == 0) {// do nothing
-          } else {
-            for (var i = 0; i < Math.abs(diff); i++) {
-              diff > 0 ? incrementProductQuantity(id) : decrementProductQuantity(id);
-            }
+        if (diff == 0) {// do nothing
+        } else {
+          for (var i = 0; i < Math.abs(diff); i++) {
+            diff > 0 ? this.incrementProductQuantity(id) : this.decrementProductQuantity(id);
           }
         }
       }
+    }
+  }, {
+    key: "fetchProductDetails",
+    value: function fetchProductDetails(id) {
+      return this.serviceInstance.products.find(function (ele) {
+        return ele.id == id;
+      });
+    }
+    /**
+     * method to Increment The Product Quantity in cart
+     * @param {*} id cartProductId
+     */
 
-      function fetchProductDetails(id) {
-        // ToDo
-        console.log(this.itemCount);
-        console.log(this.total);
-        console.log(this.cartProducts);
+  }, {
+    key: "incrementProductQuantity",
+    value: function incrementProductQuantity(id) {
+      var product = this.cartProducts.find(function (x) {
+        return x.id == id;
+      });
+      product.quantity += 1;
+      this.itemCount += 1;
+      this.incrementTotal(product);
+      return product.quantity;
+    }
+  }, {
+    key: "decrementProductQuantity",
+    value: function decrementProductQuantity(id) {
+      var product = this.cartProducts.find(function (x) {
+        return x.id == id;
+      });
+      product.quantity -= 1;
+      this.itemCount -= 1;
+      this.decrementTotal(product);
+
+      if (product.quantity == 0) {
+        this.removeProduct(id);
       }
-      /**
-       * method to Increment The Product Quantity in cart
-       * @param {*} id cartProductId
-       */
 
-
-      function incrementProductQuantity(id) {
-        var product = this.cartProducts.find(function (x) {
-          return x.id == id;
-        });
-        product.quantity += 1;
-        this.itemCount += 1;
-        this.incrementTotal(product);
-      }
-
-      function decrementProductQuantity(id) {
-        var product = this.cartProducts.find(function (x) {
-          return x.id == id;
-        });
-        product.quantity -= 1;
-        this.itemCount -= 1;
-        this.decrementTotal(product);
-      }
-
-      function incrementTotal() {
-        this.total += product.prodDetails.price;
-      }
-
-      function decrementTotal() {
-        this.total += product.prodDetails.price;
-      }
-
-      return {
-        addProduct: addProduct,
-        removeProduct: removeProduct,
-        editProduct: editProduct,
-        fetchProductDetails: fetchProductDetails
-      };
+      return product.quantity;
+    }
+  }, {
+    key: "incrementTotal",
+    value: function incrementTotal(product) {
+      this.total += product.prodDetails.price;
+    }
+  }, {
+    key: "decrementTotal",
+    value: function decrementTotal(product) {
+      this.total -= product.prodDetails.price;
     }
   }]);
 
@@ -268,20 +280,27 @@ function () {
   GetCartInstanceAsync: function () {
     var _GetCartInstanceAsync = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
     /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var ins;
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_obj) {
+      var obj, ins;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              ins = new ShoppingCart();
-              _context.next = 3;
+              obj = _obj || {};
+              ins = new ShoppingCart(obj);
+
+              if (_obj) {
+                _context.next = 5;
+                break;
+              }
+
+              _context.next = 5;
               return ins.serviceInstance.loadMockDataAsync();
 
-            case 3:
+            case 5:
               return _context.abrupt("return", ins);
 
-            case 4:
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -289,7 +308,7 @@ function () {
       }, _callee, this);
     }));
 
-    function GetCartInstanceAsync() {
+    function GetCartInstanceAsync(_x) {
       return _GetCartInstanceAsync.apply(this, arguments);
     }
 
@@ -1188,6 +1207,7 @@ function () {
   function ShoppingCartService() {
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, ShoppingCartService);
 
+    console.log('NEW SCSvc');
     this.dataService = new _DataService__WEBPACK_IMPORTED_MODULE_5__["default"](new _FetchDAL__WEBPACK_IMPORTED_MODULE_4__["default"]());
     this.banners = [];
     this.categories = [];
@@ -1971,17 +1991,28 @@ function () {
       return " <div class=\"plp__section__products__product-row\" id=".concat(id, ">\n    <h2 title='").concat(name, "'>").concat(name, "</h2>\n\n    <div class=\"plp__section__products__product-row__content\">\n      <img\n        src=\"../..").concat(imageURL, "\"\n        alt='").concat(name, "'\n      />\n      <div class=\"details\">\n        <p title=  '").concat(description, "'>\n        ").concat(description.substr(0, 180), "\n        </p>\n        <div class=\"button-area\">\n          <span> MRP Rs. ").concat(price, " </span>\n          <button title='Buy Now' id=").concat(id, ">\n            Buy Now\n          </button>\n        </div>\n      </div>\n    </div>\n  </div>");
     }
   }, {
+    key: "fetchShoppingCartItemsTemplate",
+    value: function fetchShoppingCartItemsTemplate(_ref4) {
+      var id = _ref4.id,
+          quantity = _ref4.quantity,
+          price = _ref4.prodDetails.price,
+          name = _ref4.prodDetails.name,
+          imageURL = _ref4.prodDetails.imageURL;
+      //console.log(imageURL);
+      return "     <li class=\"cart-items__list-item\" >\n    <img src=\"../..".concat(imageURL, "\" />\n    <article class=\"details\">\n      <h3>").concat(name, "</h3>\n      <div class=\"edit__box\" id='").concat(id, "'>\n        <a href=\"#\"> <i class=\"material-icons\"> remove_circle </i></a>\n        <label>").concat(quantity, "</label>\n        <a href=\"#\"><i class=\"material-icons\"> add_circle </i></a>\n        <span>X Rs.").concat(price, "</span>\n      </div>\n    </article>\n    <article class=\"price\">Rs.<span class=\"newClass\">").concat(quantity * price, "</span></article>\n  </li>");
+    }
+  }, {
     key: "fetchCategoryFilterTemplate",
     get: function get() {
       return {
-        topBar: function topBar(_ref4) {
-          var id = _ref4.id,
-              name = _ref4.name;
-          return " <li id='".concat(id, "'>\n      <span class=\"icon\"> <i class=\"material-icons\"> done </i> </span>\n      <span class=\"filter-name\"> ").concat(name, " </span>\n    </li>");
-        },
-        sideBar: function sideBar(_ref5) {
+        topBar: function topBar(_ref5) {
           var id = _ref5.id,
               name = _ref5.name;
+          return " <li id='".concat(id, "'>\n      <span class=\"icon\"> <i class=\"material-icons\"> done </i> </span>\n      <span class=\"filter-name\"> ").concat(name, " </span>\n    </li>");
+        },
+        sideBar: function sideBar(_ref6) {
+          var id = _ref6.id,
+              name = _ref6.name;
           return " <li  title=' ".concat(name, "' id='").concat(id, "'>\n     ").concat(name, "\n    </li>");
         }
       };
@@ -2018,6 +2049,8 @@ __webpack_require__.r(__webpack_exports__);
  * LICENSE      :   PUBLIC
  *
  */
+var ShoppingCart = __webpack_require__(3).default;
+
 var EventHandlerService =
 /*#__PURE__*/
 function () {
@@ -2035,8 +2068,13 @@ function () {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(EventHandlerService, [{
     key: "productCategoryQuickLinkBUttonClick",
     value: function productCategoryQuickLinkBUttonClick(event) {
-      // console.log(event.target.parentNode.parentNode.id);
       window.location.href = "../plp/index.html?cat_id=" + event.target.parentNode.parentNode.id;
+    }
+  }, {
+    key: "refreshTotalItemsCount",
+    value: function refreshTotalItemsCount(shoppingCartInstance) {
+      var totalItemCount = shoppingCartInstance.itemCount;
+      $(".header__cart__item-count--value .value").text(totalItemCount);
     }
     /**
      * Handles the filter Top Bar Header Click
@@ -2095,7 +2133,18 @@ function () {
   }, {
     key: "productClick",
     value: function productClick(event) {
-      console.log("Button for Product ID:", event.currentTarget.id);
+      var _this = this;
+
+      //console.log("Button for Product ID:", event.currentTarget.id);
+      var cartInstance = JSON.parse(sessionStorage.getItem("cartInstance")); //console.log(cartInstance);
+
+      ShoppingCart.GetCartInstanceAsync(cartInstance).then(function (shoppingCartInstance) {
+        shoppingCartInstance.addProduct(event.currentTarget.id);
+        console.log(shoppingCartInstance);
+        sessionStorage.setItem("cartInstance", JSON.stringify(shoppingCartInstance));
+
+        _this.refreshTotalItemsCount(shoppingCartInstance);
+      });
     }
     /**
      * this method handles the corousal dots click.
@@ -2206,7 +2255,7 @@ function () {
 
     this.shoppingCartInstance = ShoppingCartInstance;
     this.instance = templateServiceInstance;
-    this.eventHandlerService = eventHandlerService;
+    this.eventHandlerService = eventHandlerService; // console.log(JSON.stringify(this.shoppingCartInstance));
 
     if (!Array.prototype.SortByOrder) {
       Array.prototype.SortByOrder = function () {
@@ -2242,10 +2291,10 @@ function () {
       var _this2 = this;
 
       $(".header__cart__item-count--logo").on("click", function () {
-        _this2.eventHandlerService.shoppingCartDisplayHandler('cartContainer');
+        _this2.eventHandlerService.shoppingCartDisplayHandler("cartContainer");
       });
       $(".header__cart__item-count--value").on("click", function (e) {
-        _this2.eventHandlerService.shoppingCartDisplayHandler('cartContainer');
+        _this2.eventHandlerService.shoppingCartDisplayHandler("cartContainer");
       });
     }
     /**
@@ -2437,13 +2486,14 @@ function () {
   return UIController;
 }();
 
-var cartInstance = JSON.parse(sessionStorage.getItem("cartInstance"));
+var cartInstance = JSON.parse(sessionStorage.getItem("cartInstance")); //let cartInstance = sessionStorage.getItem("cartInstance");
 
 if (!cartInstance) {
   ShoppingCart.GetCartInstanceAsync().then(function (shoppingCartInstance) {
     var eventHandlerService = new _services_UIEventHandlerService__WEBPACK_IMPORTED_MODULE_3__["default"]();
     var controller = new UIController(shoppingCartInstance, _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__["default"], eventHandlerService);
-    sessionStorage.setItem("cartInstance", JSON.stringify(shoppingCartInstance));
+    sessionStorage.setItem("cartInstance", JSON.stringify(shoppingCartInstance) // shoppingCartInstance
+    );
     controller.render();
   }).catch(function (err) {
     console.error("Error While Creating Instance", err);

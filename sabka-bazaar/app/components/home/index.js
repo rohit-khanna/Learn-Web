@@ -20,6 +20,11 @@ class UIController {
     this.shoppingCartInstance = ShoppingCartInstance;
     this.instance = templateServiceInstance;
     this.eventHandlerService = eventHandlerService;
+    if (!Array.prototype.SortByOrder) {
+      Array.prototype.SortByOrder = function() {
+        this.sort((a, b) => a.order - b.order);
+      };
+    }
   }
 
   /**
@@ -40,10 +45,10 @@ class UIController {
 
   registerShoppingCartDisplayEvents() {
     $(".header__cart__item-count--logo").on("click", () => {
-      this.eventHandlerService.shoppingCartDisplayHandler('cartContainer');
+      this.eventHandlerService.shoppingCartDisplayHandler("cartContainer");
     });
     $(".header__cart__item-count--value").on("click", e => {
-      this.eventHandlerService.shoppingCartDisplayHandler('cartContainer');
+      this.eventHandlerService.shoppingCartDisplayHandler("cartContainer");
     });
   }
 
@@ -79,8 +84,7 @@ class UIController {
    * Refresh Total Items in Header
    */
   refreshTotalItemsCount() {
-    let totalItemCount = this.shoppingCartInstance.itemCount;
-    $(".header__cart__item-count--value .value").text(totalItemCount);
+    this.eventHandlerService.refreshTotalItemsCount(this.shoppingCartInstance);
   }
 
   /**
@@ -261,23 +265,39 @@ class UIController {
   }
 }
 
-// 1. Create Cart INstance
-ShoppingCart.GetCartInstanceAsync()
-  .then(shoppingCartInstance => {
-    let eventHandlerService = new EventHandlerService();
-    let controller = new UIController(
-      shoppingCartInstance,
-      instance,
-      eventHandlerService
-    );
-    $().ready(function() {
-      sessionStorage.setItem(
-        "cartInstance",
-        JSON.stringify(shoppingCartInstance)
+let cartInstance = JSON.parse(sessionStorage.getItem("cartInstance"));
+ let eventHandlerService = new EventHandlerService();
+if (!cartInstance) {
+  // 1. Create Cart INstance
+  ShoppingCart.GetCartInstanceAsync()
+    .then(shoppingCartInstance => {
+     
+      let controller = new UIController(
+        shoppingCartInstance,
+        instance,
+        eventHandlerService
       );
-      controller.render();
+      $().ready(function() {
+        
+
+        sessionStorage.setItem(
+          "cartInstance",
+          JSON.stringify(shoppingCartInstance)
+        );
+        controller.render();
+      });
+    })
+    .catch(err => {
+      console.error("Error While Creating Instance", err);
     });
-  })
-  .catch(err => {
-    console.error("Error While Creating Instance", err);
+} else {
+  let controller = new UIController(
+    cartInstance,
+    instance,
+    eventHandlerService
+  );
+  $().ready(function() {
+    console.log(cartInstance);
+    controller.render();
   });
+}

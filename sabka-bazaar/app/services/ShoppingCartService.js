@@ -15,6 +15,8 @@ import DataService from "./DataService";
 
 class ShoppingCartService {
   constructor() {
+    console.log('NEW SCSvc');
+    
     this.dataService = new DataService(new FetchDAL());
     this.banners = [];
     this.categories = [];
