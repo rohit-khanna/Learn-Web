@@ -165,6 +165,24 @@ class EventHandlerService {
 
     this.corousalDotsClick({ target: ele[0] });
   }
+
+  /**
+   * handler for SHoppingCart button click on Page
+   * @param {*} idOfModelContainer ID of container where cart needs to be loaded
+   */
+  shoppingCartDisplayHandler(idOfModelContainer) {
+    if ($("#" + idOfModelContainer)[0].dataset.content == "true") {
+      // content present
+      // unload it
+
+      $("#" + idOfModelContainer).html("");
+      $("#" + idOfModelContainer)[0].dataset.content = "false";
+    } else {
+      $("#" + idOfModelContainer)[0].dataset.content = "true";
+      $("#" + idOfModelContainer).load("../cart/index.html");
+    }
+    $(".header__cart__item-count").toggleClass("util_cartbutton_clicked");
+  }
 }
 
 export default EventHandlerService;

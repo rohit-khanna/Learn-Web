@@ -9,6 +9,10 @@ COLOR SCHEME
   background-color: #fff;
 }
 
+.util_cartbutton_clicked {
+  border: 3px inset #b8b8b8;
+}
+
 .util_link_selected--text {
   color: #d12360f5 !important;
   font-weight: 700 !important;
@@ -308,7 +312,7 @@ button:hover {
 }
 /* The Modal (background) */
 .modal {
-  display: none;
+  display: block;
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
@@ -340,7 +344,7 @@ button:hover {
 }
 .modal-content .header {
   background-color: #fff;
-  margin-top: 2rem;
+  margin-top: 1.2rem;
   display: flex;
   justify-content: left;
   align-items: baseline;
@@ -359,7 +363,7 @@ button:hover {
 .modal-content .cart-items {
   padding: 0.5rem 0rem 0 0;
   background-color: #fff;
-  max-height: 65vh;
+  max-height: 55vh;
   overflow: scroll;
 }
 .modal-content .cart-items__list {
@@ -374,7 +378,7 @@ button:hover {
   display: flex;
   position: relative;
   flex-direction: row;
-  padding: 0.1rem 0.5rem 0.3rem 0rem;
+  padding: 0.1rem 0.5rem 0.3rem 0.5rem;
   justify-content: space-between;
   align-items: center;
 }
@@ -417,7 +421,7 @@ button:hover {
 }
 .modal-content .cart-items .info {
   background-color: #e9e3e3;
-  padding: 1rem 0.5rem;
+  padding: 0.5rem 0.5rem;
 }
 .modal-content .cart-items .info div {
   border: 1px solid #e9e3e3;
@@ -449,8 +453,8 @@ button:hover {
   margin: 0.5rem auto;
   width: 95%;
   display: flex;
-  padding: 0.8rem 1rem;
-  font-size: 1.4rem;
+  padding: 1rem 1rem;
+  font-size: 1.2rem;
   font-weight: 400;
   justify-content: space-between;
 }

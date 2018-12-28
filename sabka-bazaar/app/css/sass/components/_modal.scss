@@ -1,6 +1,6 @@
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
+  display: block; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding-top: 3.2rem; /* Location of the box */
@@ -29,7 +29,7 @@
   }
   .header {
     background-color: $primary-background-color;
-    margin-top: 2rem;
+    margin-top: 1.2rem;
     // flex-basis: 10%;
     display: flex;
     justify-content: left;
@@ -51,7 +51,7 @@
     padding: 0.5rem 0rem 0 0;
 
     background-color: $primary-background-color;
-    max-height: 65vh;
+    max-height: 55vh;
     overflow: scroll;
     &__list {
       list-style: none;
@@ -66,7 +66,7 @@
         position: relative;
 
         flex-direction: row;
-        padding: 0.1rem 0.5rem 0.3rem 0rem;
+        padding: 0.1rem 0.5rem 0.3rem 0.5rem;
         justify-content: space-between;
         align-items: center;
         img {
@@ -113,7 +113,7 @@
 
     .info {
       background-color: $secondary-background-color;
-      padding: 1rem 0.5rem;
+      padding: 0.5rem 0.5rem;
       div {
           border: 1px solid $secondary-background-color;
           border-radius: 5px;
@@ -146,10 +146,9 @@
     .btn {
       margin: 0.5rem auto;
       width: 95%;
-
       display: flex;
-      padding: 0.8rem 1rem;
-      font-size: 1.4rem;
+      padding: 1rem 1rem;
+      font-size: 1.2rem;
       font-weight: 400;
       justify-content: space-between;
 

@@ -6,16 +6,18 @@
   background-color: $primary-background-color;
 }
 
+.util_cartbutton_clicked {
+  border: 3px inset $shadow-color;
+}
+
 .util_link_selected {
- 
   &--text {
     color: $primary-button-color-opacity !important;
     font-weight: 700 !important;
-    a:hover{
-    color: $primary-button-color-opacity !important;
+    a:hover {
+      color: $primary-button-color-opacity !important;
+    }
   }
-  }
- 
 }
 %product_cat_row {
   margin: 1rem 0;

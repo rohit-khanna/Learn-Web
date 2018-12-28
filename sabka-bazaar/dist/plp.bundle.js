@@ -2149,6 +2149,26 @@ function () {
         target: ele[0]
       });
     }
+    /**
+     * handler for SHoppingCart button click on Page
+     * @param {*} idOfModelContainer ID of container where cart needs to be loaded
+     */
+
+  }, {
+    key: "shoppingCartDisplayHandler",
+    value: function shoppingCartDisplayHandler(idOfModelContainer) {
+      if ($("#" + idOfModelContainer)[0].dataset.content == "true") {
+        // content present
+        // unload it
+        $("#" + idOfModelContainer).html("");
+        $("#" + idOfModelContainer)[0].dataset.content = "false";
+      } else {
+        $("#" + idOfModelContainer)[0].dataset.content = "true";
+        $("#" + idOfModelContainer).load("../cart/index.html");
+      }
+
+      $(".header__cart__item-count").toggleClass("util_cartbutton_clicked");
+    }
   }]);
 
   return EventHandlerService;
@@ -2212,6 +2232,20 @@ function () {
 
 
         _this.applyCategoryFilter(categoryID);
+
+        _this.registerShoppingCartDisplayEvents();
+      });
+    }
+  }, {
+    key: "registerShoppingCartDisplayEvents",
+    value: function registerShoppingCartDisplayEvents() {
+      var _this2 = this;
+
+      $(".header__cart__item-count--logo").on("click", function () {
+        _this2.eventHandlerService.shoppingCartDisplayHandler('cartContainer');
+      });
+      $(".header__cart__item-count--value").on("click", function (e) {
+        _this2.eventHandlerService.shoppingCartDisplayHandler('cartContainer');
       });
     }
     /**
@@ -2236,15 +2270,15 @@ function () {
   }, {
     key: "applyCategoryFilter",
     value: function applyCategoryFilter(categoryId) {
-      var _this2 = this;
+      var _this3 = this;
 
       //1. Select the Ui ELement with input Cat ID;
       $(".plp__section__category__filter__container .filter_list").children().toArray().forEach(function (element) {
         if (element.id == categoryId) {
-          var _this2$eventHandlerSe = _this2.eventHandlerService.categoryFilterListItemClick(element),
-              filtername = _this2$eventHandlerSe.filtername;
+          var _this3$eventHandlerSe = _this3.eventHandlerService.categoryFilterListItemClick(element),
+              filtername = _this3$eventHandlerSe.filtername;
 
-          _this2.eventHandlerService.categoryFilterHeaderClick(filtername, true);
+          _this3.eventHandlerService.categoryFilterHeaderClick(filtername, true);
         }
       });
       $(".plp__section__category__filter__bar ul").children().toArray().forEach(function (e) {
@@ -2291,11 +2325,11 @@ function () {
   }, {
     key: "registerProductClickEvent",
     value: function registerProductClickEvent() {
-      var _this3 = this;
+      var _this4 = this;
 
       $(".plp__section__products__product-row").on("click", function (e) {
         // console.log(e.target.id);
-        if (event.target.nodeName == "BUTTON") _this3.eventHandlerService.productClick(event);
+        if (event.target.nodeName == "BUTTON") _this4.eventHandlerService.productClick(event);
       });
     }
     /**
@@ -2306,10 +2340,10 @@ function () {
   }, {
     key: "populateProductsOnUI",
     value: function populateProductsOnUI(arrayOfProducts) {
-      var _this4 = this;
+      var _this5 = this;
 
       arrayOfProducts.forEach(function (element) {
-        var template = _this4.instance.fetchProductsTemplate(element);
+        var template = _this5.instance.fetchProductsTemplate(element);
 
         $(".plp__section__products").append(template);
       });
@@ -2335,10 +2369,10 @@ function () {
   }, {
     key: "registerFilterClickEvents",
     value: function registerFilterClickEvents() {
-      var _this5 = this;
+      var _this6 = this;
 
       $(".plp__section__category__filter__container .filter-header").on("click", function () {
-        _this5.eventHandlerService.categoryFilterHeaderClick();
+        _this6.eventHandlerService.categoryFilterHeaderClick();
       });
       var self = this;
       $(".plp__section__category__filter__container .filter_list li").on("click", function () {

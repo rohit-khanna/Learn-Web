@@ -138,6 +138,19 @@ function () {
       this.populateUIProductCategoryQuickLinks(); //3. RefreshTotalItemsCount
 
       this.refreshTotalItemsCount();
+      this.registerShoppingCartDisplayEvents();
+    }
+  }, {
+    key: "registerShoppingCartDisplayEvents",
+    value: function registerShoppingCartDisplayEvents() {
+      var _this = this;
+
+      $(".header__cart__item-count--logo").on("click", function () {
+        _this.eventHandlerService.shoppingCartDisplayHandler('cartContainer');
+      });
+      $(".header__cart__item-count--value").on("click", function (e) {
+        _this.eventHandlerService.shoppingCartDisplayHandler('cartContainer');
+      });
     }
     /**
      * TODO
@@ -146,19 +159,19 @@ function () {
   }, {
     key: "registerNextPrevButtonHandlersForCorousal",
     value: function registerNextPrevButtonHandlersForCorousal() {
-      var _this = this;
+      var _this2 = this;
 
       var prevButton = $(".section__corousal .corousal .prev");
       var nextButton = $(".section__corousal .corousal .next");
       prevButton.on("click", function (e) {
         e.preventDefault();
 
-        _this.eventHandlerService.corousalPrevBtnClick(e);
+        _this2.eventHandlerService.corousalPrevBtnClick(e);
       });
       nextButton.on("click", function (e) {
         e.preventDefault();
 
-        _this.eventHandlerService.corousalNextBtnClick(e);
+        _this2.eventHandlerService.corousalNextBtnClick(e);
       });
     }
     /**
@@ -169,10 +182,10 @@ function () {
   }, {
     key: "registerProductCategoryQuickLinkEvents",
     value: function registerProductCategoryQuickLinkEvents() {
-      var _this2 = this;
+      var _this3 = this;
 
       $(".home__section__prod-cat__quicklinks button").on("click", function (event) {
-        return _this2.eventHandlerService.productCategoryQuickLinkBUttonClick(event);
+        return _this3.eventHandlerService.productCategoryQuickLinkBUttonClick(event);
       });
     }
     /**
@@ -195,7 +208,7 @@ function () {
   }, {
     key: "createNavigations",
     value: function createNavigations(labelTemplateFn, RadioTemplateFn, offersCount) {
-      var _this3 = this;
+      var _this4 = this;
 
       var labelHolder = $(".section__corousal .corousal .slidesNavigation");
       var radioHolder = $(".section__corousal .corousal");
@@ -208,7 +221,7 @@ function () {
       }
 
       $(labelHolder).children("label").on("click", function (event) {
-        _this3.eventHandlerService.corousalDotsClick(event);
+        _this4.eventHandlerService.corousalDotsClick(event);
       });
       $(labelHolder).children("label").first().addClass("selected");
     }
@@ -221,7 +234,7 @@ function () {
   }, {
     key: "populateOffers",
     value: function populateOffers(templateFn, arrayOfOffers) {
-      var _this4 = this;
+      var _this5 = this;
 
       arrayOfOffers.SortByOrder();
       var offerList = $(".section__corousal .corousal .images");
@@ -253,7 +266,7 @@ function () {
         isMouseDown = false;
         var fromLeftToRight = point.end - point.start > 0 ? true : false;
         point.end = 0;
-        fromLeftToRight ? _this4.eventHandlerService.corousalPrevBtnClick() : _this4.eventHandlerService.corousalNextBtnClick();
+        fromLeftToRight ? _this5.eventHandlerService.corousalPrevBtnClick() : _this5.eventHandlerService.corousalNextBtnClick();
       }).on("touchstart", function (e) {
         e.preventDefault();
         isMouseDown = true;
@@ -269,7 +282,7 @@ function () {
 
         if (point.end > 0) {
           var fromLeftToRight = point.end - point.start > 10 ? true : false;
-          fromLeftToRight ? _this4.eventHandlerService.corousalPrevBtnClick() : _this4.eventHandlerService.corousalNextBtnClick();
+          fromLeftToRight ? _this5.eventHandlerService.corousalPrevBtnClick() : _this5.eventHandlerService.corousalNextBtnClick();
         }
       });
     }
@@ -300,7 +313,7 @@ function () {
   }, {
     key: "populateUIProductCategoryQuickLinks",
     value: function populateUIProductCategoryQuickLinks() {
-      var _this5 = this;
+      var _this6 = this;
 
       // 1. Check Data from service
       if (this.shoppingCartInstance.serviceInstance.categories && this.shoppingCartInstance.serviceInstance.categories.length > 0) {
@@ -310,7 +323,7 @@ function () {
         enabledArray.SortByOrder(); //2. Create Quick Links
 
         enabledArray.forEach(function (element, index) {
-          _this5.createQuickLinksForProductCategories(element, index);
+          _this6.createQuickLinksForProductCategories(element, index);
         });
         this.registerProductCategoryQuickLinkEvents();
       }
@@ -339,7 +352,6 @@ ShoppingCart.GetCartInstanceAsync().then(function (shoppingCartInstance) {
   var eventHandlerService = new _services_UIEventHandlerService__WEBPACK_IMPORTED_MODULE_3__["default"]();
   var controller = new UIController(shoppingCartInstance, _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__["default"], eventHandlerService);
   $().ready(function () {
-    $('#MODAL').load('../cart/index.html');
     sessionStorage.setItem("cartInstance", JSON.stringify(shoppingCartInstance));
     controller.render();
   });
@@ -2410,6 +2422,26 @@ function () {
       this.corousalDotsClick({
         target: ele[0]
       });
+    }
+    /**
+     * handler for SHoppingCart button click on Page
+     * @param {*} idOfModelContainer ID of container where cart needs to be loaded
+     */
+
+  }, {
+    key: "shoppingCartDisplayHandler",
+    value: function shoppingCartDisplayHandler(idOfModelContainer) {
+      if ($("#" + idOfModelContainer)[0].dataset.content == "true") {
+        // content present
+        // unload it
+        $("#" + idOfModelContainer).html("");
+        $("#" + idOfModelContainer)[0].dataset.content = "false";
+      } else {
+        $("#" + idOfModelContainer)[0].dataset.content = "true";
+        $("#" + idOfModelContainer).load("../cart/index.html");
+      }
+
+      $(".header__cart__item-count").toggleClass("util_cartbutton_clicked");
     }
   }]);
 

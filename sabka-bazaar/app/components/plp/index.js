@@ -31,6 +31,17 @@ class UIController {
 
       //3. Apply Filters
       this.applyCategoryFilter(categoryID);
+
+      this.registerShoppingCartDisplayEvents();
+    });
+  }
+
+  registerShoppingCartDisplayEvents() {
+    $(".header__cart__item-count--logo").on("click", () => {
+      this.eventHandlerService.shoppingCartDisplayHandler('cartContainer');
+    });
+    $(".header__cart__item-count--value").on("click", e => {
+      this.eventHandlerService.shoppingCartDisplayHandler('cartContainer');
     });
   }
   /**

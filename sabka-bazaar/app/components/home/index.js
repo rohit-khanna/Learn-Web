@@ -34,6 +34,17 @@ class UIController {
 
     //3. RefreshTotalItemsCount
     this.refreshTotalItemsCount();
+
+    this.registerShoppingCartDisplayEvents();
+  }
+
+  registerShoppingCartDisplayEvents() {
+    $(".header__cart__item-count--logo").on("click", () => {
+      this.eventHandlerService.shoppingCartDisplayHandler('cartContainer');
+    });
+    $(".header__cart__item-count--value").on("click", e => {
+      this.eventHandlerService.shoppingCartDisplayHandler('cartContainer');
+    });
   }
 
   /**
@@ -166,7 +177,7 @@ class UIController {
         e.preventDefault();
         if (!isMouseDown) return false;
 
-        isMouseDown = false;      
+        isMouseDown = false;
         if (point.end > 0) {
           let fromLeftToRight = point.end - point.start > 10 ? true : false;
 
@@ -260,9 +271,6 @@ ShoppingCart.GetCartInstanceAsync()
       eventHandlerService
     );
     $().ready(function() {
-
-      $('#MODAL').load('../cart/index.html')
-
       sessionStorage.setItem(
         "cartInstance",
         JSON.stringify(shoppingCartInstance)
