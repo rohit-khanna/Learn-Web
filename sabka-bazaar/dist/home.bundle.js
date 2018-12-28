@@ -339,6 +339,7 @@ ShoppingCart.GetCartInstanceAsync().then(function (shoppingCartInstance) {
   var eventHandlerService = new _services_UIEventHandlerService__WEBPACK_IMPORTED_MODULE_3__["default"]();
   var controller = new UIController(shoppingCartInstance, _services_TemplateService__WEBPACK_IMPORTED_MODULE_2__["default"], eventHandlerService);
   $().ready(function () {
+    $('#MODAL').load('../cart/index.html');
     sessionStorage.setItem("cartInstance", JSON.stringify(shoppingCartInstance));
     controller.render();
   });

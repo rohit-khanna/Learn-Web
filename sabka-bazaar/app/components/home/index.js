@@ -260,6 +260,9 @@ ShoppingCart.GetCartInstanceAsync()
       eventHandlerService
     );
     $().ready(function() {
+
+      $('#MODAL').load('../cart/index.html')
+
       sessionStorage.setItem(
         "cartInstance",
         JSON.stringify(shoppingCartInstance)
