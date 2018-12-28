@@ -13,7 +13,7 @@ It contains the following pages:
  ##### Screen Prints
  Page | Screenshot | 
 --- | --- |
-**Home**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/home.png" width="450" height="400"> |
+**Home**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/home.png" width="650" height="600"> |
 **PLP-MObile**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/plp-mobile.png"> |
 **PLP-Laptop**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/plp-laptop.png"> |
  
