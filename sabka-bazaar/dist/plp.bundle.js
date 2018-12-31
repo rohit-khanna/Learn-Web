@@ -2378,7 +2378,7 @@ function () {
 
       $(".plp__section__products__product-row").on("click", function (e) {
         // console.log(e.target.id);
-        if (event.target.nodeName == "BUTTON") _this4.eventHandlerService.productClick(event);
+        if (e.target.nodeName == "BUTTON") _this4.eventHandlerService.productClick(e);
       });
     }
     /**

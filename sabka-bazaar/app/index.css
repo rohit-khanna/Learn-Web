@@ -4,7 +4,7 @@ COLOR SCHEME
 */
 .util_main_content_align--centre {
   width: 100%;
-  max-width: 980px;
+  max-width: 1000px;
   margin: 0 auto;
   background-color: #fff;
 }
@@ -369,7 +369,7 @@ button:hover {
 }
 .modal-content .cart-items {
   padding: 0.5rem 0rem 0 0;
-  min-height: 80vh;
+  min-height: 60vh;
   overflow: scroll;
 }
 .modal-content .cart-items__list {

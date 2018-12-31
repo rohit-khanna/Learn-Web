@@ -133,8 +133,8 @@ class UIController {
   registerProductClickEvent() {
     $(".plp__section__products__product-row").on("click", e => {
       // console.log(e.target.id);
-      if (event.target.nodeName == "BUTTON")
-        this.eventHandlerService.productClick(event);
+      if (e.target.nodeName == "BUTTON")
+        this.eventHandlerService.productClick(e);
     });
   }
 
