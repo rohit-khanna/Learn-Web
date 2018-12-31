@@ -72,7 +72,7 @@ class TemplateService {
     <div class="plp__section__products__product-row__content">
       <img
         src="../..${imageURL}"
-        alt='${name}'
+        alt='${name}' title='${name}'
       />
       <div class="details">
         <p title=  '${description}'>
@@ -81,7 +81,7 @@ class TemplateService {
         <div class="button-area">
           <span> MRP Rs. ${price} </span>
           <button title='Buy Now' id=${id}>
-            Buy Now
+            Buy Now <span class"util__mobile">@ MRP Rs. ${price}</span>
           </button>
         </div>
       </div>

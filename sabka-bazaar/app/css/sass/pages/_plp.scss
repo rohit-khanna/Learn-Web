@@ -38,7 +38,7 @@
         z-index: 2;
         border-radius: 2px;
         width: 100%;
-    position: absolute;
+        position: absolute;
 
         & > li {
           border-radius: 2px;
@@ -95,14 +95,20 @@
           display: flex;
           justify-content: space-between;
           align-items: flex-end;
+         
         }
         .button-area > span {
           display: none;
         }
 
         button {
+       
           width: 100%;
+          &>*{
+           display: inline-block;
+          }
         }
+
 
         .details {
           flex-basis: 50%;
@@ -268,7 +274,7 @@
           flex-direction: column;
           img {
             text-align: center;
-           transform: scale(1.1);
+            transform: scale(1.1);
             width: 100%;
           }
 
@@ -284,6 +290,8 @@
               min-height: 13rem;
             }
 
+           
+
             .button-area > span {
               display: inline-block;
               flex-basis: 50%;
@@ -291,13 +299,21 @@
               text-align: center;
               padding-bottom: 0.5rem;
               font-weight: 400;
+             
             }
+
+           
+
             button {
               flex-basis: 50%;
               display: inline-block;
               font-size: 1rem;
               padding: 0.5em 0.8em;
               width: 50%;
+              &>*{
+                display: none;
+               }
+             
             }
           }
         }

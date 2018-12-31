@@ -260,7 +260,7 @@ a:hover,
 a:active {
   color: #d12360f5;
   text-decoration: none;
-  border-bottom: 2px solid #b5adad;
+  border-bottom: 2px solid #d12360f5;
   outline: none;
 }
 
@@ -836,6 +836,9 @@ button:hover {
 .plp__section__products__product-row__content button {
   width: 100%;
 }
+.plp__section__products__product-row__content button > * {
+  display: inline-block;
+}
 .plp__section__products__product-row__content .details {
   flex-basis: 50%;
   font-size: 0.8rem;
@@ -997,6 +1000,9 @@ button:hover {
     font-size: 1rem;
     padding: 0.5em 0.8em;
     width: 50%;
+  }
+  .plp__section__products__product-row__content .details button > * {
+    display: none;
   }
 }
 .header {
