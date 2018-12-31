@@ -1999,7 +1999,7 @@ function () {
           name = _ref4.prodDetails.name,
           imageURL = _ref4.prodDetails.imageURL;
       //console.log(imageURL);
-      return "     <li class=\"cart-items__list-item\" >\n    <img src=\"../..".concat(imageURL, "\" />\n    <article class=\"details\">\n      <h3>").concat(name, "</h3>\n      <div class=\"edit__box\" id='").concat(id, "'>\n        <a href=\"#\"> <i class=\"material-icons\"> remove_circle </i></a>\n        <label>").concat(quantity, "</label>\n        <a href=\"#\"><i class=\"material-icons\"> add_circle </i></a>\n        <span>X Rs.").concat(price, "</span>\n      </div>\n    </article>\n    <article class=\"price\">Rs.<span class=\"newClass\">").concat(quantity * price, "</span></article>\n  </li>");
+      return "     <li class=\"cart-items__list-item\" >\n    <img src=\"../..".concat(imageURL, "\" />\n    <article class=\"details\">\n      <h3>").concat(name, "</h3>\n      <div class=\"edit__box\" id='").concat(id, "'>\n      <div class=\"counters\">\n    \n        <a href=\"#\"> <i class=\"material-icons\"> remove_circle </i></a>\n        <label>").concat(quantity, "</label>\n        <a href=\"#\"><i class=\"material-icons\"> add_circle </i></a>\n      \n         </div>  <span>X &nbsp;Rs.&nbsp; ").concat(price, "</span> \n      </div>\n    </article>\n    <article class=\"price\">Rs.<span class=\"newClass\">").concat(quantity * price, "</span></article>\n  </li>");
     }
   }, {
     key: "fetchCategoryFilterTemplate",

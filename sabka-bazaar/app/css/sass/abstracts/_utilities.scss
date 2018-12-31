@@ -7,7 +7,7 @@
 }
 
 .util_cartbutton_clicked {
-  border: 3px inset $shadow-color;
+  border: 2px inset $shadow-color;
 }
 
 .util_link_selected {
@@ -46,6 +46,10 @@
 }
 
 @media only screen and (min-width: 700px) {
+  .util_cartbutton_clicked {
+    border:none;
+    border-bottom: 3px inset $primary-button-color-opacity;
+  }
   %product_cat_row {
     img {
       flex-basis: 40%;

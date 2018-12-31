@@ -92,22 +92,28 @@ class TemplateService {
   fetchShoppingCartItemsTemplate({
     id,
     quantity,
-    prodDetails: { price }, prodDetails: { name }, prodDetails: { imageURL }
+    prodDetails: { price },
+    prodDetails: { name },
+    prodDetails: { imageURL }
   }) {
     //console.log(imageURL);
-    
+
     return `     <li class="cart-items__list-item" >
     <img src="../..${imageURL}" />
     <article class="details">
       <h3>${name}</h3>
       <div class="edit__box" id='${id}'>
+      <div class="counters">
+    
         <a href="#"> <i class="material-icons"> remove_circle </i></a>
         <label>${quantity}</label>
         <a href="#"><i class="material-icons"> add_circle </i></a>
-        <span>X Rs.${price}</span>
+      
+         </div>  <span>X &nbsp;Rs.&nbsp; ${price}</span> 
       </div>
     </article>
-    <article class="price">Rs.<span class="newClass">${quantity * price}</span></article>
+    <article class="price">Rs.<span class="newClass">${quantity *
+      price}</span></article>
   </li>`;
   }
 }

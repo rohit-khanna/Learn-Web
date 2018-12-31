@@ -1999,7 +1999,7 @@ function () {
           name = _ref4.prodDetails.name,
           imageURL = _ref4.prodDetails.imageURL;
       //console.log(imageURL);
-      return "     <li class=\"cart-items__list-item\" >\n    <img src=\"../..".concat(imageURL, "\" />\n    <article class=\"details\">\n      <h3>").concat(name, "</h3>\n      <div class=\"edit__box\" id='").concat(id, "'>\n        <a href=\"#\"> <i class=\"material-icons\"> remove_circle </i></a>\n        <label>").concat(quantity, "</label>\n        <a href=\"#\"><i class=\"material-icons\"> add_circle </i></a>\n        <span>X Rs.").concat(price, "</span>\n      </div>\n    </article>\n    <article class=\"price\">Rs.<span class=\"newClass\">").concat(quantity * price, "</span></article>\n  </li>");
+      return "     <li class=\"cart-items__list-item\" >\n    <img src=\"../..".concat(imageURL, "\" />\n    <article class=\"details\">\n      <h3>").concat(name, "</h3>\n      <div class=\"edit__box\" id='").concat(id, "'>\n      <div class=\"counters\">\n    \n        <a href=\"#\"> <i class=\"material-icons\"> remove_circle </i></a>\n        <label>").concat(quantity, "</label>\n        <a href=\"#\"><i class=\"material-icons\"> add_circle </i></a>\n      \n         </div>  <span>X &nbsp;Rs.&nbsp; ").concat(price, "</span> \n      </div>\n    </article>\n    <article class=\"price\">Rs.<span class=\"newClass\">").concat(quantity * price, "</span></article>\n  </li>");
     }
   }, {
     key: "fetchCategoryFilterTemplate",
@@ -2305,6 +2305,8 @@ function () {
   }, {
     key: "refreshCartItem",
     value: function refreshCartItem(liItem, dataObj) {
+      console.log(dataObj);
+
       if (dataObj.quantity == 0) {
         $(liItem).remove();
       } else {
@@ -2321,19 +2323,20 @@ function () {
     value: function registerCartItemEvents() {
       var _this2 = this;
 
-      $(".cart-items .cart-items__list").on("click", function (e) {
+      $(".cart-items .cart-items__list .counters").on("click", function (e) {
         var parentLi = $(e.target).closest(".cart-items__list-item");
         var quantity = 0;
 
         if ($(e.target).hasClass("material-icons")) {
+          console.log($(e.target).text());
           ShoppingCart.GetCartInstanceAsync(_this2.dataObject).then(function (shoppingCartInstance) {
             switch ($(e.target).text().trim()) {
               case "add_circle":
-                quantity = shoppingCartInstance.incrementProductQuantity(e.target.parentNode.parentNode.id);
+                quantity = shoppingCartInstance.incrementProductQuantity(e.target.parentNode.parentNode.parentNode.id);
                 break;
 
               case "remove_circle":
-                quantity = shoppingCartInstance.decrementProductQuantity(e.target.parentNode.parentNode.id);
+                quantity = shoppingCartInstance.decrementProductQuantity(e.target.parentNode.parentNode.parentNode.id);
                 break;
 
               default:
@@ -2343,7 +2346,7 @@ function () {
             _this2.dataObject = shoppingCartInstance;
 
             _this2.refreshCartItem(parentLi, {
-              data: shoppingCartInstance.fetchProductDetails(e.target.parentNode.parentNode.id),
+              data: shoppingCartInstance.fetchProductDetails(e.target.parentNode.parentNode.parentNode.id),
               quantity: quantity
             });
 
