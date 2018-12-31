@@ -23,12 +23,7 @@ class CartController {
   }
 
   init() {
-    $(".empty--cart button").on("click", e => {
-      this.eventHandlerSvc.shoppingCartDisplayHandler(
-        $(e.target).closest(".modal")[0].parentNode.id
-      );
-      //console.log($(e.target).closest(".modal")[0].parentNode.id);
-    });
+    this.registerCartEvents();
 
     if (this.dataObject) {
       // update Items COunt on Header
@@ -52,6 +47,20 @@ class CartController {
     }
   }
 
+  registerCartEvents() {
+    $(".empty--cart button").on("click", e => {
+      this.eventHandlerSvc.shoppingCartDisplayHandler(
+        $(e.target).closest(".modal")[0].parentNode.id
+      );
+    });
+    $(".modal-content .header .close").on("click", e => {
+      this.eventHandlerSvc.shoppingCartDisplayHandler(
+        $(e.target).closest(".modal")[0].parentNode.id
+      );
+      
+    });
+  }
+
   showEmptyCart(isEmpty) {
     if (isEmpty) {
       $(".cart-items").hide();
@@ -72,7 +81,7 @@ class CartController {
     $("#checkout")
       .children("span")
       .last("span")
-      .text("Rs" + this.dataObject.total);
+      .html("Rs &nbsp;" + this.dataObject.total);
   }
 
   populateCartItems() {

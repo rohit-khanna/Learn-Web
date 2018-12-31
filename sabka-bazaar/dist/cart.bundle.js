@@ -2211,9 +2211,11 @@ function () {
         // unload it
         $("#" + idOfModelContainer).html("");
         $("#" + idOfModelContainer)[0].dataset.content = "false";
+        $('body').css('overflow', 'auto'); // enable scrroling background
       } else {
         $("#" + idOfModelContainer)[0].dataset.content = "true";
         $("#" + idOfModelContainer).load("../cart/index.html");
+        $('body').css('overflow', 'hidden'); //stop scrroling background
       }
 
       $(".header__cart__item-count").toggleClass("util_cartbutton_clicked");
@@ -2268,12 +2270,7 @@ function () {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(CartController, [{
     key: "init",
     value: function init() {
-      var _this = this;
-
-      $(".empty--cart button").on("click", function (e) {
-        _this.eventHandlerSvc.shoppingCartDisplayHandler($(e.target).closest(".modal")[0].parentNode.id); //console.log($(e.target).closest(".modal")[0].parentNode.id);
-
-      });
+      this.registerCartEvents();
 
       if (this.dataObject) {
         // update Items COunt on Header
@@ -2293,6 +2290,18 @@ function () {
           this.showEmptyCart(true);
         }
       }
+    }
+  }, {
+    key: "registerCartEvents",
+    value: function registerCartEvents() {
+      var _this = this;
+
+      $(".empty--cart button").on("click", function (e) {
+        _this.eventHandlerSvc.shoppingCartDisplayHandler($(e.target).closest(".modal")[0].parentNode.id);
+      });
+      $(".modal-content .header .close").on("click", function (e) {
+        _this.eventHandlerSvc.shoppingCartDisplayHandler($(e.target).closest(".modal")[0].parentNode.id);
+      });
     }
   }, {
     key: "showEmptyCart",
@@ -2315,7 +2324,7 @@ function () {
   }, {
     key: "updateTotalsInCheckoutButton",
     value: function updateTotalsInCheckoutButton() {
-      $("#checkout").children("span").last("span").text("Rs" + this.dataObject.total);
+      $("#checkout").children("span").last("span").html("Rs &nbsp;" + this.dataObject.total);
     }
   }, {
     key: "populateCartItems",

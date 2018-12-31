@@ -153,12 +153,11 @@ function () {
     value: function registerShoppingCartDisplayEvents() {
       var _this = this;
 
-      $(".header__cart__item-count--logo").on("click", function () {
+      $(".cart--toggle").on("click", function () {
         _this.eventHandlerService.shoppingCartDisplayHandler("cartContainer");
-      });
-      $(".header__cart__item-count--value").on("click", function (e) {
-        _this.eventHandlerService.shoppingCartDisplayHandler("cartContainer");
-      });
+      }); // $(".header__cart__item-count--value").on("click", e => {
+      //   this.eventHandlerService.shoppingCartDisplayHandler("cartContainer");
+      // });
     }
     /**
      * TODO
@@ -2502,9 +2501,11 @@ function () {
         // unload it
         $("#" + idOfModelContainer).html("");
         $("#" + idOfModelContainer)[0].dataset.content = "false";
+        $('body').css('overflow', 'auto'); // enable scrroling background
       } else {
         $("#" + idOfModelContainer)[0].dataset.content = "true";
         $("#" + idOfModelContainer).load("../cart/index.html");
+        $('body').css('overflow', 'hidden'); //stop scrroling background
       }
 
       $(".header__cart__item-count").toggleClass("util_cartbutton_clicked");
