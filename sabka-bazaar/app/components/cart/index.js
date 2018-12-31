@@ -23,19 +23,44 @@ class CartController {
   }
 
   init() {
+    $(".empty--cart button").on("click", e => {
+      this.eventHandlerSvc.shoppingCartDisplayHandler(
+        $(e.target).closest(".modal")[0].parentNode.id
+      );
+      //console.log($(e.target).closest(".modal")[0].parentNode.id);
+    });
+
     if (this.dataObject) {
       // update Items COunt on Header
       this.updateItemsCounterOnHead();
-      // Create New List items as per products
-      this.populateCartItems();
-      // register their events for + and -
-      this.registerCartItemEvents();
 
-      this.updateTotalsInCheckoutButton();
+      if (this.dataObject.cartProducts.length > 0) {
+        this.showEmptyCart(false);
+        // Create New List items as per products
+        this.populateCartItems();
+        // register their events for + and -
+        this.registerCartItemEvents();
 
-      $(".checkout .btn").on("click", function() {
-        alert("Checkout Done");
-      });
+        this.updateTotalsInCheckoutButton();
+
+        $(".checkout .btn").on("click", function() {
+          alert("Checkout Done");
+        });
+      } else {
+        this.showEmptyCart(true);
+      }
+    }
+  }
+
+  showEmptyCart(isEmpty) {
+    if (isEmpty) {
+      $(".cart-items").hide();
+      $(".checkout").hide();
+      $(".empty--cart").show();
+    } else {
+      $(".cart-items").show();
+      $(".checkout").show();
+      $(".empty--cart").hide();
     }
   }
 
@@ -59,7 +84,7 @@ class CartController {
 
   refreshCartItem(liItem, dataObj) {
     console.log(dataObj);
-    
+
     if (dataObj.quantity == 0) {
       $(liItem).remove();
     } else {
@@ -75,6 +100,9 @@ class CartController {
     this.updateTotalsInCheckoutButton();
     this.updateItemsCounterOnHead();
     this.eventHandlerSvc.refreshTotalItemsCount(this.dataObject);
+    if (this.dataObject.cartProducts.length <= 0) {
+      this.showEmptyCart(true);
+    }
   }
 
   registerCartItemEvents() {
@@ -123,6 +151,10 @@ class CartController {
         );
       }
     });
+  }
+
+  startShoppingClickHandler() {
+    alert("jhs");
   }
 }
 

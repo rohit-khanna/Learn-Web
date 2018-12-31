@@ -2268,17 +2268,43 @@ function () {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(CartController, [{
     key: "init",
     value: function init() {
+      var _this = this;
+
+      $(".empty--cart button").on("click", function (e) {
+        _this.eventHandlerSvc.shoppingCartDisplayHandler($(e.target).closest(".modal")[0].parentNode.id); //console.log($(e.target).closest(".modal")[0].parentNode.id);
+
+      });
+
       if (this.dataObject) {
         // update Items COunt on Header
-        this.updateItemsCounterOnHead(); // Create New List items as per products
+        this.updateItemsCounterOnHead();
 
-        this.populateCartItems(); // register their events for + and -
+        if (this.dataObject.cartProducts.length > 0) {
+          this.showEmptyCart(false); // Create New List items as per products
 
-        this.registerCartItemEvents();
-        this.updateTotalsInCheckoutButton();
-        $(".checkout .btn").on("click", function () {
-          alert("Checkout Done");
-        });
+          this.populateCartItems(); // register their events for + and -
+
+          this.registerCartItemEvents();
+          this.updateTotalsInCheckoutButton();
+          $(".checkout .btn").on("click", function () {
+            alert("Checkout Done");
+          });
+        } else {
+          this.showEmptyCart(true);
+        }
+      }
+    }
+  }, {
+    key: "showEmptyCart",
+    value: function showEmptyCart(isEmpty) {
+      if (isEmpty) {
+        $(".cart-items").hide();
+        $(".checkout").hide();
+        $(".empty--cart").show();
+      } else {
+        $(".cart-items").show();
+        $(".checkout").show();
+        $(".empty--cart").hide();
       }
     }
   }, {
@@ -2294,10 +2320,10 @@ function () {
   }, {
     key: "populateCartItems",
     value: function populateCartItems() {
-      var _this = this;
+      var _this2 = this;
 
       this.dataObject.cartProducts.forEach(function (prod) {
-        var template = _this.templateSvc.fetchShoppingCartItemsTemplate(prod);
+        var template = _this2.templateSvc.fetchShoppingCartItemsTemplate(prod);
 
         $(".cart-items .cart-items__list").append(template);
       });
@@ -2317,11 +2343,15 @@ function () {
       this.updateTotalsInCheckoutButton();
       this.updateItemsCounterOnHead();
       this.eventHandlerSvc.refreshTotalItemsCount(this.dataObject);
+
+      if (this.dataObject.cartProducts.length <= 0) {
+        this.showEmptyCart(true);
+      }
     }
   }, {
     key: "registerCartItemEvents",
     value: function registerCartItemEvents() {
-      var _this2 = this;
+      var _this3 = this;
 
       $(".cart-items .cart-items__list .counters").on("click", function (e) {
         var parentLi = $(e.target).closest(".cart-items__list-item");
@@ -2329,7 +2359,7 @@ function () {
 
         if ($(e.target).hasClass("material-icons")) {
           console.log($(e.target).text());
-          ShoppingCart.GetCartInstanceAsync(_this2.dataObject).then(function (shoppingCartInstance) {
+          ShoppingCart.GetCartInstanceAsync(_this3.dataObject).then(function (shoppingCartInstance) {
             switch ($(e.target).text().trim()) {
               case "add_circle":
                 quantity = shoppingCartInstance.incrementProductQuantity(e.target.parentNode.parentNode.parentNode.id);
@@ -2343,9 +2373,9 @@ function () {
                 break;
             }
 
-            _this2.dataObject = shoppingCartInstance;
+            _this3.dataObject = shoppingCartInstance;
 
-            _this2.refreshCartItem(parentLi, {
+            _this3.refreshCartItem(parentLi, {
               data: shoppingCartInstance.fetchProductDetails(e.target.parentNode.parentNode.parentNode.id),
               quantity: quantity
             });
@@ -2355,6 +2385,11 @@ function () {
           });
         }
       });
+    }
+  }, {
+    key: "startShoppingClickHandler",
+    value: function startShoppingClickHandler() {
+      alert("jhs");
     }
   }]);
 

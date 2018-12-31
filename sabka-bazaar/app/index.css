@@ -487,6 +487,35 @@ button:hover {
   text-align: right;
   font-weight: 700;
 }
+.modal-content .empty--cart {
+  height: 80vh;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+}
+.modal-content .empty--cart .message {
+  width: 80%;
+  text-align: center;
+  margin: 10rem auto;
+}
+.modal-content .empty--cart .message h3 {
+  font-size: 1.3rem;
+  margin: 1rem 0rem;
+}
+.modal-content .empty--cart .message h4 {
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+.modal-content .empty--cart button {
+  margin: 0.5rem auto;
+  width: 95%;
+  padding: 1rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
 
 @media only screen and (min-width: 700px) and (orientation: portrait) {
   .modal {
