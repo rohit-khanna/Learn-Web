@@ -13,7 +13,7 @@ import ShoppingCartService from "./../services/ShoppingCartService";
 
 class ShoppingCart {
   constructor(shoppingCartObject) {
-   console.log(shoppingCartObject);
+   ///console.log(shoppingCartObject);
 
     this.cartProducts = shoppingCartObject.cartProducts || []; // can be 2 products with 2 instances each: hence count=2
     this.itemCount = shoppingCartObject.itemCount || 0; // will be 4

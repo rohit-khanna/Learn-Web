@@ -118,7 +118,7 @@
         img {
           width: 70vw;
           margin-left: 0;
-          margin-right: 0.5em;
+          margin-right: 2em;
           vertical-align: middle;
           transform: scale(1.01);
         }
@@ -129,11 +129,9 @@
     
       label {
        
-        margin: 0.6rem;
-       
+        margin: 0.6rem;       
         height: 0.6rem;
-        width: 0.6rem;  
-      
+        width: 0.6rem;        
         font-size: 1rem;
       }
       .selected {

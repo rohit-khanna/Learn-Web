@@ -186,24 +186,21 @@
 
         &__content {
           display: flow-root;
-          // display: flex;
+        
           margin-top: 1rem;
-          // flex-direction: row;
-          // justify-content: space-between;
+         
           img {
             text-align: center;
-            // flex-basis: 47%;
-            ///  align-self: center;
+          
 
-            padding-right: 1rem;
+            padding-right: 0rem;
             width: 150px;
             float: left;
           }
-          // height: 150px;
-          // max-height: 140px;
+        
 
           .details {
-            // flex-basis: 50%;
+         
             font-size: 0.8rem;
             p {
               text-align: left;
@@ -260,11 +257,11 @@
         padding-left: 0.5rem;
         flex-basis: 24%;
         &:last-of-type() {
-          flex-basis: 27%;
+          flex-basis: 24%;
         }
         h2 {
           font-size: 1rem;
-          min-height: 4rem;
+          min-height: 4.5rem;
           padding: 0 0;
         }
 
@@ -284,10 +281,10 @@
               background-color: $secondary-background-color;
               margin-left: 0;
               margin-top: 1rem;
-              padding: 1rem 1rem;
+              padding: 0.5rem 0.5rem;
               font-size: 1rem;
               overflow: hidden;
-              min-height: 13rem;
+              min-height: 11rem;
             }
 
            

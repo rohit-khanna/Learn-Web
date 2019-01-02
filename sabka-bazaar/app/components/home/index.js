@@ -38,8 +38,8 @@ class UIController {
     //2. Fetch Home page -Quick Links Data-- POpulate UI for Categories
     this.populateUIProductCategoryQuickLinks();
 
-    //3. RefreshTotalItemsCount
-    this.refreshTotalItemsCount();
+    //3. loadHeaderAndRefreshTotalItems
+    this.loadHeaderAndRefreshTotalItems();
 
     this.registerShoppingCartDisplayEvents();
   }
@@ -84,8 +84,10 @@ class UIController {
   /**
    * Refresh Total Items in Header
    */
-  refreshTotalItemsCount() {
-    this.eventHandlerService.refreshTotalItemsCount(this.shoppingCartInstance);
+  loadHeaderAndRefreshTotalItems() {
+    $(".header__container").load("./header.html", () => {
+      this.eventHandlerService.refreshTotalItemsCount(this.shoppingCartInstance);
+    });
   }
 
   /**
@@ -267,20 +269,17 @@ class UIController {
 }
 
 let cartInstance = JSON.parse(sessionStorage.getItem("cartInstance"));
- let eventHandlerService = new EventHandlerService();
+let eventHandlerService = new EventHandlerService();
 if (!cartInstance) {
   // 1. Create Cart INstance
   ShoppingCart.GetCartInstanceAsync()
     .then(shoppingCartInstance => {
-     
       let controller = new UIController(
         shoppingCartInstance,
         instance,
         eventHandlerService
       );
       $().ready(function() {
-        
-
         sessionStorage.setItem(
           "cartInstance",
           JSON.stringify(shoppingCartInstance)

@@ -12,7 +12,7 @@ class UIController {
     this.shoppingCartInstance = ShoppingCartInstance;
     this.instance = templateServiceInstance;
     this.eventHandlerService = eventHandlerService;
-   // console.log(JSON.stringify(this.shoppingCartInstance));
+    // console.log(JSON.stringify(this.shoppingCartInstance));
     if (!Array.prototype.SortByOrder) {
       Array.prototype.SortByOrder = function() {
         this.sort((a, b) => a.order - b.order);
@@ -24,9 +24,8 @@ class UIController {
     let categoryID = this.getUrlParameter("cat_id");
 
     $().ready(() => {
-      // 1. refreshTotalItemsCount
-      this.refreshTotalItemsCount();
-
+      // 1. loadHeaderAndRefreshTotalItems
+      this.loadHeaderAndRefreshTotalItems();
       //2. Fetch Categories and Populate Category FIlter
       this.populateCategoryFilters();
 
@@ -244,9 +243,12 @@ class UIController {
   /**
    * Refresh Total Items in Header
    */
-  refreshTotalItemsCount() {
-    let totalItemCount = this.shoppingCartInstance.itemCount;
-    $(".header__cart__item-count--value .value").text(totalItemCount);
+  loadHeaderAndRefreshTotalItems() {
+    $(".header__container").load("./header.html", () => {
+      this.eventHandlerService.refreshTotalItemsCount(
+        this.shoppingCartInstance
+      );
+    });
   }
 }
 

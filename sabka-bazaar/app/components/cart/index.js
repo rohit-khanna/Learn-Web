@@ -117,6 +117,7 @@ class CartController {
 
   registerCartItemEvents() {
     $(".cart-items .cart-items__list .counters").on("click", e => {
+      e.preventDefault();
       let parentLi = $(e.target).closest(".cart-items__list-item");
 
       let quantity = 0;
