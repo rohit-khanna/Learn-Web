@@ -22,7 +22,7 @@ class EventHandlerService {
    */
   productCategoryQuickLinkBUttonClick(event) {  
     window.location.href =
-      "../plp/index.html?cat_id=" + event.target.parentNode.parentNode.id;
+      "./plp.html?cat_id=" + event.target.parentNode.parentNode.id;
   }
 
   refreshTotalItemsCount(shoppingCartInstance) {
@@ -196,7 +196,7 @@ class EventHandlerService {
       $('body').css('overflow', 'auto');  // enable scrroling background
     } else {
       $("#" + idOfModelContainer)[0].dataset.content = "true";
-      $("#" + idOfModelContainer).load("../cart/index.html");
+      $("#" + idOfModelContainer).load("./cart.html");
       $('body').css('overflow', 'hidden');  //stop scrroling background
     }
     $(".header__cart__item-count").toggleClass("util_cartbutton_clicked");

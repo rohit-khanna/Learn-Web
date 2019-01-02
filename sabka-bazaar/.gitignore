@@ -4,4 +4,4 @@ node_modules
 dist/
 
 
-app/index.css
+app/index.css*

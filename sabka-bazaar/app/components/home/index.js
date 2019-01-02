@@ -10,6 +10,7 @@
 const ShoppingCart = require("../../model/ShoppingCart").default;
 import instance from "../../services/TemplateService";
 import EventHandlerService from "../../services/UIEventHandlerService";
+import "../../css/sass/main.scss";
 
 class UIController {
   constructor(

@@ -8,7 +8,7 @@
  */
 import instance from "../../services/TemplateService";
 import EventHandlerService from "../../services/UIEventHandlerService";
-
+import "../../css/sass/main.scss";
 const ShoppingCart = require("../../model/ShoppingCart").default;
 
 class CartController {
