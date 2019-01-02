@@ -107,15 +107,15 @@ class EventHandlerService {
     //console.log(cartInstance);
     ShoppingCart.GetCartInstanceAsync(cartInstance)
       .then(async shoppingCartInstance => {
-        console.log("Making a POST");
+        //console.log("Making a POST");
         let response = await shoppingCartInstance.postAddToCart(event.currentTarget.id);
-        console.log("POSt Done");
-        console.log(response);
+        //console.log("POSt Done");
+        //console.log(response);
         return shoppingCartInstance;
       })
       .then(shoppingCartInstance => {
         shoppingCartInstance.addProduct(event.currentTarget.id);
-        console.log(shoppingCartInstance);
+        //console.log(shoppingCartInstance);
         sessionStorage.setItem(
           "cartInstance",
           JSON.stringify(shoppingCartInstance)
