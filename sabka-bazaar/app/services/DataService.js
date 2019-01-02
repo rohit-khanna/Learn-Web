@@ -79,6 +79,22 @@ class DataService {
         });
     });
   }
+
+  postAddToCartAsync(data){
+    return new Promise(async (resolve, reject) => {
+      this.dalObj
+        .save(this.endpointArray.addToCart,{data:data})
+        .then(res => {
+          return this._handleDALResponse(res);
+        })
+        .then(output => {
+          resolve(output);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
 }
 
 // module.exports = DataService;

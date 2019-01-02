@@ -38,8 +38,8 @@ class CartController {
 
         this.updateTotalsInCheckoutButton();
 
-        $(".checkout .btn").on("click", function() {
-          alert("Checkout Done");
+        $(".checkout .btn").on("click", e=> {
+          this.closeTheCart(e);
         });
       } else {
         this.showEmptyCart(true);
@@ -49,16 +49,17 @@ class CartController {
 
   registerCartEvents() {
     $(".empty--cart button").on("click", e => {
-      this.eventHandlerSvc.shoppingCartDisplayHandler(
-        $(e.target).closest(".modal")[0].parentNode.id
-      );
+      this.closeTheCart(e);
     });
     $(".modal-content .header .close").on("click", e => {
-      this.eventHandlerSvc.shoppingCartDisplayHandler(
-        $(e.target).closest(".modal")[0].parentNode.id
-      );
-      
+     this.closeTheCart(e);      
     });
+  }
+
+  closeTheCart(e){
+    this.eventHandlerSvc.shoppingCartDisplayHandler(
+      $(e.target).closest(".modal")[0].parentNode.id
+    );
   }
 
   showEmptyCart(isEmpty) {
@@ -162,9 +163,6 @@ class CartController {
     });
   }
 
-  startShoppingClickHandler() {
-    alert("jhs");
-  }
 }
 
 const savedCartInstance = sessionStorage.getItem("cartInstance");

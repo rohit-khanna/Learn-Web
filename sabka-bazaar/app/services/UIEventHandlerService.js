@@ -20,7 +20,7 @@ class EventHandlerService {
    * PLP page with the cat_id as Query String
    * @param {*} event Event Object
    */
-  productCategoryQuickLinkBUttonClick(event) {  
+  productCategoryQuickLinkBUttonClick(event) {
     window.location.href =
       "./plp.html?cat_id=" + event.target.parentNode.parentNode.id;
   }
@@ -105,14 +105,23 @@ class EventHandlerService {
     //console.log("Button for Product ID:", event.currentTarget.id);
     let cartInstance = JSON.parse(sessionStorage.getItem("cartInstance"));
     //console.log(cartInstance);
-    ShoppingCart.GetCartInstanceAsync(cartInstance).then(
-      shoppingCartInstance => {
+    ShoppingCart.GetCartInstanceAsync(cartInstance)
+      .then(async shoppingCartInstance => {
+        console.log("Making a POST");
+        let response = await shoppingCartInstance.postAddToCart(event.currentTarget.id);
+        console.log("POSt Done");
+        console.log(response);
+        return shoppingCartInstance;
+      })
+      .then(shoppingCartInstance => {
         shoppingCartInstance.addProduct(event.currentTarget.id);
         console.log(shoppingCartInstance);
-        sessionStorage.setItem("cartInstance",JSON.stringify(shoppingCartInstance));
+        sessionStorage.setItem(
+          "cartInstance",
+          JSON.stringify(shoppingCartInstance)
+        );
         this.refreshTotalItemsCount(shoppingCartInstance);
-      }
-    );
+      });
   }
 
   /**
@@ -193,11 +202,11 @@ class EventHandlerService {
 
       $("#" + idOfModelContainer).html("");
       $("#" + idOfModelContainer)[0].dataset.content = "false";
-      $('body').css('overflow', 'auto');  // enable scrroling background
+      $("body").css("overflow", "auto"); // enable scrroling background
     } else {
       $("#" + idOfModelContainer)[0].dataset.content = "true";
       $("#" + idOfModelContainer).load("./cart.html");
-      $('body').css('overflow', 'hidden');  //stop scrroling background
+      $("body").css("overflow", "hidden"); //stop scrroling background
     }
     $(".header__cart__item-count").toggleClass("util_cartbutton_clicked");
   }

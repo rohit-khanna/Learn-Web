@@ -15,15 +15,15 @@ import DataService from "./DataService";
 
 class ShoppingCartService {
   constructor() {
-    console.log('NEW SCSvc');
-    
+    console.log("NEW SCSvc");
+
     this.dataService = new DataService(new FetchDAL());
     this.banners = [];
     this.categories = [];
     this.products = [];
-    Array.prototype.SortByOrder=function(){
+    Array.prototype.SortByOrder = function() {
       this.sort((a, b) => a.order - b.order);
-    }
+    };
   }
 
   loadMockDataAsync() {
@@ -40,13 +40,17 @@ class ShoppingCartService {
   }
   async _fetchCategories() {
     this.categories = await this.dataService.fetchCategoriesAsync();
-     return Promise.resolve();
+    return Promise.resolve();
   }
   async _fetchProducts() {
     this.products = await this.dataService.fetchProductsAsync();
-      return Promise.resolve();
+    return Promise.resolve();
   }
 }
+ShoppingCartService.prototype.postAddToCart = async function(data) {
+  this.products = await this.dataService.postAddToCartAsync(data);
+  return Promise.resolve();
+};
 
 // module.exports = ShoppingCartService;
 export default ShoppingCartService;

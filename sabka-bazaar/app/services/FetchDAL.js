@@ -21,6 +21,21 @@ class FetchDAL {
     let res = await fetch(endpoint);
     return res;
   }
+
+  /**
+   * Save
+   * @param {*} endpoint endpoint of service
+   */
+  async save(endpoint,data){
+    let res = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body:JSON.stringify(data)
+    });
+    return res;
+  }
 }
 
 // module.exports = FetchDAL;
