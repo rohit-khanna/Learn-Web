@@ -23,13 +23,13 @@ This will:
  ##### Screen Prints
  Page | Screenshot | 
 --- | --- |
-**Home**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/home.png" width="650" height="600"> |
-**PLP-MObile**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/plp-mobile.png"> |
-**PLP-Laptop**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/plp-laptop.png"> |
-**Cart-Empty-Mobile**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/cart-empty-mobile.png"> |
-**cart-Laptop**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/cart-laptop.png" > |
-**login-tablet**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/login-tablet.png" > |
-**register-tablet**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/register-tablet.png" > |
+**Home**| [Home Page](https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/home.png") |
+**PLP-MObile**|[PLP-Mobile]("https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/plp-mobile.png") |
+**PLP-Laptop**| [PLP-Laptop]("https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/plp-laptop.png") |
+**Cart-Empty-Mobile**|[empty cart mobile]("https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/cart-empty-mobile.png") |
+**cart-Laptop**| [cart laptop]("https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/cart-laptop.png") |
+**login-tablet**| [login Tablet]("https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/login-tablet.png") |
+**register-tablet**| [Register Tablet]("https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/register-tablet.png")|
 
 
  
