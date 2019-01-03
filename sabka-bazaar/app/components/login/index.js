@@ -8,79 +8,99 @@ class LoginController {
   }
 
   init() {
-
     $(".header__container").load("./header.html", () => {
       this.eventHandlerService.refreshTotalItemsCount(this.dataObject);
     });
 
-    $("#signup__password").on("input", e => {
-      let passwordEle = $(e.target);
-      let password = passwordEle[0];
-      let newPwd = password.value.replace(" ", "");
-      this.checkForEmptyControls();
-      if (newPwd.length != password.value.length) {
-        $("#space").addClass("invalid");
-        $("#signup__password")
-          .focus()
-          .addClass("invalid");
-      } else if (password.value.length < 6) {
-        $("#length").addClass("invalid");
-        $("#signup__password")
-          .focus()
-          .addClass("invalid");
-      } else {
-        $("#space").removeClass("invalid");
-        $("#length").removeClass("invalid");
-        $("#signup__password").removeClass("invalid");
-
-        if (/[a-zA_Z]/.test(newPwd) && /\d/.test(newPwd)) {
-          console.log('valid');
-          
-          $("#regex").removeClass("invalid");
-        } else {
-          console.log('invalid');
-          
-          $("#regex").addClass("invalid");
+    $(".signup__section__form form").on("input", e => {
+      this.checkForEmptyControls(e.target.id, () => {
+        if (e.target.id == "signup__password") {
+          this.checkForPasswordEligibility("#signup__password");
         }
-      }
-    });
-
-    $("#signup__email").on("input", e => {
-      let emailEle = $(e.target);
-      let email = emailEle[0];
-
-      this.checkForEmptyControls();
-      if (email.validity.typeMismatch) {
-        $("#email").addClass("invalid");
-        $("#signup__email")
-          .focus()
-          .addClass("invalid");
-      } else {
-        $("#signup__email").removeClass("invalid");
-        $("#email").removeClass("invalid");
-      }
+        if (e.target.id == "signup__email") {
+          this.checkForEmailEligibility("#signup__email");
+        }
+      });
     });
 
     $("#btnSubmit").on("click", e => {
       e.preventDefault();
-      this.checkForEmptyControls();
 
-      if ($(".error-area").find(".invalid").length == 0) {
-        $(".signup__section__form form").submit();
-      }
+      this.checkForEmptyControls(null, () => {
+        if ($(".error-area").find(".invalid").length == 0) {
+          $(".signup__section__form form").submit();
+        }
+      });
     });
   }
+  checkForPasswordEligibility(elementID) {
+    let passwordEle = $(elementID);
+    let password = passwordEle[0];
+    let newPwd = password.value.replace(" ", "");
 
-  checkForEmptyControls() {
-    if (!$("#signup__email").val()) {
-      $("#empty").addClass("invalid");
-      $("#signup__email").addClass("invalid");
-    } else if (!$("#signup__password").val()) {
-      $("#empty").addClass("invalid");
-      $("#signup__password").addClass("invalid");
+    if (newPwd.length != password.value.length) {
+      $("#space").addClass("invalid");
+      $(elementID)
+        .focus()
+        .addClass("invalid");
+    } else if (password.value.length < 6) {
+      $("#length").addClass("invalid");
+      $(elementID)
+        .focus()
+        .addClass("invalid");
     } else {
+      $("#space").removeClass("invalid");
+      $("#length").removeClass("invalid");
+      $(elementID).removeClass("invalid");
+
+      if (/[a-zA_Z]/.test(newPwd) && /\d/.test(newPwd)) {
+        $("#regex").removeClass("invalid");
+      } else {
+        $("#regex").addClass("invalid");
+      }
+    }
+  }
+
+  checkForEmailEligibility(elementID) {
+    let emailEle = $(elementID);
+    let email = emailEle[0];
+    if (email.validity.typeMismatch) {
+      $("#email").addClass("invalid");
+      $(elementID)
+        .focus()
+        .addClass("invalid");
+    } else {
+      $(elementID).removeClass("invalid");
+      $("#email").removeClass("invalid");
+    }
+  }
+
+  checkForEmptyControls(elementID, cb) {
+    const emptyValidationArray = ["#signup__email", "#signup__password"];
+
+    let arrayToTest = [];
+
+    if (elementID) {
+      arrayToTest = emptyValidationArray.filter(x => x == "#" + elementID);
+    } else {
+      arrayToTest = emptyValidationArray;
+    }
+    arrayToTest.forEach(ele => {
+      if (!$(ele).val()) {
+        $("#empty").addClass("invalid");
+        $(ele).addClass("invalid");
+      } else {
+        $(ele).removeClass("invalid");
+      }
+    });
+
+    if (
+      $(".signup__section__form form").find(".invalid").length == 0
+    ) {
+      // all invalids handled
       $("#empty").removeClass("invalid");
     }
+    cb();
   }
 }
 

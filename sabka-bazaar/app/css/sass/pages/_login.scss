@@ -20,7 +20,7 @@
     }
   }
   &__form {
-    padding-top: 2rem;
+    padding-top: 4rem;
     flex-basis: 50%;
   }
 
@@ -32,6 +32,7 @@
     border-radius: 5px;
     padding: 1rem 0rem;
     ul {
+      margin-top: 0.5rem;
       list-style: none;
       width: 300px;
 

@@ -23,8 +23,7 @@ class HeaderController {
     });
   }
 
-  checkForCurrentActivePage() {
-    //if(window.location.pathname.includes('login.html'))
+  checkForCurrentActivePage() {   
     if (window.location.pathname.includes("login.html"))
       $(".header__cart__item-count .login a").addClass(
         "util_link_selected--text"

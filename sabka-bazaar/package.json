@@ -6,10 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server": "canned  -p 5000 ./server",
-    "build": "webpack",
+    "build": "webpack --watch",
     "build-css": "sass ./app/css/sass/main.scss --watch ./app/index.css",
     "start-dev": "concurrently --kill-others \"npm run start-server\" \"npm run build\" \"npm run build-css\" \"live-server\"",
-    "dev": "start npm run start-server && start webpack --watch && live-server --open=/dist/"
+    "dev": "start npm run start-server && start webpack && live-server --open=/dist/"
   },
   "author": "Rohit Khanna",
   "license": "ISC",

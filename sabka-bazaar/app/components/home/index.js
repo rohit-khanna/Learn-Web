@@ -297,7 +297,7 @@ if (!cartInstance) {
     eventHandlerService
   );
   $().ready(function() {
-    console.log(cartInstance);
+
     controller.render();
   });
 }

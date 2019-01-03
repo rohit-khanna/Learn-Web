@@ -46,17 +46,7 @@ class RegisterController {
   }
 
   checkForEmptyControls(elementID) {
-    // let validationArray = [
-    //   { id: "#signup_register__fname", validation: ["#empty"] },
-    //   { id: "#signup_register__lname", validation: ["#empty"] },
-    //   { id: "#signup_register__email", validation: ["#empty", "#email"] },
-    //   {
-    //     id: "#signup_register__password",
-    //     validation: ["#empty", "#length", "#regex", "#space"]
-    //   },
-    //   { id: "#signup_register__cpassword", validation: ["#confirm"] },
-    // ];
-
+   
     const emptyValidationArray = [
       "#signup_register__fname",
       "#signup_register__lname",

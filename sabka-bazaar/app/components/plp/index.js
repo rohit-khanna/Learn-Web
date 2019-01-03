@@ -40,9 +40,6 @@ class UIController {
     $(".cart--toggle").on("click", () => {
       this.eventHandlerService.shoppingCartDisplayHandler("cartContainer");
     });
-    // $(".header__cart__item-count--value").on("click", e => {
-    //   this.eventHandlerService.shoppingCartDisplayHandler("cartContainer");
-    // });
   }
   /**
    * method to fetch teh Queyr Params from URL
@@ -215,7 +212,6 @@ class UIController {
    * @param {*} arrayOfCategories
    */
   populateCategoryList(templateFn, arrayOfCategories) {
-    // console.log(arrayOfCategories);
 
     arrayOfCategories.SortByOrder();
 

@@ -27,8 +27,6 @@ class EventHandlerService {
 
   refreshTotalItemsCount(shoppingCartInstance) {
     let totalItemCount = shoppingCartInstance.itemCount;
-    console.log(totalItemCount);
-    
     $(".header__cart__item-count--value .value").text(totalItemCount);
   }
 

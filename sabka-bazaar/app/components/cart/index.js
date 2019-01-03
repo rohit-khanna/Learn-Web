@@ -93,7 +93,7 @@ class CartController {
   }
 
   refreshCartItem(liItem, dataObj) {
-    console.log(dataObj);
+   
 
     if (dataObj.quantity == 0) {
       $(liItem).remove();
@@ -122,7 +122,7 @@ class CartController {
 
       let quantity = 0;
       if ($(e.target).hasClass("material-icons")) {
-        console.log($(e.target).text());
+      
 
         ShoppingCart.GetCartInstanceAsync(this.dataObject).then(
           shoppingCartInstance => {
@@ -157,7 +157,7 @@ class CartController {
               "cartInstance",
               JSON.stringify(shoppingCartInstance)
             );
-            console.log(shoppingCartInstance);
+          
           }
         );
       }
