@@ -10,30 +10,42 @@ It contains the following pages:
 - Login
 - Register
 
+#### To Run the Project
+use
+` npm run dev`
+This will:
+1. Compile CSS/JS into respective bundles
+2. Create HTML files using templates, induce the above (Step-1) dependencies during runtime
+3. Start The MOCK-SERVER to feed data
+4. Power Up a local server [Live-server](https://www.npmjs.com/package/live-server) to serve the website  (http://127.0.0.1:8080)
+
+
  ##### Screen Prints
  Page | Screenshot | 
 --- | --- |
 **Home**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/home.png" width="650" height="600"> |
 **PLP-MObile**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/plp-mobile.png"> |
 **PLP-Laptop**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/plp-laptop.png"> |
+**Cart-Empty-Mobile**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/cart-empty-mobile.png"> |
+**cart-Laptop**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/cart-laptop.png" > |
+**login-tablet**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/login-tablet.png" > |
+**register-tablet**| <img src="https://github.com/rohit-khanna/Learn-Web/blob/master/sabka-bazaar/screenprints/register-tablet.png" > |
+
+
  
 
 #### Stylesheet
 SASS is used for styling the components/pages
-`npm run build-css` 
-will build the SASS & transpiles it into 1 css file
 
 #### Javascript
-The JS files for UI are present under *app/js* folder.
+JS is used as programming language for Controller of different views/pages.
 Webpack is used to bundle them.
-`npm run build-js`
 
 
-## Server
+
+## Data Server
 We are using a mock server here [canned](https://www.npmjs.com/package/canned)
-##### Run Mock Server
-`npm run start-server`
-This will make the server up & Running at `http://localhost:5000`
+The server will be made up & Running at `http://localhost:5000` either running `npm run start-server` or `npm run dev`
 The api endpoints are:
 
 
@@ -44,3 +56,9 @@ Data | Endpoint |
  **Product Categories** | GET http://localhost:5000/categories |
  **Products** | GET http://localhost:5000/products |
  **Add Product To Cart** | POST http://localhost:5000/addToCart |
+ 
+ ## References
+ * [CSS Modal](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal)
+ * [Webpack Chunks](https://webpack.js.org/guides/code-splitting)
+ * [Material Design Icons](https://material.io/tools/icons/?style=baseline)
+ 
