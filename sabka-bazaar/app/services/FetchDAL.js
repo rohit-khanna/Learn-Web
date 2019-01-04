@@ -9,7 +9,7 @@
 
 "use strict";
 //const fetch = require("node-fetch"); // to run fetch over NodeJS
-//const fetch = require("node-fetch"); // to run fetch over NodeJS
+import "whatwg-fetch";
 
 class FetchDAL {
   constructor() {}
@@ -26,13 +26,13 @@ class FetchDAL {
    * Save
    * @param {*} endpoint endpoint of service
    */
-  async save(endpoint,data){
+  async save(endpoint, data) {
     let res = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "text/plain; charset=utf-8"
       },
-      body:JSON.stringify(data)
+      body: JSON.stringify(data)
     });
     return res;
   }

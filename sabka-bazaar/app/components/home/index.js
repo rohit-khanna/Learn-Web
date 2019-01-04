@@ -12,6 +12,9 @@ import instance from "../../services/TemplateService";
 import EventHandlerService from "../../services/UIEventHandlerService";
 import "../../css/sass/main.scss";
 
+import Promise from 'promise-polyfill'; 
+if (!window.Promise) { window.Promise = Promise }
+
 class UIController {
   constructor(
     ShoppingCartInstance,

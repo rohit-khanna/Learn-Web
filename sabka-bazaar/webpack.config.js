@@ -13,8 +13,8 @@ module.exports = {
   },
   mode: "none",
   output: {
-    path: path.resolve(__dirname, "dist"),   
-     filename: "[name].bundle.js"
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].bundle.js"
   },
   devtool: "source-map",
   module: {
@@ -43,32 +43,32 @@ module.exports = {
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
       filename: "plp.html",
-      chunks: ['plp'],
+      chunks: ["plp"],
       template: "app/components/plp/index.html"
     }),
     new HtmlWebpackPlugin({
       filename: "index.html",
-      chunks: ['index'],
+      chunks: ["index"],
       template: "app/components/home/index.html"
     }),
     new HtmlWebpackPlugin({
       filename: "cart.html",
-      chunks: ['cart'],
+      chunks: ["cart"],
       template: "app/components/cart/index.html"
     }),
     new HtmlWebpackPlugin({
       filename: "header.html",
-      chunks: ['header'],
+      chunks: ["header"],
       template: "app/components/header/index.html"
     }),
     new HtmlWebpackPlugin({
       filename: "login.html",
-      chunks: ['login'],
+      chunks: ["login"],
       template: "app/components/login/index.html"
     }),
     new HtmlWebpackPlugin({
       filename: "register.html",
-      chunks: ['register'],
+      chunks: ["register"],
       template: "app/components/register/index.html"
     })
   ]
