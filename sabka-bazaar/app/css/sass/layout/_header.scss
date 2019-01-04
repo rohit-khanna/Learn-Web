@@ -2,7 +2,7 @@
   &__container {
     background-color: white;
     -webkit-box-shadow: 0px 3px 11px $shadow-color;
-            box-shadow: 0px 3px 11px $shadow-color;
+    box-shadow: 0px 3px 11px $shadow-color;
     position: -webkit-sticky;
     position: sticky;
     padding-left: 0.1rem;
@@ -15,15 +15,15 @@
   display: flex;
   font-size: inherit;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 
   &__logo {
     -ms-flex-preferred-size: 65%;
-        flex-basis: 65%;
+    flex-basis: 65%;
     text-align: left;
     -ms-flex-item-align: center;
-        align-self: center;
+    align-self: center;
     img {
       width: 50%;
       margin: 0.1rem 0;
@@ -36,18 +36,19 @@
 
   &__cart__item-count {
     -ms-flex-preferred-size: 35%;
-        flex-basis: 35%;
+    flex-basis: 35%;
     text-align: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -ms-grid;
     display: grid;
     cursor: pointer;
-    display: -ms-grid;
+   
     padding: 0.5rem 0;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     background-color: $secondary-background-color;
     grid-template-columns: 40% 60%;
     margin: 0 0;
@@ -59,7 +60,7 @@
       grid-column-start: 1;
       grid-column-end: 3;
       display: grid;
-     
+
       margin: 0 0;
       grid-template-columns: 40% 60%;
     }
@@ -80,7 +81,7 @@
   .header {
     &__logo {
       -ms-flex-preferred-size: 70%;
-          flex-basis: 70%;
+      flex-basis: 70%;
 
       img {
         width: 50%;
@@ -90,7 +91,7 @@
 
     &__cart__item-count {
       -ms-flex-preferred-size: 30%;
-          flex-basis: 30%;
+      flex-basis: 30%;
       &--logo {
         width: 2.1rem;
         margin: 0 0.5rem 0 0.5rem;
@@ -111,15 +112,15 @@
     font-size: inherit;
     // box-shadow: 0px 3px 11px $shadow-color;
     -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
 
     &__logo {
       -ms-flex-preferred-size: 20%;
-          flex-basis: 20%;
+      flex-basis: 20%;
       text-align: left;
       -ms-flex-item-align: center;
-          align-self: center;
+      align-self: center;
       img {
         width: 75%;
         margin: 0.1rem 0;
@@ -128,10 +129,10 @@
 
     &__nav {
       -ms-flex-preferred-size: 60%;
-          flex-basis: 60%;
+      flex-basis: 60%;
       display: inline-block;
       -ms-flex-item-align: end;
-          align-self: flex-end;
+      align-self: flex-end;
       margin-bottom: 1rem;
 
       & > ul {
@@ -154,17 +155,17 @@
 
     &__cart__item-count {
       -ms-flex-preferred-size: 18%;
-          flex-basis: 18%;
+      flex-basis: 18%;
       text-align: left;
       -webkit-box-align: initial;
-          -ms-flex-align: initial;
-              align-items: initial;
+      -ms-flex-align: initial;
+      align-items: initial;
       display: grid;
       display: -ms-grid;
       padding: 0rem 0;
       -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
       background-color: $secondary-background-color;
       grid-template-columns: 40% 60%;
 
@@ -185,14 +186,14 @@
         width: 1.9rem;
         text-align: right;
         -ms-flex-item-align: center;
-            align-self: center;
+        align-self: center;
         margin: 0.5rem 0.5rem;
       }
       &--value {
         font-size: 1.1rem;
         font-weight: 700;
         -ms-flex-item-align: center;
-            align-self: center;
+        align-self: center;
 
         padding: 0.1rem 0.3rem 0 0;
       }
@@ -207,7 +208,7 @@
 
     &__nav {
       -ms-flex-preferred-size: 68%;
-          flex-basis: 68%;
+      flex-basis: 68%;
 
       & > ul {
         & > li {
@@ -220,7 +221,7 @@
 
     &__cart__item-count {
       -ms-flex-preferred-size: 12%;
-          flex-basis: 12%;
+      flex-basis: 12%;
     }
   }
 }

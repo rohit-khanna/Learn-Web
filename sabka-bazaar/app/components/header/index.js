@@ -23,25 +23,24 @@ class HeaderController {
     });
   }
 
-  checkForCurrentActivePage() {   
-    if (window.location.pathname.includes("login.html"))
+  checkForCurrentActivePage() {
+    if (window.location.pathname.indexOf("login.html") >= 0)
       $(".header__cart__item-count .login a").addClass(
         "util_link_selected--text"
       );
-      else  if (window.location.pathname.includes("register.html"))
+    else if (window.location.pathname.indexOf("register.html") > 0)
       $(".header__cart__item-count .register a").addClass(
         "util_link_selected--text"
       );
-      else  if (window.location.pathname.includes("plp.html"))
-      $(".header__nav ul li a").last().addClass(
-        "util_link_selected--text"
-      );
-      else
-      {
-        $(".header__nav ul li a").first().addClass(
-            "util_link_selected--text"
-          );
-      }
+    else if (window.location.pathname.indexOf("plp.html") > 0)
+      $(".header__nav ul li a")
+        .last()
+        .addClass("util_link_selected--text");
+    else {
+      $(".header__nav ul li a")
+        .first()
+        .addClass("util_link_selected--text");
+    }
   }
 }
 
