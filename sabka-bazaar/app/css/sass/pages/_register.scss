@@ -2,11 +2,16 @@
   margin: 0rem 0;
   background-color: $primary-background-color;
   height: 65vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   position: relative;
   &__info-text {
-    flex-basis: 45%;
+    -ms-flex-preferred-size: 45%;
+        flex-basis: 45%;
     padding: 2rem 2rem 1rem 4rem;
 
     h2 {
@@ -21,7 +26,8 @@
   }
   &__form {
     padding-top: 2rem;
-    flex-basis: 50%;
+    -ms-flex-preferred-size: 50%;
+        flex-basis: 50%;
   }
 
   .error-area {
@@ -38,9 +44,15 @@
       li {
         margin: 0.3rem 0;
         font-size: 0.8em;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: left;
-        align-items: center;
+        -webkit-box-pack: left;
+            -ms-flex-pack: left;
+                justify-content: left;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         span {
           padding-left: 0.3rem;
         }

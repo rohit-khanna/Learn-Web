@@ -4,14 +4,22 @@ RESET
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   outline: none;
 }
 
 body {
+   display: -webkit-box;
+   display: -ms-flexbox;
    display: flex;
-   flex-direction: column;
-   justify-content: space-between;
+   -webkit-box-orient: vertical;
+   -webkit-box-direction: normal;
+       -ms-flex-direction: column;
+           flex-direction: column;
+   -webkit-box-pack: justify;
+       -ms-flex-pack: justify;
+           justify-content: space-between;
 }
 
 body,

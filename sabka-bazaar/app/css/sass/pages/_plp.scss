@@ -1,6 +1,11 @@
 .plp__section {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 
   &__category__filter {
     &__bar {
@@ -71,30 +76,52 @@
     &__product-row {
       margin: 1.5rem 0.5rem;
       padding-bottom: 1rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-pack: start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
       border-bottom: 1px dotted $tertiary-font-color;
 
       h2 {
         overflow: hidden;
       }
       &__content {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         margin-top: 1rem;
-        flex-direction: row;
-        justify-content: space-between;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
         img {
-          flex-basis: 45%;
-          align-self: center;
+          -ms-flex-preferred-size: 45%;
+              flex-basis: 45%;
+          -ms-flex-item-align: center;
+              align-self: center;
           max-width: 150px;
           width: 45%;
         }
 
         .button-area {
+          display: -webkit-box;
+          display: -ms-flexbox;
           display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
+          -webkit-box-pack: justify;
+              -ms-flex-pack: justify;
+                  justify-content: space-between;
+          -webkit-box-align: end;
+              -ms-flex-align: end;
+                  align-items: flex-end;
          
         }
         .button-area > span {
@@ -111,7 +138,8 @@
 
 
         .details {
-          flex-basis: 50%;
+          -ms-flex-preferred-size: 50%;
+              flex-basis: 50%;
           font-size: 0.8rem;
           p {
             background-color: $secondary-background-color;
@@ -130,11 +158,15 @@
 
 @media only screen and (min-width: 700px) {
   .plp__section {
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
 
     &__category__filter {
       margin-top: -1rem;
-      flex-basis: 20%;
+      -ms-flex-preferred-size: 20%;
+          flex-basis: 20%;
       background-color: $secondary-background-color;
       border-radius: 2px;
       &__container {
@@ -167,17 +199,28 @@
     }
 
     &__products {
-      flex-basis: 80%;
+      -ms-flex-preferred-size: 80%;
+          flex-basis: 80%;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
       padding-bottom: 0.5rem;
 
       &__product-row {
-        flex-basis: 47%;
+        -ms-flex-preferred-size: 47%;
+            flex-basis: 47%;
         margin: 1.5rem 0.5rem 1.5rem 0.3rem;
 
-        justify-content: flex-start;
+        -webkit-box-pack: start;
+
+            -ms-flex-pack: start;
+
+                justify-content: flex-start;
         h2 {
           font-size: 1.1rem;
           text-align: center;
@@ -243,10 +286,16 @@
     }
 
     &__products {
-      flex-basis: 80%;
+      -ms-flex-preferred-size: 80%;
+          flex-basis: 80%;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+      -webkit-box-pack: start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
       padding-bottom: 0.5rem;
       padding-left: 1rem;
 
@@ -255,9 +304,11 @@
         min-height: 400px;
         position: relative;
         padding-left: 0.5rem;
-        flex-basis: 24%;
+        -ms-flex-preferred-size: 24%;
+            flex-basis: 24%;
         &:last-of-type() {
-          flex-basis: 24%;
+          -ms-flex-preferred-size: 24%;
+              flex-basis: 24%;
         }
         h2 {
           font-size: 1rem;
@@ -266,12 +317,20 @@
         }
 
         &__content {
+          display: -webkit-box;
+          display: -ms-flexbox;
           display: flex;
-          justify-content: flex-start;
-          flex-direction: column;
+          -webkit-box-pack: start;
+              -ms-flex-pack: start;
+                  justify-content: flex-start;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+              -ms-flex-direction: column;
+                  flex-direction: column;
           img {
             text-align: center;
-            transform: scale(1.1);
+            -webkit-transform: scale(1.1);
+                    transform: scale(1.1);
             width: 100%;
           }
 
@@ -291,7 +350,8 @@
 
             .button-area > span {
               display: inline-block;
-              flex-basis: 50%;
+              -ms-flex-preferred-size: 50%;
+                  flex-basis: 50%;
               font-size: 1rem;
               text-align: center;
               padding-bottom: 0.5rem;
@@ -302,7 +362,8 @@
            
 
             button {
-              flex-basis: 50%;
+              -ms-flex-preferred-size: 50%;
+                  flex-basis: 50%;
               display: inline-block;
               font-size: 1rem;
               padding: 0.5em 0.8em;

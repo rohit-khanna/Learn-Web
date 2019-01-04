@@ -22,21 +22,35 @@
 %product_cat_row {
   margin: 1rem 0;
   padding: 1rem 0.5rem;
-  align-self: center;
-  box-shadow: 0px 25px 23px -22px $shadow-color;
+  -ms-flex-item-align: center;
+      align-self: center;
+  -webkit-box-shadow: 0px 25px 23px -22px $shadow-color;
+          box-shadow: 0px 25px 23px -22px $shadow-color;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   img {
-    flex-basis: 30%;
-    align-self: center;
+    -ms-flex-preferred-size: 30%;
+        flex-basis: 30%;
+    -ms-flex-item-align: center;
+        align-self: center;
     width: 40%;
-    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
   }
   .content {
     text-align: center;
-    flex-basis: 70%;
-    align-self: flex-start;
+    -ms-flex-preferred-size: 70%;
+        flex-basis: 70%;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
     font-size: 0.8rem;
     p {
       margin: 0.3rem 0;
@@ -52,12 +66,15 @@
   }
   %product_cat_row {
     img {
-      flex-basis: 40%;
-      align-self: center;
+      -ms-flex-preferred-size: 40%;
+          flex-basis: 40%;
+      -ms-flex-item-align: center;
+          align-self: center;
       width: 35%;
     }
     .content {
-      flex-basis: 60%;
+      -ms-flex-preferred-size: 60%;
+          flex-basis: 60%;
       font-size: 1.2rem;
       p {
         margin: 0.3rem 0;
@@ -76,12 +93,15 @@
  
   %product_cat_row {
     img {
-      flex-basis: 40%;
-      align-self: center;
+      -ms-flex-preferred-size: 40%;
+          flex-basis: 40%;
+      -ms-flex-item-align: center;
+          align-self: center;
       width: 35%;
     }
     .content {
-      flex-basis: 60%;
+      -ms-flex-preferred-size: 60%;
+          flex-basis: 60%;
       font-size: 1.2rem;
       p {
         margin: 1rem 0;

@@ -48,14 +48,10 @@ class UIController {
     $(".cart--toggle").on("click", () => {
       this.eventHandlerService.shoppingCartDisplayHandler("cartContainer");
     });
-    // $(".header__cart__item-count--value").on("click", e => {
-    //   this.eventHandlerService.shoppingCartDisplayHandler("cartContainer");
-    // });
+   
   }
 
-  /**
-   * TODO
-   */
+  
   registerNextPrevButtonHandlersForCorousal() {
     let prevButton = $(".section__corousal .corousal .prev");
     let nextButton = $(".section__corousal .corousal .next");

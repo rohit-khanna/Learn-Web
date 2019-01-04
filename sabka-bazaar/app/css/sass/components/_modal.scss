@@ -30,9 +30,15 @@
     top: 1rem;
     background-color: $primary-background-color;
     margin-top: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: left;
-    align-items: baseline;
+    -webkit-box-pack: left;
+        -ms-flex-pack: left;
+            justify-content: left;
+    -webkit-box-align: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
     padding: 1rem 1rem;
     h2 {
       font-weight: 700;
@@ -78,19 +84,33 @@
         border-bottom: 1px solid $secondary-font-color-opacity;
         width: 100%;
         font-size: 0.9rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
 
-        flex-direction: row;
+        -webkit-box-orient: horizontal;
+
+        -webkit-box-direction: normal;
+
+            -ms-flex-direction: row;
+
+                flex-direction: row;
         padding: 0.1rem 0.5rem 0.3rem 0.5rem;
-        justify-content: space-between;
-        align-items: center;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         img {
-          flex-basis: 15%;
+          -ms-flex-preferred-size: 15%;
+              flex-basis: 15%;
           width: 20%;
         }
         .details {
           padding-left: 0.5rem;
-          flex-basis: 65%;
+          -ms-flex-preferred-size: 65%;
+              flex-basis: 65%;
           h3 {
             display: block;
             font-size: 0.9em;
@@ -98,18 +118,34 @@
           }
           .edit__box {
             margin-top: 0.4rem;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
             width: 100%;
-            flex-direction: row;
-            justify-content: left;
-            align-items: center;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+                -ms-flex-direction: row;
+                    flex-direction: row;
+            -webkit-box-pack: left;
+                -ms-flex-pack: left;
+                    justify-content: left;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
             font-size: 1em;
             .counters {
-              flex-basis: 60%;
+              -ms-flex-preferred-size: 60%;
+                  flex-basis: 60%;
               width: 5rem;
+              display: -webkit-box;
+              display: -ms-flexbox;
               display: flex;
-              justify-content: space-evenly;
-              align-items: center;
+              -webkit-box-pack: space-evenly;
+                  -ms-flex-pack: space-evenly;
+                      justify-content: space-evenly;
+              -webkit-box-align: center;
+                  -ms-flex-align: center;
+                      align-items: center;
               a:active,
               a:hover {
                 outline: none;
@@ -125,13 +161,15 @@
             }
 
             span {
-              flex-basis: 40%;
+              -ms-flex-preferred-size: 40%;
+                  flex-basis: 40%;
               font-size: 1.1em;
             }
           }
         }
         .price {
-          flex-basis: 20%;
+          -ms-flex-preferred-size: 20%;
+              flex-basis: 20%;
           font-weight: 700;
           text-align: right;
           font-size: 1.25em;
@@ -149,10 +187,14 @@
         border-radius: 5px;
         padding: 1rem 0.2rem;
         background-color: $primary-background-color;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
         img {
-          flex-basis: 20%;
+          -ms-flex-preferred-size: 20%;
+              flex-basis: 20%;
           width: 40%;
         }
         h4 {
@@ -169,6 +211,7 @@
     text-align: center;
     padding: 0.5rem 0rem 0.5rem 0;
     background-color: $primary-background-color;
+    position: -webkit-sticky;
     position: sticky;
     bottom: 0;
     left: 0;
@@ -181,17 +224,23 @@
     .btn {
       margin: 0.5rem auto;
       width: 95%;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
       padding: 1rem 1rem;
       font-size: 1.2rem;
       font-weight: 400;
-      justify-content: space-between;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
 
       span:nth-of-type(1) {
-        flex-basis: 60%;
+        -ms-flex-preferred-size: 60%;
+            flex-basis: 60%;
       }
       span:nth-of-type(2) {
-        flex-basis: 30%;
+        -ms-flex-preferred-size: 30%;
+            flex-basis: 30%;
         text-align: right;
         font-weight: 700;
       }
@@ -202,10 +251,18 @@
     height: 80vh;
     width: 100%;
     background-color: $primary-background-color;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -ms-flex-line-pack: center;
+        align-content: center;
     .message {
       width: 80%;
       text-align: center;
@@ -262,12 +319,14 @@
             padding: 0.1rem 0.5rem 0.3rem 0.5rem;
 
             img {
-              flex-basis: 15%;
+              -ms-flex-preferred-size: 15%;
+                  flex-basis: 15%;
               width: 20%;
             }
             .details {
               padding-left: 0.5rem;
-              flex-basis: 75%;
+              -ms-flex-preferred-size: 75%;
+                  flex-basis: 75%;
               h3 {
                 font-size: 1.1em;
                 margin: -1.5rem 1rem 1rem 0.5rem;
@@ -276,7 +335,9 @@
                 width: 20rem;
                 font-size: 1.3em;
                 text-align: left;
-                justify-content: space-between;
+                -webkit-box-pack: justify;
+                    -ms-flex-pack: justify;
+                        justify-content: space-between;
                 a:active,
                 a:hover {
                   outline: none;
@@ -295,7 +356,8 @@
               }
             }
             .price {
-              flex-basis: 20%;
+              -ms-flex-preferred-size: 20%;
+                  flex-basis: 20%;
               margin-right: 0.5rem;
 
               font-size: 1.35em;
@@ -313,10 +375,15 @@
             border-radius: 5px;
             padding: 1rem 0.2rem;
             background-color: $primary-background-color;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            justify-content: left;
+            -webkit-box-pack: left;
+                -ms-flex-pack: left;
+                    justify-content: left;
             img {
-              flex-basis: 20%;
+              -ms-flex-preferred-size: 20%;
+                  flex-basis: 20%;
               width: 40%;
             }
             h4 {
@@ -343,10 +410,12 @@
           font-size: 2rem;
 
           span:nth-of-type(1) {
-            flex-basis: 60%;
+            -ms-flex-preferred-size: 60%;
+                flex-basis: 60%;
           }
           span:nth-of-type(2) {
-            flex-basis: 30%;
+            -ms-flex-preferred-size: 30%;
+                flex-basis: 30%;
             text-align: right;
             font-weight: 700;
           }
@@ -437,7 +506,8 @@
           padding: 0.5rem 0.5rem;
           div {
             img {
-              flex-basis: 35%;
+              -ms-flex-preferred-size: 35%;
+                  flex-basis: 35%;
             }
             h4 {
               font-size: 0.7em;
@@ -449,6 +519,7 @@
       .checkout {
         padding: 0.5rem 0rem 0.5rem 0;
         background-color: $primary-background-color;
+        position: -webkit-sticky;
         position: sticky;
         bottom: 0;
         left: 0;
@@ -457,10 +528,12 @@
         .btn {
           padding: 0.5rem 0.5rem;
           span:nth-of-type(1) {
-            flex-basis: 60%;
+            -ms-flex-preferred-size: 60%;
+                flex-basis: 60%;
           }
           span:nth-of-type(2) {
-            flex-basis: 30%;
+            -ms-flex-preferred-size: 30%;
+                flex-basis: 30%;
             text-align: right;
             font-weight: 700;
           }
