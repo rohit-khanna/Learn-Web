@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 class FetchComponent extends Component {
 	constructor(props) {
@@ -8,10 +8,6 @@ class FetchComponent extends Component {
 			data: '',
 			error: ''
 		};
-	}
-
-	shouldComponentUpdate(nextProps, nextState) {
-		return true;
 	}
 
 	fetchRouteToken = async (url, route, data) => {
@@ -48,7 +44,6 @@ class FetchComponent extends Component {
 	};
 
 	async componentDidMount() {
-		console.log('CDM');
 		const { url, data, route } = this.props;
 		this.setState({ isFetching: true }, async () => {
 			const dataResponse = await this.fetchRouteToken(url, route, data);
