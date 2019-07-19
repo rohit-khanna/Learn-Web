@@ -1,0 +1,19 @@
+.SearchComponent_Container {
+	padding: 0.5rem;
+}
+
+.SearchComponent_Container .label-heading {
+	font-weight: 500;
+	margin-right: 0.5rem;
+}
+
+.SearchComponent_Container .result {
+	margin-top: 4rem;
+}
+
+.SearchComponent_Container .buttonGroup {
+	margin-top: 2rem;
+	width: 70%;
+	display: flex;
+	justify-content: space-between;
+}
