@@ -8,7 +8,11 @@ class MapComponent extends Component {
 	}
 	render() {
 		const { locationPoints } = this.props;
-		return <div>{`${locationPoints[0].startLocation}- ${locationPoints[0].endLocation}`}</div>;
+		if (locationPoints)
+			return locationPoints.map((x, idx) => {
+				return <p key={idx}>{`${x[0]}- ${x[1]}`}</p>;
+			});
+		return '';
 	}
 }
 

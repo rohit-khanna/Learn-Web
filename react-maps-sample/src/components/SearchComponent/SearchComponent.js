@@ -8,9 +8,10 @@ import './SearchComponent.css';
 
 class SearchComponentInner extends Component {
 	render() {
-		const { initialValues, handleLocationSubmit } = this.props;
+		const { initialValues, handleLocationSubmit, hasError, info } = this.props;
 		return (
 			<Formik
+				enableReinitialize
 				initialValues={initialValues}
 				onSubmit={(values, { resetForm }) => {
 					handleLocationSubmit(values);
@@ -44,24 +45,36 @@ class SearchComponentInner extends Component {
 									}}
 								/>
 							</Form.Group>
-							{values.result && (
+
+							{info && <div className={`${hasError ? 'error' : 'information'}`}>{info}</div>}
+							{values.result.total_distance && (
 								<div className="result">
 									<Form.Group>
 										<Form.Label className="label-heading">total distance:</Form.Label>
-										<Form.Label> {values.result.totDistance}</Form.Label>
+										<Form.Label> {values.result.total_distance}</Form.Label>
 									</Form.Group>
 									<Form.Group>
 										<Form.Label className="label-heading">total time:</Form.Label>
-										<Form.Label> {values.result.totTime}</Form.Label>
+										<Form.Label> {values.result.total_time}</Form.Label>
 									</Form.Group>
 								</div>
 							)}
 
 							<div className="buttonGroup">
-								<Button variant="secondary" type="submit" title="Submit">
-									{values.result ? 'Re-Submit' : 'Submit'}
+								<Button
+									variant="primary"
+									type="submit"
+									title="Submit"
+									disabled={values.isApiCallInProgress}
+								>
+									{values.result.total_distance ? 'Re-Submit' : 'Submit'}
 								</Button>
-								<Button variant="outline-secondary" onClick={handleReset} title="Reset">
+								<Button
+									variant="outline-secondary"
+									onClick={handleReset}
+									title="Reset"
+									disabled={values.isApiCallInProgress}
+								>
 									Reset
 								</Button>
 							</div>

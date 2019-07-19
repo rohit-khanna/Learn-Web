@@ -17,3 +17,10 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+.error {
+	color: red;
+}
+.information {
+	color: #3ed93e;
+}

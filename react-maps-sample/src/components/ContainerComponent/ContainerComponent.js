@@ -12,6 +12,11 @@ const ContainerComponentInner = (props) => {
 				</Col>
 				<Col>{props.children[1]}</Col>
 			</Row>
+			{props.children.length > 2 && (
+				<Row>
+					<Col>{props.children[2]}</Col>
+				</Row>
+			)}
 		</div>
 	);
 };
