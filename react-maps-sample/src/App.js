@@ -30,7 +30,7 @@ class App extends Component {
 			this.setState({
 				isApiCallInProgress: false,
 				hasError: true,
-				info: 'Error: ' + error,
+				info: error,
 				result: {}
 			});
 		} else if (isFetching) {

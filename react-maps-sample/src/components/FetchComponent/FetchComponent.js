@@ -10,37 +10,38 @@ class FetchComponent extends Component {
 		};
 	}
 
-	fetchRouteToken = async (url, route, data) => {
-		try {
-			const response = await fetch(url + route, {
-				method: 'post',
-				body: JSON.stringify(data),
-				headers: { 'Content-Type': 'application/json' }
-			});
+	fetchData = async (url, method, data) => {
+		const payLoad = {
+			method: method,
+			headers: { 'Content-Type': 'application/json' }
+		};
 
+		if (data) payLoad.body = JSON.stringify(data);
+
+		try {
+			const response = await fetch(url, payLoad);
 			if (!response.ok) {
-				throw new Error(response.status);
+				switch (response.status) {
+					case 500:
+						throw new Error('Internal Service Error');
+					case 400:
+						throw new Error('Not Found Error');
+					default:
+						throw new Error(response.status);
+				}
 			}
 			return await response.json();
-		} catch (error) {
-			this.setState({ error: error.message });
+		} catch (excep) {
+			this.setState({ error: excep.message });
 		}
 	};
 
-	getRoute = async (url, route, token) => {
-		try {
-			const response = await fetch(url + route + '/' + token, {
-				method: 'get',
-				headers: { 'Content-Type': 'application/json' }
-			});
+	fetchRouteToken = async (url, route, data) => {
+		return await this.fetchData(url + route, 'POST', data);
+	};
 
-			if (!response.ok) {
-				throw new Error(response.status);
-			}
-			return await response.json();
-		} catch (error) {
-			this.setState({ error: error.message });
-		}
+	getRoute = async (url, route, token) => {
+		return await this.fetchData(url + route + '/' + token, 'GET');
 	};
 
 	async componentDidMount() {
