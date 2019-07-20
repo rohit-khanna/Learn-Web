@@ -65,6 +65,7 @@ class App extends Component {
 					hasError={hasError}
 				/>
 				<MapComponent
+					key={result.path ? result.path.length : 0}
 					isMarkerShown
 					googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&key=${MAP_API_KEY}&libraries=geometry,drawing,places`}
 					loadingElement={<div style={{ height: `100%` }} />}
