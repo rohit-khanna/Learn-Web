@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 This app uses: 
-1. react-google-maps (https://tomchentw.github.io/react-google-maps/) for maps integration.
-2. Formik () for React Forms
+1. [react-google-maps](https://tomchentw.github.io/react-google-maps/) for maps integration.
+2. [Formik](https://jaredpalmer.com/formik/) for React Forms
 
 ## Configurations
 The Following configurations should be setup before running the application.
