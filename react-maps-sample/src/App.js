@@ -4,7 +4,7 @@ import ContainerComponent from './components/ContainerComponent';
 import SearchComponent from './components/SearchComponent';
 import MapComponent from './components/MapComponent';
 import FetchComponent from './components/FetchComponent';
-import { BACKEND_URL } from './config';
+import { BACKEND_URL, MAP_API_KEY } from './config';
 
 class App extends Component {
 	constructor() {
@@ -17,7 +17,7 @@ class App extends Component {
 
 			result: {
 				status: '',
-				path: [ [ '0.0', '0.2' ] ],
+				path: [],
 				total_distance: '',
 				total_time: '',
 				error: ''
@@ -64,7 +64,14 @@ class App extends Component {
 					info={info}
 					hasError={hasError}
 				/>
-				<MapComponent locationPoints={result.path} />
+				<MapComponent
+					isMarkerShown
+					googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&key=${MAP_API_KEY}&libraries=geometry,drawing,places`}
+					loadingElement={<div style={{ height: `100%` }} />}
+					containerElement={<div style={{ height: `100vh` }} />}
+					mapElement={<div style={{ height: `100%` }} />}
+					markers={result.path}
+				/>
 				{isApiCallInProgress && (
 					<FetchComponent
 						url={BACKEND_URL}
