@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { MdClose } from 'react-icons/md';
 import './FormikInput.css';
 
-const FormikInput = ({ field, value, setFieldValue, handleClearClick }) => {
+const FormikInput = ({ field, value, setFieldValue, handleClearClick, ...restProps }) => {
 	return (
 		<div className="formikInput_Container">
 			<Form.Control

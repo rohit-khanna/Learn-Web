@@ -13,6 +13,13 @@ class SearchComponentInner extends Component {
 			<Formik
 				enableReinitialize
 				initialValues={initialValues}
+				validate={(values) => {
+					const error = {};
+
+					if (!values.startLocation) error.startLocation = 'required';
+					if (!values.endLocation) error.endLocation = 'required';
+					return error;
+				}}
 				onSubmit={(values, { resetForm }) => {
 					handleLocationSubmit(values);
 					resetForm();
@@ -47,6 +54,7 @@ class SearchComponentInner extends Component {
 							</Form.Group>
 
 							{info && <div className={`${hasError ? 'error' : 'information'}`}>{info}</div>}
+
 							{values.result.total_distance && (
 								<div className="result">
 									<Form.Group>
@@ -65,7 +73,10 @@ class SearchComponentInner extends Component {
 									variant="primary"
 									type="submit"
 									title="Submit"
-									disabled={values.isApiCallInProgress}
+									disabled={values.isApiCallInProgress || Object.keys(errors).length > 0}
+									className={
+										values.isApiCallInProgress || Object.keys(errors).length > 0 ? 'disabled' : ''
+									}
 								>
 									{values.result.total_distance ? 'Re-Submit' : 'Submit'}
 								</Button>

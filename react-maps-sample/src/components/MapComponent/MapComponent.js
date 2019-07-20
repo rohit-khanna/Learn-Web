@@ -30,10 +30,10 @@ const MapComponent = compose(
 	})
 )((props) => (
 	<GoogleMap
-		defaultZoom={10}
+		zoom={12}
 		center={
-			props.markers.length ? (
-				{ lat: Number(props.markers[0][0]), lng: Number(props.markers[0][1]) }
+			props.markers && props.markers.length > 2 ? (
+				{ lat: Number(props.markers[1][0]), lng: Number(props.markers[1][1]) }
 			) : (
 				{ lat: 28.7417623, lng: 77.1370109 }
 			)

@@ -16,3 +16,7 @@
 .icon:hover {
 	color: rgb(58, 56, 56);
 }
+
+.error {
+	border-color: red;
+}
