@@ -1,37 +1,32 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## Configurations
+The Following configurations should be setup before running the application.
+
+### Google API Key and Backend URL
+Edit these configurations in `src/config/index.js` file
+
+
+## Steps to Run
+
+### 1. Install all packages
+run `npm install`
+
+### 2. Run app in dev mode
+run `npm start` or `npm run start`
+
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `npm run start`
+To run the app in development mode.
 
 ### `npm run build`
+To generate the Production Build
 
 
 
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
