@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FallbackComponent from '../FallbackComponent';
 
 const BaseComponent = (AppComponent) => {
-	return class extends Component {
+	return class InnerBase extends Component {
 		constructor(props) {
 			super(props);
 			this.state = { hasError: false, error: null, errorInfo: '' };

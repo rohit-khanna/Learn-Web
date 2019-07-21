@@ -1,5 +1,6 @@
 import React from 'react';
 import { compose, lifecycle } from 'recompose';
+import BaseComponent from '../BaseComponent';
 import {
 	withScriptjs,
 	withGoogleMap,
@@ -8,7 +9,7 @@ import {
 	DirectionsRenderer
 } from 'react-google-maps';
 
-const MapComponent = compose(
+const MapComponentInner = compose(
 	withScriptjs,
 	withGoogleMap,
 	lifecycle({
@@ -30,12 +31,9 @@ const MapComponent = compose(
 							this.setState({
 								directions: result
 							});
-						} else {
-							console.error(`error fetching directions ${result}`);
 						}
 					}
 				);
-				console.log(markers);
 			}
 		}
 	})
@@ -50,7 +48,6 @@ const MapComponent = compose(
 			)
 		}
 	>
-		{console.log(props)}
 		{props.directions && <DirectionsRenderer directions={props.directions} />}
 		{/* {props.markers &&
 			props.markers.map((marker, idx) => (
@@ -58,5 +55,7 @@ const MapComponent = compose(
 			))} */}
 	</GoogleMap>
 ));
+
+const MapComponent = BaseComponent(MapComponentInner);
 
 export default MapComponent;

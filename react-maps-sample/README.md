@@ -22,6 +22,8 @@ run `npm start` or `npm run start`
 
 In the project directory, you can run:
 
+### `npm run lint`
+To check for lint error/warnings
 
 ### `npm run start`
 To run the app in development mode.

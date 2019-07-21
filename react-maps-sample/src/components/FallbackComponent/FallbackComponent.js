@@ -5,9 +5,9 @@ const FallbackComponent = ({ errorInfo, error }) => {
 	return (
 		<Alert variant="danger">
 			{' '}
-			<Alert.Heading>We've got some problem</Alert.Heading>
+			<Alert.Heading>We&apos;ve got some problem</Alert.Heading>
 			<p>{error}</p>
-			<p>{JSON.stringify(errorInfo)}</p>
+			<details>{JSON.stringify(errorInfo)}</details>
 		</Alert>
 	);
 };

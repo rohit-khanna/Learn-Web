@@ -6,23 +6,25 @@ import MapComponent from './components/MapComponent';
 import FetchComponent from './components/FetchComponent';
 import { BACKEND_URL, MAP_API_KEY } from './config';
 
+const INITIAL_STATE = {
+	locationObj: { startLocation: '', endLocation: '' },
+	info: '',
+	hasError: false,
+	isApiCallInProgress: false,
+
+	result: {
+		status: '',
+		path: [],
+		total_distance: '',
+		total_time: '',
+		error: ''
+	}
+};
+
 class App extends Component {
 	constructor() {
 		super();
-		this.state = {
-			locationObj: { startLocation: '', endLocation: '' },
-			info: '',
-			hasError: false,
-			isApiCallInProgress: false,
-
-			result: {
-				status: '',
-				path: [],
-				total_distance: '',
-				total_time: '',
-				error: ''
-			}
-		};
+		this.state = INITIAL_STATE;
 	}
 
 	handleDataChange = ({ isFetching, data, error }) => {
@@ -39,8 +41,12 @@ class App extends Component {
 			this.setState({ isApiCallInProgress: false, hasError: false, info: '', result: data });
 		}
 	};
+
+	handleReset = () => {
+		this.setState(INITIAL_STATE);
+	};
 	render() {
-		const { locationObj, info, hasError, isApiCallInProgress, result } = this.state;
+		const { locationObj: { startLocation, endLocation }, info, hasError, isApiCallInProgress, result } = this.state;
 
 		return (
 			<ContainerComponent>
@@ -53,16 +59,14 @@ class App extends Component {
 							info: 'Fetching...'
 						})}
 					initialValues={{
-						startLocation: '',
-						endLocation: '',
-						isApiCallInProgress: this.state.isApiCallInProgress,
-						result: {
-							total_distance: '',
-							total_time: ''
-						}
+						startLocation,
+						endLocation,
+						isApiCallInProgress: isApiCallInProgress,
+						result: result
 					}}
 					info={info}
 					hasError={hasError}
+					handleReset={this.handleReset}
 				/>
 				<MapComponent
 					key={result.path ? result.path.length : 0}
@@ -77,11 +81,10 @@ class App extends Component {
 					<FetchComponent
 						url={BACKEND_URL}
 						route="route"
-						data={{ origin: locationObj.startLocation, destination: locationObj.endLocation }}
+						data={{ origin: startLocation, destination: endLocation }}
 						handleDataChange={this.handleDataChange}
 						key={info}
 					/>
-				)}
 				)}
 			</ContainerComponent>
 		);

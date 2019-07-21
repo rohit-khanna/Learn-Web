@@ -7,7 +7,7 @@ const ContainerComponentInner = (props) => {
 	return (
 		<div>
 			<Row>
-				<Col lg={4} md={6} xs={12}>
+				<Col lg={3} md={6} xs={12}>
 					{props.children[0]}
 				</Col>
 				<Col>{props.children[1]}</Col>

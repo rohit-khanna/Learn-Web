@@ -58,7 +58,7 @@ class FetchComponent extends Component {
 					if (error) {
 						this.setState({ error, isFetching: false }, () => this.props.handleDataChange(this.state));
 					} else if (status === 'in progress') {
-						console.log('API-STATUS is IN_PROGRESS');
+						//console.log('API-STATUS is IN_PROGRESS');
 					} else if (status === 'failure') {
 						this.setState({ isFetching: false, data: {}, error });
 					} else {

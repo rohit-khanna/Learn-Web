@@ -6,49 +6,60 @@ import FormikInput from '../FormikInput';
 import BaseComponent from '../BaseComponent';
 import './SearchComponent.css';
 
+const intl = {
+	startLocation: {
+		props: 'startLocation',
+		title: 'Start Location*'
+	},
+	endLocation: {
+		props: 'endLocation',
+		title: 'End Location*'
+	}
+};
+
 class SearchComponentInner extends Component {
 	render() {
-		const { initialValues, handleLocationSubmit, hasError, info } = this.props;
+		const { initialValues, handleReset, handleLocationSubmit, hasError, info } = this.props;
 		return (
 			<Formik
 				enableReinitialize
 				initialValues={initialValues}
 				validate={(values) => {
 					const error = {};
-
 					if (!values.startLocation) error.startLocation = 'required';
 					if (!values.endLocation) error.endLocation = 'required';
 					return error;
 				}}
-				onSubmit={(values, { resetForm }) => {
+				onSubmit={(values) => {
 					handleLocationSubmit(values);
-					resetForm();
+					//resetForm();
 				}}
 			>
-				{({ values, errors, handleSubmit, handleReset, setFieldValue }) => {
+				{({ values, errors, handleSubmit, setFieldValue }) => {
 					return (
 						<Form onSubmit={handleSubmit} className="SearchComponent_Container">
-							<Form.Group>
-								<Form.Label className="label-heading">Starting Location</Form.Label>
+							<Form.Group controlId={intl.startLocation.props}>
+								<Form.Label className="label-heading">{intl.startLocation.title}</Form.Label>
 								<Field
-									name="startLocation"
+									name={intl.startLocation.props}
 									component={FormikInput}
-									value={values['startLocation']}
+									value={values[intl.startLocation.props]}
 									setFieldValue={setFieldValue}
 									handleClearClick={() => {
-										setFieldValue('startLocation', '');
+										setFieldValue(intl.startLocation.props, '');
 									}}
 								/>
 							</Form.Group>
-							<Form.Group>
-								<Form.Label className="label-heading">Drop-off Location</Form.Label>
+							<Form.Group controlId={intl.endLocation.props}>
+								<Form.Label className="label-heading">{intl.endLocation.title}</Form.Label>
 								<Field
-									name="endLocation"
+									name={intl.endLocation.props}
 									component={FormikInput}
-									value={values['endLocation']}
+									required
+									value={values[intl.endLocation.props]}
 									setFieldValue={setFieldValue}
 									handleClearClick={() => {
-										setFieldValue('endLocation', '');
+										setFieldValue(intl.endLocation.props, '');
 									}}
 								/>
 							</Form.Group>

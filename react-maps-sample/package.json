@@ -16,13 +16,26 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"build": "react-scripts build"
+		"build": "react-scripts build",
+		"lint": "eslint src/**/*.js"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
 	},
 	"browserslist": {
-		"production": [ ">0.2%", "not dead", "not op_mini all" ],
-		"development": [ "last 1 chrome version", "last 1 firefox version", "last 1 safari version" ]
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"eslint": "^5.16.0",
+		"eslint-plugin-react": "^7.14.2"
 	}
 }
