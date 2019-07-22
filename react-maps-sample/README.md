@@ -35,12 +35,13 @@ To run the app in development mode.
 ### `npm run build`
 To generate the Production Build
 
+### `npm run test`
+To run snapshot tests
 
 ## References
 - [react-bootstrap](https://react-bootstrap.github.io/)
 - [Formik](https://jaredpalmer.com/formik/)
 - [react-google-maps](https://tomchentw.github.io/react-google-maps/)
-- [react-icons](https://react-icons.netlify.com/)
 - [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react)
 
 
