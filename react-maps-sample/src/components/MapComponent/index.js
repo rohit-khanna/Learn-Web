@@ -1,1 +1,1 @@
-export { default } from './MapComponent';
+export { default } from "./MapComponent";

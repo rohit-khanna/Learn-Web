@@ -1,22 +1,24 @@
 .formikInput_Container {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
 .formikInput_Container .icon {
-	font-size: 1.2rem;
-	cursor: pointer;
-	position: absolute;
-	right: 0.5rem;
-	color: rgba(98, 96, 96, 0.68);
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: absolute;
+  right: 0.5rem;
+  color: rgba(98, 96, 96, 0.68);
 }
 
 .icon:hover {
-	color: rgb(58, 56, 56);
+  color: rgb(58, 56, 56);
 }
 
 .error {
-	border-color: red;
+  border-color: red;
 }

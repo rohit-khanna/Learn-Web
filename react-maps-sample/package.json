@@ -1,41 +1,34 @@
 {
-	"name": "react-maps-sample",
-	"version": "0.1.0",
-	"private": true,
-	"dependencies": {
-		"bootstrap": "^4.3.1",
-		"fetch": "^1.1.0",
-		"formik": "^1.5.8",
-		"react": "^16.8.6",
-		"react-bootstrap": "^1.0.0-beta.9",
-		"react-dom": "^16.8.6",
-		"react-google-maps": "^9.4.5",
-		"react-icons": "^3.7.0",
-		"react-scripts": "3.0.1",
-		"recompose": "^0.30.0"
-	},
-	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"lint": "eslint src/**/*.js"
-	},
-	"eslintConfig": {
-		"extends": "react-app"
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	},
-	"devDependencies": {
-		"eslint": "^5.16.0",
-		"eslint-plugin-react": "^7.14.2"
-	}
+  "name": "react-maps-sample",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "formik": "^1.5.8",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.9",
+    "react-dom": "^16.8.6",
+    "react-google-maps": "^9.4.5",
+    "react-scripts": "3.0.1",
+    "recompose": "^0.30.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "lint": "eslint src/**/*.js"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-plugin-react": "^7.14.2"
+  }
 }

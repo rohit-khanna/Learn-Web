@@ -1,61 +1,86 @@
-import React from 'react';
-import { compose, lifecycle } from 'recompose';
-import BaseComponent from '../BaseComponent';
+import React from "react";
+import BaseComponent from "../BaseComponent";
+import { MapService } from "../../services";
 import {
-	withScriptjs,
-	withGoogleMap,
-	GoogleMap,
-	//Marker,
-	DirectionsRenderer
-} from 'react-google-maps';
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  //Marker,
+  DirectionsRenderer
+} from "react-google-maps";
 
-const MapComponentInner = compose(
-	withScriptjs,
-	withGoogleMap,
-	lifecycle({
-		componentDidMount() {
-			const DirectionsService = new window.google.maps.DirectionsService();
-			const { markers } = this.props;
-			if (markers.length > 2) {
-				DirectionsService.route(
-					{
-						origin: { lat: Number(markers[0][0]), lng: Number(markers[0][1]) },
-						destination: { lat: Number(markers[2][0]), lng: Number(markers[2][1]) },
-						waypoints: [
-							{ location: { lat: Number(markers[1][0]), lng: Number(markers[1][1]) }, stopover: false }
-						],
-						travelMode: window.google.maps.TravelMode.DRIVING
-					},
-					(result, status) => {
-						if (status === window.google.maps.DirectionsStatus.OK) {
-							this.setState({
-								directions: result
-							});
-						}
-					}
-				);
-			}
-		}
-	})
-)((props) => (
-	<GoogleMap
-		zoom={12}
-		center={
-			props.markers && props.markers.length > 2 ? (
-				{ lat: Number(props.markers[1][0]), lng: Number(props.markers[1][1]) }
-			) : (
-				{ lat: 28.7417623, lng: 77.1370109 }
-			)
-		}
-	>
-		{props.directions && <DirectionsRenderer directions={props.directions} />}
-		{/* {props.markers &&
-			props.markers.map((marker, idx) => (
-				<Marker key={idx} position={{ lat: Number(marker[0]), lng: Number(marker[1]) }} />
-			))} */}
-	</GoogleMap>
-));
+/**
+ * Inner class For Map Component
+ */
+class MapComponentInner extends React.Component {
+  //constructor
+  constructor(props) {
+    super(props);
+    this.state = {
+      directions: ""
+    };
+  }
 
-const MapComponent = BaseComponent(MapComponentInner);
+  /**
+   * Lifecycle method invoked once component is mounted
+   */
+  async componentDidMount() {
+    const { markers } = this.props;
+    if (markers && markers.length > 2) {
+      const [start, ...rest] = markers;
+      const [end] = rest.slice(-1);
+
+      try {
+        const directions = await MapService.FetchDirections(
+          {
+            lat: start[0],
+            lng: start[1]
+          },
+          {
+            lat: end[0],
+            lng: end[1]
+          },
+          (markers.length > 2
+            ? rest.slice(0, markers.length - 2)
+            : []
+          ).map(wayPoint => {
+            return {
+              lat: wayPoint[0],
+              lng: wayPoint[1]
+            };
+          })
+        );
+        this.setState({ directions });
+      } catch (error) {
+        alert(error);
+      }
+    }
+  }
+
+  /**
+   * Renders the Google Map
+   */
+  render() {
+    const { markers } = this.props;
+    const { directions } = this.state;
+    return (
+      <GoogleMap
+        zoom={12}
+        center={
+          markers && markers.length > 2
+            ? { lat: Number(markers[1][0]), lng: Number(markers[1][1]) }
+            : { lat: 28.7417623, lng: 77.1370109 }
+        }
+      >
+        {directions && <DirectionsRenderer directions={directions} />}
+      </GoogleMap>
+    );
+  }
+}
+
+// Wraping the inner component with Google Scripts, to setup the necesary wrappers for Maps
+const MapComponent = withScriptjs(
+  withGoogleMap(BaseComponent(MapComponentInner))
+);
 
 export default MapComponent;
