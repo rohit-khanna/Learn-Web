@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Fallback Component Tests 1`] = `
+<div
+  className="fade alert alert-danger show"
+  id="alertContainer"
+  role="alert"
+>
+   
+  <div
+    className="alert-heading h4"
+  >
+    We've got some problem
+  </div>
+  <p>
+    error
+  </p>
+  <details>
+    "error"
+  </details>
+</div>
+`;

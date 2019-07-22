@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormikInput Tests 1`] = `
+<div>
+  <div
+    className="formikInput_Container"
+  >
+    <input
+      className="form-control"
+      name="startLocation"
+      onChange={[Function]}
+      type="text"
+    />
+    <div
+      className="icon"
+      title="clear"
+    >
+      x
+    </div>
+  </div>
+</div>
+`;

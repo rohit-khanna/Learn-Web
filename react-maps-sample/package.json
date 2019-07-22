@@ -14,7 +14,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "eslint src/**/*.js"
+    "lint": "eslint src/**/*.js",
+    "test": "react-scripts test --env=jsdom --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -28,7 +29,10 @@
     ]
   },
   "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^5.16.0",
-    "eslint-plugin-react": "^7.14.2"
+    "eslint-plugin-react": "^7.14.2",
+    "react-test-renderer": "^16.8.6"
   }
 }

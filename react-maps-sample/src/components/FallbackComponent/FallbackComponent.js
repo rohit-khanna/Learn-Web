@@ -7,7 +7,7 @@ import Alert from "react-bootstrap/Alert";
  */
 const FallbackComponent = ({ errorInfo, error }) => {
   return (
-    <Alert variant="danger">
+    <Alert variant="danger" id="alertContainer">
       {" "}
       <Alert.Heading>We&apos;ve got some problem</Alert.Heading>
       <p>{error}</p>
