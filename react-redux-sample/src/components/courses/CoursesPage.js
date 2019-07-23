@@ -19,7 +19,8 @@ class CoursesPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.dispatch(courseActions.createCourse(this.state.course));
+    // this.props.dispatch(courseActions.createCourse(this.state.course));
+    this.props.createCourse(this.state.course);
   };
 
   render() {
@@ -46,6 +47,10 @@ function mapsStateToProps(state, ownProps) {
   };
 }
 
-//function mapDispatchToProps()
+function mapDispatchToProps(dispatch) {
+  return {
+    createCourse: course => dispatch(courseActions.createCourse(course))
+  };
+}
 
-export default connect(mapsStateToProps)(CoursesPage);
+export default connect(mapsStateToProps, mapDispatchToProps)(CoursesPage);
