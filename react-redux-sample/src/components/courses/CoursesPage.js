@@ -29,8 +29,11 @@ class CoursesPage extends Component {
   // };
 
   componentDidMount() {
-    this.props.actions.loadCourses().catch(err => alert("failed"));
-    this.props.actions.loadAuthors().catch(err => alert("failed"));
+    if (this.props.courses.length === 0)
+      this.props.actions.loadCourses().catch(err => alert("failed"));
+
+    if (this.props.authors.length === 0)
+      this.props.actions.loadAuthors().catch(err => alert("failed"));
   }
 
   render() {

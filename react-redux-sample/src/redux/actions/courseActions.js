@@ -19,7 +19,7 @@ export function loadCourses() {
       const courses = await CourseService.findAllAsync();
       return dispatch(loadCoursesSuccess(courses));
     } catch (error) {
-      console.error("Error");
+      alert("Error");
     }
   };
 }

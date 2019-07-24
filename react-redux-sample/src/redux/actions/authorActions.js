@@ -13,7 +13,7 @@ export function loadAuthors() {
       const authors = await AuthorService.findAllAsync();
       return dispatch(loadAuthorsSuccess(authors));
     } catch (error) {
-      console.error("Error");
+      alert("Error");
     }
   };
 }
