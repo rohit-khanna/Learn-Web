@@ -23,6 +23,9 @@ module.exports = {
     https: false
   },
   plugins: [
+    new webpack.DefinePlugin({
+      "process.env.MOCK_API_ENDPOINT": JSON.stringify("http://localhost:3004/")
+    }),
     new HtmlWebPlugin({
       template: "src/index.html"
     })

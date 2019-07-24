@@ -1,0 +1,56 @@
+{
+    "courses": [
+        {
+            "id": 1,
+            "title": "ZorkPolarax - Jenifer Gordon",
+            "authorId": 2,
+            "category": "Redux",
+            "slug": "velit adipisicing laboris"
+        },
+        {
+            "id": 2,
+            "title": "QuilkHandshake - Flossie Gonzalez",
+            "authorId": 2,
+            "category": "HTML",
+            "slug": "tempor occaecat irure"
+        },
+        {
+            "id": 3,
+            "title": "GeekfarmDigigene - Reilly Underwood",
+            "authorId": 1,
+            "category": "Redux",
+            "slug": "voluptate amet id"
+        },
+        {
+            "id": 4,
+            "title": "FrosnexAquazure - Alexandra Jennings",
+            "authorId": 2,
+            "category": "HTML",
+            "slug": "mollit voluptate enim"
+        },
+        {
+            "id": 5,
+            "title": "ZuvyImkan - Mcneil Vega",
+            "authorId": 1,
+            "category": "Redux",
+            "slug": "eiusmod voluptate nulla"
+        },
+        {
+            "id": 6,
+            "title": "SkinserveMoltonic - Hoover Mclaughlin",
+            "authorId": 2,
+            "category": "HTML",
+            "slug": "minim eu laborum"
+        }
+    ],
+    "authors": [
+        {
+            "id": 1,
+            "name": "Gates Thornton"
+        },
+        {
+            "id": 2,
+            "name": "Bridges Stevens"
+        }
+    ]
+}

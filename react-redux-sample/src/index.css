@@ -1,8 +1,12 @@
 body {
   max-width: 900px;
   margin: 0 auto;
+  font-size: 14px;
 }
 
 nav {
   padding: 0 20px;
+}
+nav > a {
+  cursor: pointer;
 }

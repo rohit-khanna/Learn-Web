@@ -1,4 +1,4 @@
-import { CREATE_COURSE } from "../actions/actionTypes";
+import { CREATE_COURSE, LOAD_COURSES_SUCCESS } from "../actions/actionTypes";
 
 /**
  * Course Reducer
@@ -10,6 +10,8 @@ export default function courseReducer(state = [], action) {
     case CREATE_COURSE:
       return [...state, { ...action.course }];
 
+    case LOAD_COURSES_SUCCESS:
+      return action.courses;
     default:
       return state;
   }
