@@ -27,7 +27,7 @@ const CourseService = {
         },
         body: JSON.stringify(course) // body data type must match "Content-Type" header
       });
-      return this._handleFetchResponse(res);
+      return _handleFetchResponse(res);
     } catch (e) {
       throw new Error("save():" + e);
     }

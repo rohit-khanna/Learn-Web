@@ -3,7 +3,7 @@ import CourseService from "../../service/CourseService";
 import AuthorService from "../../service/AuthorService";
 
 //action-creator
-export function createCourse(course) {
+export function createCourseSuccess(course) {
   return { type: CREATE_COURSE, course };
 }
 
@@ -20,6 +20,18 @@ export function loadCourses() {
       return dispatch(loadCoursesSuccess(courses));
     } catch (error) {
       alert("Error");
+    }
+  };
+}
+
+//thunk
+export function createCourse(course) {
+  return async function(dispatch) {
+    try {
+      const response = await CourseService.saveAsync(course);
+      return dispatch(createCourseSuccess(response));
+    } catch (error) {
+      alert(error);
     }
   };
 }

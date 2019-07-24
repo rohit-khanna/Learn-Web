@@ -7,6 +7,8 @@ import initialState from "./InitialState";
  * @param {*} action 
  */
 export default function courseReducer(state = initialState.courses, action) {
+  debugger;
+
   switch (action.type) {
     case CREATE_COURSE:
       return [...state, { ...action.course }];
