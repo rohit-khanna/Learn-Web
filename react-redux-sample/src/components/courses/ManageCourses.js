@@ -12,14 +12,20 @@ const ManageCourses = ({
   loadAuthors,
   loadCourses,
   createCourse,
+  saveCourse,
+  history,
   ...props
 }) => {
   const [course, setCourse] = useState({ ...props.course });
-  useEffect(() => {
-    if (courses.length === 0) loadCourses().catch(err => alert("failed"));
+  useEffect(
+    () => {
+      if (courses.length === 0) loadCourses().catch(() => alert("failed"));
+      else setCourse({ ...props.course });
 
-    if (authors.length === 0) loadAuthors().catch(err => alert("failed"));
-  }, []); // [] only runs once when component mounts
+      if (authors.length === 0) loadAuthors().catch(() => alert("failed"));
+    },
+    [props.course]
+  ); // [] only runs once when component mounts
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -34,7 +40,15 @@ const ManageCourses = ({
   function handleSave(event) {
     event.preventDefault();
     const currentCourseToSave = course;
-    createCourse(currentCourseToSave).catch(err => alert(err));
+
+    if (currentCourseToSave.id)
+      saveCourse(currentCourseToSave)
+        .then(() => history.push("/courses"))
+        .catch(err => alert(err));
+    else
+      createCourse(currentCourseToSave)
+        .then(() => history.push("/courses"))
+        .catch(err => alert(err));
   }
 
   return (
@@ -43,13 +57,16 @@ const ManageCourses = ({
       authors={authors}
       onChange={handleChange}
       onSave={handleSave}
+      // saving={saving}
     />
   );
 };
 
 function mapsStateToProps({ courses, authors }, ownProps) {
   return {
-    course: newCourse,
+    course: ownProps.match.params.id
+      ? courses.find(x => x.id === Number(ownProps.match.params.id))
+      : newCourse,
     courses,
     authors
   };
@@ -59,7 +76,8 @@ function mapsStateToProps({ courses, authors }, ownProps) {
 const mapDispatchToProps = {
   loadCourses: courseActions.loadCourses,
   loadAuthors: authorActions.loadAuthors,
-  createCourse: courseActions.createCourse
+  createCourse: courseActions.createCourse,
+  saveCourse: courseActions.saveCourse
 };
 
 export default connect(mapsStateToProps, mapDispatchToProps)(ManageCourses);

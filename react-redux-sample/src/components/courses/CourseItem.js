@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CourseItem = ({ item }) => {
+const CourseItem = ({ item, index }) => {
   return (
     <tr>
-      <td />
+      <td>{index + 1}</td>
       <td style={{ cursor: "pointer" }}>
         <Link to={"/course/" + item.id}>{item.title}</Link>
       </td>

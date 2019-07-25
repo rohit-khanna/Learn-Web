@@ -9,8 +9,8 @@
     },
     {
       "id": 2,
-      "title": "QuilkHandshake - Flossie Gonzalez",
-      "authorId": 2,
+      "title": "Deal with situations - Flossie Gonzalez",
+      "authorId": 3,
       "category": "HTML",
       "slug": "tempor occaecat irure"
     },
@@ -30,9 +30,9 @@
     },
     {
       "id": 5,
-      "title": "ZuvyImkan - Mcneil Vega",
-      "authorId": 1,
-      "category": "Redux",
+      "title": "Fun with Css",
+      "authorId": 3,
+      "category": "CSS",
       "slug": "eiusmod voluptate nulla"
     },
     {
@@ -46,19 +46,13 @@
       "id": 7,
       "title": "C++ with me",
       "category": "C++",
-      "authorId": 2
+      "authorId": 3
     },
     {
       "id": 8,
-      "title": "C with ,e",
+      "title": "SOme noy",
       "category": "SOmething",
       "authorId": 2
-    },
-    {
-      "id": 9,
-      "title": "Chess play",
-      "category": "Yes lets do",
-      "authorId": 1
     }
   ],
   "authors": [
@@ -69,6 +63,10 @@
     {
       "id": 2,
       "name": "Bridges Stevens"
+    },
+    {
+      "id": 3,
+      "name": "Rohit Khanna"
     }
   ]
 }

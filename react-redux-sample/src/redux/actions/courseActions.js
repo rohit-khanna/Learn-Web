@@ -1,10 +1,18 @@
-import { CREATE_COURSE, LOAD_COURSES_SUCCESS } from "./actionTypes";
+import {
+  CREATE_COURSE_SUCCESS,
+  LOAD_COURSES_SUCCESS,
+  UPDATE_COURSE_SUCCESS
+} from "./actionTypes";
 import CourseService from "../../service/CourseService";
-import AuthorService from "../../service/AuthorService";
 
 //action-creator
 export function createCourseSuccess(course) {
-  return { type: CREATE_COURSE, course };
+  return { type: CREATE_COURSE_SUCCESS, course };
+}
+
+//action-creator
+export function updateCourseSuccess(course) {
+  return { type: UPDATE_COURSE_SUCCESS, course };
 }
 
 //action-creator
@@ -30,6 +38,18 @@ export function createCourse(course) {
     try {
       const response = await CourseService.saveAsync(course);
       return dispatch(createCourseSuccess(response));
+    } catch (error) {
+      alert(error);
+    }
+  };
+}
+
+//thunk
+export function saveCourse(course) {
+  return async function(dispatch) {
+    try {
+      const response = await CourseService.updateAsync(course);
+      return dispatch(updateCourseSuccess(response));
     } catch (error) {
       alert(error);
     }

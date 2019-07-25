@@ -12,7 +12,11 @@ const CourseList = ({ courses, authors }) => {
           <th>Author</th>
         </tr>
       </thead>
-      <tbody>{courses.map(c => <CourseItem key={c.id} item={c} />)}</tbody>
+      <tbody>
+        {courses.map((c, idx) => (
+          <CourseItem key={c.id} item={c} index={idx} />
+        ))}
+      </tbody>
     </table>
   );
 };

@@ -54,27 +54,27 @@ const CourseService = {
     } catch (error) {
       throw new Error("findById():" + error);
     }
+  },
+
+  /**
+     * Update course by Id
+     * @param {*} id identifier
+     */
+  updateAsync: async function(course) {
+    try {
+      let res = await fetch(endpoint + "/" + course.id, {
+        method: "PUT", // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        body: JSON.stringify(course) // body data type must match "Content-Type" header
+      });
+
+      return _handleFetchResponse(res);
+    } catch (e) {
+      throw new Error("update():" + e);
+    }
   }
-
-  // /**
-  //    * Update course by Id
-  //    * @param {*} id identifier
-  //    */
-  // async updateAsync(course) {
-  //   try {
-  //     let res = await fetch(endpoint + "/" + course.id, {
-  //       method: "PUT", // *GET, POST, PUT, DELETE, etc.
-  //       headers: {
-  //         "Content-Type": "application/json; charset=utf-8"
-  //       },
-  //       body: JSON.stringify(course) // body data type must match "Content-Type" header
-  //     });
-
-  //     return this._handleFetchResponse(res);
-  //   } catch (e) {
-  //     throw new Error("update():" + e);
-  //   }
-  // }
 
   // /**
   //    * Remove the course with ID

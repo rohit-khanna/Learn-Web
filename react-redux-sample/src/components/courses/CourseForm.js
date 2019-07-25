@@ -9,6 +9,7 @@ const CourseForm = ({
   saving = false,
   errors = {}
 }) => {
+  debugger;
   return (
     <form onSubmit={onSave}>
       <h4>{course.id ? "Edit" : "Add"} Course</h4>
@@ -17,7 +18,7 @@ const CourseForm = ({
       )}
       <TextInput
         name="title"
-        label="title"
+        label="Title"
         value={course.title}
         onChange={onChange}
       />
@@ -25,7 +26,7 @@ const CourseForm = ({
         name="authorId"
         label="Author"
         value={course.authorId || ""}
-        defaultValue={"Select Author"}
+        defaultOption={"Select Author"}
         options={authors.map(a => ({
           value: a.id,
           text: a.name
@@ -34,7 +35,7 @@ const CourseForm = ({
       />
       <TextInput
         name="category"
-        label="category"
+        label="Category"
         value={course.category}
         onChange={onChange}
       />

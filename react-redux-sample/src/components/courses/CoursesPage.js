@@ -2,32 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as courseActions from "../../redux/actions/courseActions";
 import * as authorActions from "../../redux/actions/authorActions";
+import { Link, Redirect } from "react-router-dom";
 
 import { bindActionCreators } from "redux";
 import CourseList from "./CourseList";
 
 class CoursesPage extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     course: {
-  //       title: ""
-  //     }
-  //   };
-  // }
-
-  // handleChange = event => {
-  //   const newCourse = { ...this.state.course, title: event.target.value };
-  //   this.setState({ course: newCourse });
-  // };
-
-  // handleSubmit = e => {
-  //   e.preventDefault();
-  //   // this.props.dispatch(courseActions.createCourse(this.state.course));
-  //   //this.props.createCourse(this.state.course);
-  //   this.props.actions.createCourse(this.state.course);
-  // };
-
   componentDidMount() {
     if (this.props.courses.length === 0)
       this.props.actions.loadCourses().catch(err => alert("failed"));
@@ -39,7 +19,11 @@ class CoursesPage extends Component {
   render() {
     return (
       <React.Fragment>
+        <Link to="/course" className="btn btn-primary btn-sm float-right">
+          Create New Course
+        </Link>
         <h3>Courses</h3>
+
         <CourseList courses={this.props.courses} authors={this.props.authors} />
       </React.Fragment>
     );
