@@ -1,0 +1,197 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`setSubmit button label to Save when saving is false 1`] = `
+<form
+  onSubmit={[MockFunction]}
+>
+  <h4>
+    Edit
+     Course
+  </h4>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="title"
+    >
+      Title
+    </label>
+    <div
+      className="field"
+    >
+      <input
+        className="form-control"
+        name="title"
+        onChange={[MockFunction]}
+        type="text"
+        value="Zork Polarax - Jenifer Gordon changed"
+      />
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="authorId"
+    >
+      Author
+    </label>
+    <div
+      className="field"
+    >
+      <select
+        className="form-control"
+        name="authorId"
+        onChange={[MockFunction]}
+        value={2}
+      >
+        <option
+          value=""
+        >
+          Select Author
+        </option>
+        <option
+          value={1}
+        >
+          Gates Thornton
+        </option>
+        <option
+          value={2}
+        >
+          Bridges Stevens
+        </option>
+        <option
+          value={3}
+        >
+          Rohit Khanna
+        </option>
+      </select>
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="category"
+    >
+      Category
+    </label>
+    <div
+      className="field"
+    >
+      <input
+        className="form-control"
+        name="category"
+        onChange={[MockFunction]}
+        type="text"
+        value="Redux"
+      />
+    </div>
+  </div>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    type="submit"
+  >
+    Save
+  </button>
+</form>
+`;
+
+exports[`setSubmit button label to Saving.. when saving is true 1`] = `
+<form
+  onSubmit={[MockFunction]}
+>
+  <h4>
+    Edit
+     Course
+  </h4>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="title"
+    >
+      Title
+    </label>
+    <div
+      className="field"
+    >
+      <input
+        className="form-control"
+        name="title"
+        onChange={[MockFunction]}
+        type="text"
+        value="Zork Polarax - Jenifer Gordon changed"
+      />
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="authorId"
+    >
+      Author
+    </label>
+    <div
+      className="field"
+    >
+      <select
+        className="form-control"
+        name="authorId"
+        onChange={[MockFunction]}
+        value={2}
+      >
+        <option
+          value=""
+        >
+          Select Author
+        </option>
+        <option
+          value={1}
+        >
+          Gates Thornton
+        </option>
+        <option
+          value={2}
+        >
+          Bridges Stevens
+        </option>
+        <option
+          value={3}
+        >
+          Rohit Khanna
+        </option>
+      </select>
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="category"
+    >
+      Category
+    </label>
+    <div
+      className="field"
+    >
+      <input
+        className="form-control"
+        name="category"
+        onChange={[MockFunction]}
+        type="text"
+        value="Redux"
+      />
+    </div>
+  </div>
+  <button
+    className="btn btn-primary"
+    disabled={true}
+    type="submit"
+  >
+    Saving...
+  </button>
+</form>
+`;
