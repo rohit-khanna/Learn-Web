@@ -2,7 +2,7 @@
   "courses": [
     {
       "id": 1,
-      "title": "ZorkPolarax - Jenifer Gordon",
+      "title": "Zork Polarax - Jenifer Gordon changed",
       "authorId": 2,
       "category": "Redux",
       "slug": "velit adipisicing laboris"
@@ -23,7 +23,7 @@
     },
     {
       "id": 4,
-      "title": "FrosnexAquazure - Alexandra Jennings",
+      "title": "Frosnex Aquazure - Alexandra Jennings",
       "authorId": 2,
       "category": "HTML",
       "slug": "mollit voluptate enim"
@@ -37,14 +37,14 @@
     },
     {
       "id": 6,
-      "title": "SkinserveMoltonic - Hoover Mclaughlin",
+      "title": "Skinserve Moltonic - Hoover Mclaughl",
       "authorId": 2,
       "category": "HTML",
       "slug": "minim eu laborum"
     },
     {
       "id": 7,
-      "title": "C++ with me",
+      "title": "C++ with me again",
       "category": "C++",
       "authorId": 3
     },
@@ -52,6 +52,12 @@
       "id": 8,
       "title": "SOme noy",
       "category": "SOmething",
+      "authorId": 2
+    },
+    {
+      "id": 9,
+      "title": "Redux is Awesome",
+      "category": "Someone",
       "authorId": 2
     }
   ],

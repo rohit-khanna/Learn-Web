@@ -1,5 +1,6 @@
 import { LOAD_AUTHORS_SUCCESS } from "./actionTypes";
 import AuthorService from "../../service/AuthorService";
+import { beginApiCall } from "./apiStatusActions";
 
 //action-creator
 export function loadAuthorsSuccess(authors) {
@@ -10,6 +11,7 @@ export function loadAuthorsSuccess(authors) {
 export function loadAuthors() {
   return async function(dispatch) {
     try {
+      dispatch(beginApiCall());
       const authors = await AuthorService.findAllAsync();
       return dispatch(loadAuthorsSuccess(authors));
     } catch (error) {

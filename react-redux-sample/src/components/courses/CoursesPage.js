@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as courseActions from "../../redux/actions/courseActions";
 import * as authorActions from "../../redux/actions/authorActions";
 import { Link, Redirect } from "react-router-dom";
+import Spinner from "../common/Spinner";
 
 import { bindActionCreators } from "redux";
 import CourseList from "./CourseList";
@@ -19,12 +20,18 @@ class CoursesPage extends Component {
   render() {
     return (
       <React.Fragment>
-        <Link to="/course" className="btn btn-primary btn-sm float-right">
+        <h3>Courses</h3>{" "}
+        <Link to="/course" className="btn btn-primary btn-sm ">
           Create New Course
         </Link>
-        <h3>Courses</h3>
-
-        <CourseList courses={this.props.courses} authors={this.props.authors} />
+        {this.props.loading ? (
+          <Spinner />
+        ) : (
+          <CourseList
+            courses={this.props.courses}
+            authors={this.props.authors}
+          />
+        )}
       </React.Fragment>
     );
   }
@@ -43,7 +50,8 @@ function mapsStateToProps(state, ownProps) {
             };
           })
         : [],
-    authors: state.authors.length > 0 ? state.authors : []
+    authors: state.authors.length > 0 ? state.authors : [],
+    loading: state.apiCallsInProgress > 0
   };
 }
 

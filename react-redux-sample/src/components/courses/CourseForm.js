@@ -9,7 +9,6 @@ const CourseForm = ({
   saving = false,
   errors = {}
 }) => {
-  debugger;
   return (
     <form onSubmit={onSave}>
       <h4>{course.id ? "Edit" : "Add"} Course</h4>

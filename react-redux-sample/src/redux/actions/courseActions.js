@@ -4,6 +4,7 @@ import {
   UPDATE_COURSE_SUCCESS
 } from "./actionTypes";
 import CourseService from "../../service/CourseService";
+import { beginApiCall } from "./apiStatusActions";
 
 //action-creator
 export function createCourseSuccess(course) {
@@ -24,10 +25,12 @@ export function loadCoursesSuccess(courses) {
 export function loadCourses() {
   return async function(dispatch) {
     try {
+      dispatch(beginApiCall());
+
       const courses = await CourseService.findAllAsync();
       return dispatch(loadCoursesSuccess(courses));
     } catch (error) {
-      alert("Error");
+      alert(error);
     }
   };
 }
@@ -36,6 +39,7 @@ export function loadCourses() {
 export function createCourse(course) {
   return async function(dispatch) {
     try {
+      dispatch(beginApiCall());
       const response = await CourseService.saveAsync(course);
       return dispatch(createCourseSuccess(response));
     } catch (error) {

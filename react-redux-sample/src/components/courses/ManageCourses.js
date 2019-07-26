@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import * as courseActions from "../../redux/actions/courseActions";
 import * as authorActions from "../../redux/actions/authorActions";
 import CourseForm from "./CourseForm";
+import Spinner from "../common/Spinner";
+import { toast } from "react-toastify";
 
 const newCourse = { id: "", title: "", category: "", authorId: "" };
 
@@ -17,6 +19,8 @@ const ManageCourses = ({
   ...props
 }) => {
   const [course, setCourse] = useState({ ...props.course });
+  const [saving, setSaving] = useState(false);
+
   useEffect(
     () => {
       if (courses.length === 0) loadCourses().catch(() => alert("failed"));
@@ -40,24 +44,32 @@ const ManageCourses = ({
   function handleSave(event) {
     event.preventDefault();
     const currentCourseToSave = course;
-
+    setSaving(true);
     if (currentCourseToSave.id)
       saveCourse(currentCourseToSave)
-        .then(() => history.push("/courses"))
+        .then(() => {
+          toast.success("Changes Saved");
+          history.push("/courses");
+        })
         .catch(err => alert(err));
     else
       createCourse(currentCourseToSave)
-        .then(() => history.push("/courses"))
+        .then(() => {
+          toast.success("New Record Created");
+          history.push("/courses");
+        })
         .catch(err => alert(err));
   }
 
-  return (
+  return authors.length === 0 || course.length === 0 ? (
+    <Spinner />
+  ) : (
     <CourseForm
       course={course}
       authors={authors}
       onChange={handleChange}
       onSave={handleSave}
-      // saving={saving}
+      saving={saving}
     />
   );
 };
