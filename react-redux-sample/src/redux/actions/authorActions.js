@@ -1,6 +1,6 @@
 import { LOAD_AUTHORS_SUCCESS } from "./actionTypes";
 import AuthorService from "../../service/AuthorService";
-import { beginApiCall } from "./apiStatusActions";
+import { beginApiCall, apiCallError } from "./apiStatusActions";
 
 //action-creator
 export function loadAuthorsSuccess(authors) {
@@ -16,6 +16,7 @@ export function loadAuthors() {
       return dispatch(loadAuthorsSuccess(authors));
     } catch (error) {
       alert("Error");
+      dispatch(apiCallError());
     }
   };
 }
