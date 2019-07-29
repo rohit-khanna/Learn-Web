@@ -1,0 +1,23 @@
+.Input_Container {
+  position: relative;
+}
+
+.Input_Container .icon {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: absolute;
+  font-weight: bold;
+  right: 0.5rem;
+  bottom: 0.25rem;
+  color: rgba(98, 96, 96, 0.68);
+}
+
+.icon:hover {
+  color: rgb(58, 56, 56);
+}
+
+.error {
+  border-color: red;
+}

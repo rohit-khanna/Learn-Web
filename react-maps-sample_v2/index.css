@@ -1,0 +1,16 @@
+/**
+RESET
+*/
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  max-width: 980px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
