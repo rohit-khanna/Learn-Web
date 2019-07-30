@@ -18,3 +18,10 @@ The link to that course is [Build Responsive Real World Websites with HTML5 and 
 ### 4. Shopping Cart
 Its a Dynamic HTML-JS-SASS webpage using mock db.
 
+### 5. React Maps Sample,v2
+[Version-2](https://github.com/rohit-khanna/Learn-Web/tree/master/react-maps-sample_v2)
+
+Its a sample implementation of React and React-Google-Maps. 
+
+Problem Statement: [FrontEnd](https://github.com/lalamove/challenge/blob/master/frontend.md)
+
