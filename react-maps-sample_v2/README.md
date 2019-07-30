@@ -32,11 +32,11 @@ to run the Application at Port :3000
 
 ### `npm run test`
 
-~_Work In Progress_~
+_Work In Progress_
 
 ### `npm run build`
 
-~_Work In Progress_~
+_Work In Progress_
 
 ### FAQ / Errors
 
