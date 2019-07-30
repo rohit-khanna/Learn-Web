@@ -5,8 +5,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchRoute } from "../redux/actions/routeActions";
 import MapComponent from "./map/MapComponent";
+import { PlacesService } from "../services";
 
 const INITIAL_VALUE = { startLocation: "", endLocation: "" };
+const placesEndpoint = process.env.PLACES_API_URL;
 
 class App extends Component {
   state = {
@@ -26,8 +28,7 @@ class App extends Component {
     this.setState({ formValues: INITIAL_VALUE });
   };
 
-  handleChange = event => {
-    const { name, value } = event.target;
+  handleChange = (name, value) => {
     this.setState(prevState => ({
       formValues: {
         ...prevState.formValues,
@@ -58,14 +59,16 @@ class App extends Component {
             handleSubmit={this.handleSubmit}
             inProgress={loading}
           >
-            <p className="error">{routeResult && routeResult.error}</p>
+            {!loading && routeResult.error && (
+              <div className="alert alert-danger">{routeResult.error} </div>
+            )}
+
             {routeResult.status === "success" && (
               <ResultDisplay
                 totalDistance={routeResult.total_distance}
                 totalTime={routeResult.total_time}
               />
             )}
-            {JSON.stringify(this.props)}
           </SearchForm>
         </section>
         <section className="col-md-8">

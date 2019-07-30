@@ -25,13 +25,16 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       "process.env.API_ENDPOINT": JSON.stringify(
-        "https://mock-api.dev.lalamove.com/"
+        "https://mock-api.dev.CLIENT.com/"
       ),
-      "process.env.API_KEY": "",
+      "process.env.API_KEY": "KEY",
       "process.env.MAP_API_URL": JSON.stringify(
         "https://maps.googleapis.com/maps/api/js?v=3.exp&key=" +
-          "key" +
+          "KEY" +
           "&libraries=geometry,drawing,places"
+      ),
+      "process.env.PLACES_API_URL": JSON.stringify(
+        "https://restcountries.eu/rest/v2/name/<SEARCH>?fields=name"
       )
     }),
     new HtmlWebPlugin({
@@ -43,7 +46,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ["babel-loader"]
+        use: ["babel-loader", "eslint-loader"]
       },
       {
         test: /\.(css|scss)$/,

@@ -1,0 +1,38 @@
+.Input_ContainerNew {
+  position: relative;
+}
+
+.Input_ContainerNew .icon {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: absolute;
+  font-weight: bold;
+  right: 0.5rem;
+  bottom: 0.25rem;
+  color: rgba(98, 96, 96, 0.68);
+}
+
+.dataList {
+  background-color: #f0ebebc5;
+  padding: 0rem 0.25rem;
+  margin-top: -1rem;
+  border: 1px solid #e7e7e7;
+  font-size: 0.8rem;
+}
+
+.dataList ul {
+  padding: 0;
+  margin: 0;
+}
+
+.dataList > li {
+  list-style-type: none;
+  padding: 0.225rem;
+  cursor: pointer;
+}
+
+.dataList > li:hover {
+  font-weight: bold;
+}

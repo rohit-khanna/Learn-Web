@@ -1,3 +1,4 @@
+/* eslint-disable no-async-promise-executor */
 import BaseService from "./BaseService";
 
 const endpoint = process.env.API_ENDPOINT + "route";
@@ -27,10 +28,10 @@ const getRoute = async (url, token) => {
  * @param {*} data data
  * @param {*} prevToken used, in case of retry's
  */
-const fetchDrivingRoute = async (data, prevToken) => {
+const fetchDrivingRoute = (data, prevToken) => {
   return new Promise(async (resolve, reject) => {
     try {
-      var token = "";
+      let token = "";
       if (!prevToken) {
         token = await fetchRouteToken(endpoint, data);
       } else {
@@ -40,14 +41,15 @@ const fetchDrivingRoute = async (data, prevToken) => {
       if (token) {
         const positionsResult = await getRoute(endpoint, token);
         if (positionsResult.status === "in progress") {
-          await fetchDrivingRoute(data, token);
+          resolve(await fetchDrivingRoute(data, token));
+        } else {
+          resolve(positionsResult);
         }
-        return resolve(positionsResult);
       } else {
-        return reject("Error While fetching data");
+        reject("Error While fetching data");
       }
     } catch (e) {
-      return reject(e);
+      reject(e);
     }
   });
 };

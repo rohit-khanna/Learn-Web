@@ -31,25 +31,25 @@ class MapComponentInner extends React.Component {
       const [end] = rest.slice(-1);
 
       try {
-        // const directions = await MapService.FetchDirections(
-        //   {
-        //     lat: start[0],
-        //     lng: start[1]
-        //   },
-        //   {
-        //     lat: end[0],
-        //     lng: end[1]
-        //   },
-        //   (markers.length > 2 ? rest.slice(0, markers.length - 2) : []).map(
-        //     wayPoint => {
-        //       return {
-        //         lat: wayPoint[0],
-        //         lng: wayPoint[1]
-        //       };
-        //     }
-        //   )
-        // );
-        // this.setState({ directions });
+        const directions = await MapService.FetchDirections(
+          {
+            lat: start[0],
+            lng: start[1]
+          },
+          {
+            lat: end[0],
+            lng: end[1]
+          },
+          (markers.length > 2 ? rest.slice(0, markers.length - 2) : []).map(
+            wayPoint => {
+              return {
+                lat: wayPoint[0],
+                lng: wayPoint[1]
+              };
+            }
+          )
+        );
+        this.setState({ directions });
       } catch (error) {
         alert(error);
       }

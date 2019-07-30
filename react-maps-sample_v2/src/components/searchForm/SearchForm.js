@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import Input from "../common";
+import React from "react";
+import UnControlledInput from "../common/uncontrolledInput";
 import "./SearchForm.css";
 
 const SearchForm = ({
@@ -17,19 +17,21 @@ const SearchForm = ({
       onReset={handleReset}
       onSubmit={handleSubmit}
     >
-      <Input
+      <UnControlledInput
         name="startLocation"
         label="Start Location"
         value={formValues.startLocation}
         handleClearClick={handleClearClick}
         handleChange={handleChange}
+        inProgress={inProgress}
       />
-      <Input
+      <UnControlledInput
         name="endLocation"
         label="Destination Location"
         value={formValues.endLocation}
         handleClearClick={handleClearClick}
         handleChange={handleChange}
+        inProgress={inProgress}
       />
       {props.children}
       <div className="buttonGroup">

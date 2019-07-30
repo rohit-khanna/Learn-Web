@@ -1,3 +1,4 @@
+/* eslint-disable no-async-promise-executor */
 /**
  *  method to fetchdata from a URL
  * @param {*} url api endpoint
@@ -9,8 +10,8 @@ const fetchFromService = async (url, method, data) => {
     const payLoad = {
       method: method,
       headers: {
-        "Content-Type": "application/json",
-        mode: "no-cors"
+        "Content-Type": "application/json"
+        //mode: "no-cors"
       }
     };
 
