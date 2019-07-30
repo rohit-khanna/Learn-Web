@@ -1,4 +1,4 @@
-import { FETCH_ROUTE_SUCCESS } from "./actionTypes";
+import { FETCH_ROUTE_SUCCESS, FETCH_ROUTE_ERROR } from "./actionTypes";
 import { MyService } from "../../services";
 import { beginApiCall, apiCallError } from "./apiStatusActions";
 
@@ -7,6 +7,16 @@ export function fetchRouteSuccess(routeObject) {
   return {
     type: FETCH_ROUTE_SUCCESS,
     routeResult: routeObject
+  };
+}
+
+//action creator
+export function fetchRouteError(error) {
+  return {
+    type: FETCH_ROUTE_ERROR,
+    routeResult: {
+      error
+    }
   };
 }
 
@@ -25,7 +35,8 @@ export function fetchRoute(start, end) {
       return dispatch(fetchRouteSuccess(routeObject));
     } catch (error) {
       dispatch(apiCallError());
-      alert(error);
+      // alert(error);
+      dispatch(fetchRouteError(error));
     }
   };
 }

@@ -42,12 +42,12 @@ const fetchDrivingRoute = async (data, prevToken) => {
         if (positionsResult.status === "in progress") {
           await fetchDrivingRoute(data, token);
         }
-        resolve(positionsResult);
+        return resolve(positionsResult);
       } else {
-        reject("Error While fetching data");
+        return reject("Error While fetching data");
       }
     } catch (e) {
-      reject(e);
+      return reject(e);
     }
   });
 };

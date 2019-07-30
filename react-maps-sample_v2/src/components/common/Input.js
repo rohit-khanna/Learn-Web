@@ -15,6 +15,7 @@ const Input = ({ name, value, handleClearClick, handleChange, label }) => {
           name={name}
           value={value}
           onChange={handleChange}
+          autoComplete="off"
         />
 
         <div

@@ -4,6 +4,7 @@ import ResultDisplay from "./resultDisplay/ResultDisplay";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchRoute } from "../redux/actions/routeActions";
+import MapComponent from "./map/MapComponent";
 
 const INITIAL_VALUE = { startLocation: "", endLocation: "" };
 
@@ -39,12 +40,12 @@ class App extends Component {
     e.preventDefault();
     const { actions } = this.props;
     const { startLocation, endLocation } = this.state.formValues;
-    const dd = actions.routes(startLocation, endLocation);
+    actions.routes(startLocation, endLocation);
   };
 
   render() {
     const { formValues } = this.state;
-    const { loading } = this.props;
+    const { loading, routeResult } = this.props;
 
     return (
       <div className="container row">
@@ -57,16 +58,31 @@ class App extends Component {
             handleSubmit={this.handleSubmit}
             inProgress={loading}
           >
-            {this.props.routeResult && this.props.routeResult.error}
-            {this.props.routeResult.status === "success" && (
+            <p className="error">{routeResult && routeResult.error}</p>
+            {routeResult.status === "success" && (
               <ResultDisplay
-                totalDistance={this.props.routeResult.total_distance}
-                totalTime={this.props.routeResult.total_time}
+                totalDistance={routeResult.total_distance}
+                totalTime={routeResult.total_time}
               />
             )}
+            {JSON.stringify(this.props)}
           </SearchForm>
         </section>
-        <section className="col-md-auto"> {JSON.stringify(this.props)}</section>
+        <section className="col-md-8">
+          <MapComponent
+            key={
+              this.props.routeResult.path
+                ? this.props.routeResult.path.length
+                : 0
+            }
+            isMarkerShown
+            googleMapURL={process.env.MAP_API_URL.toString()}
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={<div style={{ height: `100vh` }} />}
+            mapElement={<div style={{ height: `100%` }} />}
+            markers={this.props.routeResult ? this.props.routeResult.path : []}
+          />
+        </section>
       </div>
     );
   }

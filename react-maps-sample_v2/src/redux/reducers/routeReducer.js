@@ -1,4 +1,4 @@
-import { FETCH_ROUTE_SUCCESS } from "../actions/actionTypes";
+import { FETCH_ROUTE_SUCCESS, FETCH_ROUTE_ERROR } from "../actions/actionTypes";
 import initialState from "./InitialState";
 
 /**
@@ -9,6 +9,7 @@ import initialState from "./InitialState";
 export default function RouteReducer(state = initialState.routeResult, action) {
   switch (action.type) {
     case FETCH_ROUTE_SUCCESS:
+    case FETCH_ROUTE_ERROR:
       return action.routeResult;
 
     default:
