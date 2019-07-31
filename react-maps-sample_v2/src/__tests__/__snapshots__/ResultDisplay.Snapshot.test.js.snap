@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ResultDisplay/> matches the snapshot 1`] = `
+<div
+  className="resultContainer"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-5 lbl-heading"
+    >
+      Total Distance:
+    </div>
+    <div
+      className="col-md-auto"
+    >
+      1000
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-5 lbl-heading"
+    >
+      Total Time:
+    </div>
+    <div
+      className="col-md-auto"
+    >
+      180
+    </div>
+  </div>
+</div>
+`;
