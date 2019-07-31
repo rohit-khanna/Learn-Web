@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "webpack-dev-server --config webpack.config.dev.js --port 3000"
   },
   "author": "Rohit Khanna",
@@ -23,7 +23,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "react-test-renderer": "^16.8.6",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.2",
@@ -33,15 +32,23 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-app": "^9.0.0",
     "css-loader": "^3.1.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^6.1.0",
     "eslint-loader": "^2.2.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-react": "^7.14.3",
     "html-webpack-plugin": "^3.2.0",
+    "react-test-renderer": "^16.8.6",
     "style-loader": "^0.23.1",
     "webpack": "^4.36.1",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./setupTests.js"
+    ]
   },
   "babel": {
     "presets": [

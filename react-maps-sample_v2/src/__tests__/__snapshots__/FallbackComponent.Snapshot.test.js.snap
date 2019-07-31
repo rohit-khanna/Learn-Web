@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Fallback Component matches the snapshot 1`] = `
+<div
+  className="alert alert-danger"
+>
+  <div
+    className="alert-heading"
+  >
+    We've got some problem
+  </div>
+  <p>
+    some error
+  </p>
+  <details>
+    "some info"
+  </details>
+</div>
+`;
