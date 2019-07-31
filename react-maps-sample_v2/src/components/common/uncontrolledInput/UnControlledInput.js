@@ -7,7 +7,7 @@ class UnControlledInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataList: ["one", "two"],
+      dataList: [],
       inputValue: "",
       showDataList: false
     };
