@@ -18,8 +18,15 @@ function renderUncontrolledInput(args) {
 }
 
 describe("<UnControlledInput/>", () => {
-  it("should match the Snapshot", () => {
+  it("should match the Snapshot when autocomplete list is hidden", () => {
     const tree = renderUncontrolledInput();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it("should match the Snapshot when autocomplete list is shown", () => {
+    const tree = renderUncontrolledInput();
+    const instance = tree.root.instance;
+    instance.setState({ dataList: ["some place"], showDataList: true });
     expect(tree).toMatchSnapshot();
   });
 });

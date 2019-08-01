@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<UnControlledInput/> should match the Snapshot 1`] = `
+exports[`<UnControlledInput/> should match the Snapshot when autocomplete list is hidden 1`] = `
 <div>
   <div
     className="Input_ContainerNew form-group"
@@ -28,5 +28,45 @@ exports[`<UnControlledInput/> should match the Snapshot 1`] = `
       x
     </div>
   </div>
+</div>
+`;
+
+exports[`<UnControlledInput/> should match the Snapshot when autocomplete list is shown 1`] = `
+<div>
+  <div
+    className="Input_ContainerNew form-group"
+  >
+    <label
+      htmlFor="test"
+    >
+      test
+    </label>
+    <input
+      autoComplete="off"
+      className="form-control"
+      disabled={false}
+      name="test"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <div
+      className="icon"
+      hidden={false}
+      onClick={[Function]}
+      title="clear"
+    >
+      x
+    </div>
+  </div>
+  <ul
+    className="dataList"
+    onClick={[Function]}
+  >
+    <li>
+      some place
+    </li>
+     
+  </ul>
 </div>
 `;
