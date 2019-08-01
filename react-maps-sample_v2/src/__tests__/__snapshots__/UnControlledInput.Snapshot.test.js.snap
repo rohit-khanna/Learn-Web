@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UnControlledInput/> should match the Snapshot 1`] = `
+<div>
+  <div
+    className="Input_ContainerNew form-group"
+  >
+    <label
+      htmlFor="test"
+    >
+      test
+    </label>
+    <input
+      autoComplete="off"
+      className="form-control"
+      disabled={false}
+      name="test"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <div
+      className="icon"
+      hidden={false}
+      onClick={[Function]}
+      title="clear"
+    >
+      x
+    </div>
+  </div>
+</div>
+`;
