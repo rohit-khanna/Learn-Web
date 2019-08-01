@@ -20,6 +20,10 @@ Alternatively, if you are creating your app using `create-react-app`, you can si
 
 I used the approach using webpack, as this app is NOT created using `create-react-app` utility.
 
+### Unit Testing Tools
+
+[Jest](https://jestjs.io/) , [Enzyme](https://airbnb.io/enzyme/) and [React Test Renderer](https://reactjs.org/docs/test-renderer.html)
+
 ## Scripts
 
 ### `npm install`
@@ -32,7 +36,7 @@ to run the Application at Port :3000
 
 ### `npm run test`
 
-_Work In Progress_
+to run the tests. (_Work under progress_)
 
 ### `npm run build`
 
