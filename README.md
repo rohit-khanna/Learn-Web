@@ -5,5 +5,5 @@ It could be helpful for someone or help me to refer back in sometime in future.
 
 Browse through respective Sub-Repos for Technology specific samples.
 
-- HTML-CSS
-- ReactJS
+- [HTML-CSS](https://github.com/rohit-khanna/Learn-Web/tree/master/HTML-CSS)
+- [ReactJS](https://github.com/rohit-khanna/Learn-Web/tree/master/React)
