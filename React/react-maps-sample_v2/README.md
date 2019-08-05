@@ -38,9 +38,9 @@ to run the Application at Port :3000
 
 to run the tests. (_Work under progress_)
 
-### `npm run build`
+#### `npm run build`
 
-_Work In Progress_
+-- _Work In Progress_ --
 
 ### FAQ / Errors
 
