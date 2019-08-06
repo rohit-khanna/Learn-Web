@@ -1,0 +1,9 @@
+input[type="number"] {
+  width: 250px;
+  margin-right: 2rem;
+}
+.flexForm {
+  display: flex;
+  justify-content: flex-start;
+  margin: 1rem;
+}

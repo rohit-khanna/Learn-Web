@@ -1,0 +1,26 @@
+.head {
+  color: rgb(231, 231, 138);
+  font-weight: bold;
+}
+.item {
+  border: 1px solid rgba(238, 237, 209, 0.747);
+  border-radius: 0.625rem;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  width: 40rem;
+}
+
+.companyName i {
+  color: greenyellow;
+  margin-right: 0.65rem;
+}
+
+.address {
+  color: rgb(140, 160, 221);
+}
+
+.email {
+  color: royalblue;
+  cursor: pointer;
+  text-decoration: underline;
+}
