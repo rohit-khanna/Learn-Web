@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import SearchComponent from "./components/Search";
 import UserList from "./components/UserList/";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import * as UserActions from "./redux/actions/userAction";
+//import { bindActionCreators } from "redux";
+//import * as UserActions from "./redux/actions/userAction";
 import Spinner from "./components/common/Spinner";
+import { FetchUserDetail } from "./redux/actions/userAction";
 
 class App extends Component {
   state = {
@@ -14,9 +15,12 @@ class App extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.actions
-      .loadUsers(e.target.elements["userID"].value)
-      .catch(err => alert("err"));
+    // this.props.actions
+    //   .loadUsers(e.target.elements["userID"].value)
+    //   .catch(err => alert("err"));
+    this.props.store.dispatch(
+      FetchUserDetail(e.target.elements["userID"].value)
+    );
     // this.setState({ users: data });
   };
 
@@ -39,15 +43,16 @@ class App extends Component {
 function mapStateToProps(state, ownProps) {
   return {
     users: state.users,
-    loading: state.apiCallsInProgress > 0
+    loading: state.apiCallsInProgress > 0,
+    store: ownProps.store
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: {
-      loadUsers: bindActionCreators(UserActions.loadUsers, dispatch)
-    }
+    // actions: {
+    //   loadUsers: bindActionCreators(UserActions.loadUsers, dispatch)
+    // }
   };
 }
 
